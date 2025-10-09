@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: Inter;
+
+  --color-black: #10141a;
+  --color-white: #fff;
+  --color-grey: #f9f9f9;
+  --color-yellow: #ffc700;
+  --color-green: #008c00;
+  --color-red: #ff7575;
+  --color-light-green: #cce8cc;
+  --color-light-purple: #ece0ff;
+  --color-light-blue: #c8f0f0;
+
+  --text-h1: 2.6875rem;
+  --text-h2: 2.5rem;
+  --text-h3: 2.25rem;
+  --text-h4: 2rem;
+  --text-h5: 1.75rem;
+  --text-title: 1.5rem;
+  --text-subtitle: 1.25rem;
+  --text-base: 1rem;
+  --text-small: 0.875rem;
+}
+
+body {
+  font-family: Inter;
+  color: #10141a;
+  background-image: url("src/assets/bg-desktop.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+h1 {
+  font-size: 2.6875rem;
+}
+
+h2 {
+  font-size: 2.5rem;
+}
+
+h3 {
+  font-size: 2.25rem;
+}
+
+h4 {
+  font-size: 2rem;
+}
+
+h5 {
+  font-size: 1.75rem;
+}
+
+.slideIn {
+  animation: slideInFromTop 300ms;
+}
+
+@keyframes slideInFromTop {
+  from {
+    transform: translateY(-25%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.active {
+      font-weight: 500;
+      color: --color-black;
+      background-color: white;
+    }
+
+@media only screen and (max-width: 834px) {
+  :root {
+    --text-h1: 2.25rem;
+    --text-h2: 2rem;
+    --text-h3: 1.75rem;
+    --text-h4: 1.5rem;
+    --text-h5: 1.375rem;
+    --text-title: 1.25rem;
+    --text-subtitle: 1.125rem;
+  }
+}
