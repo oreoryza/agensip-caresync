@@ -18,7 +18,7 @@ const Topbar = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   const handleCollapsed = () => {
-      setIsCollapsed(!isCollapsed);
+    setIsCollapsed(!isCollapsed);
   }
 
   return (
@@ -35,10 +35,10 @@ const Topbar = () => {
         <div className="group h-[42px] w-[42px] flex justify-center items-center bg-white rounded-[100%]">
           <RiNotification3Line className="size-[20px] group-hover:rotate-30 duration-500" />
         </div>
-        <div onClick={handleCollapsed} className="group flex items-center bg-white p-[5px] rounded-full cursor-pointer z-1">
+        <div onClick={handleCollapsed} className="group flex items-center bg-white p-[5px] rounded-full cursor-pointer">
           <div className="bg-green size-[34px] rounded-[100%] mr-[7px]"></div>
           <p>Guy Hawkins</p>
-          {isCollapsed ? (<FaChevronUp className="ml-[12px] mr-[6px] p-[2px] group-hover:-translate-y-0.5 duration-500" />):(<FaChevronDown className="ml-[12px] mr-[6px] p-[2px] group-hover:translate-y-0.5 duration-500" />)}
+          {isCollapsed ? (<FaChevronUp className="ml-[12px] mr-[6px] p-[2px] group-hover:-translate-y-1 duration-500" />):(<FaChevronDown className="ml-[12px] mr-[6px] p-[2px] group-hover:translate-y-0.5 duration-500" />)}
         </div>
         <div className={`absolute ${isCollapsed ? "slideIn":"hidden"} bg-white min-w-[169px] py-[8px] rounded-[10px] top-16 right-0 shadow`}>
           <button
