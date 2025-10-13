@@ -1,6 +1,6 @@
 import React from "react";
-import ButtonPrimary from "../Components/ButtonPrimary";
-import ButtonTertiary from "../Components/ButtonTertiary";
+import ButtonPrimary from "../components/ButtonPrimary";
+import ButtonTertiary from "../components/ButtonTertiary";
 
 import { RiShining2Line } from 'react-icons/ri';
 import { PiHandHeart } from 'react-icons/pi';
