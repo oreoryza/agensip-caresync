@@ -77,7 +77,7 @@ const Login = ({ toggleLogin }) => {
         </div>
         <div className="flex flex-col gap-[20px] mt-[20px] text-center">
           <div className={disabled ? "opacity-50 select-none" : ""}>
-            <ButtonPrimary type={"submit"} text={"Login"} color={"green"} disabled={disabled} />
+            <ButtonPrimary type={"submit"} text={"Login"} disabled={disabled} />
           </div>
           <p>
             Don't have an account?{" "}

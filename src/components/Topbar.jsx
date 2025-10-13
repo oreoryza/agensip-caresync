@@ -37,16 +37,16 @@ const Topbar = () => {
           <img src={logo} alt="CareSync" className="max-h-[32px]" />
         </Link>
         <div className="flex items-center gap-[10px] bg-white py-[10px] pl-[12px] pr-[16px] rounded-full overflow-hidden">
-          <RiSearchLine className="size-[23px]" />
+          <RiSearchLine className="size-[23px] text-black/[.5]" />
           <input type="text" placeholder="Search" className="focus:outline-0" />
         </div>
         <div className="relative flex gap-[10px]">
-          <div className="group h-[42px] w-[42px] flex justify-center items-center bg-white rounded-[100%]">
+          <button className="group h-[42px] w-[42px] flex justify-center items-center bg-white rounded-[100%]">
             <RiSettings3Line className="size-[20px] group-hover:rotate-180 duration-500" />
-          </div>
-          <div className="group h-[42px] w-[42px] flex justify-center items-center bg-white rounded-[100%]">
+          </button>
+          <button className="group h-[42px] w-[42px] flex justify-center items-center bg-white rounded-[100%]">
             <RiNotification3Line className="size-[20px] group-hover:rotate-30 duration-500" />
-          </div>
+          </button>
           <div
             onClick={handleCollapsed}
             className="group flex items-center bg-white p-[5px] rounded-full cursor-pointer"
@@ -64,10 +64,10 @@ const Topbar = () => {
               isCollapsed ? "slideIn" : "hidden"
             } bg-white min-w-[169px] py-[8px] rounded-[10px] top-16 right-0 shadow`}
           >
-            <button className="flex items-center gap-[10px] px-[10px] py-[11px] w-full cursor-pointer select-none hover:bg-grey">
+            <Link to={"/profile"} className="flex items-center gap-[10px] px-[10px] py-[11px] w-full cursor-pointer select-none hover:bg-grey">
               <FiUser className="size-[16px]" />
               Profile
-            </button>
+            </Link>
             <button className="flex items-center gap-[10px] px-[10px] py-[11px] w-full cursor-pointer select-none hover:bg-grey">
               <RiSettings3Line className="size-[16px]" />
               Settings
@@ -94,10 +94,10 @@ const Topbar = () => {
             <p className="text-small">You'll be logged out from your account. You can log back in anytime.</p>
           </div>
           <div className="flex gap-[10px]">
-            <ButtonSecondary onClick={handleModal} text={"Cancel"} textColor={"grey"} />
+            <ButtonSecondary onClick={handleModal} text={"Cancel"} style={"grey"} />
             <ButtonPrimary onClick={() => {
                 dispatch(toggleToken());
-              }} text={"Log Out"} color={"red"} />
+              }} text={"Log Out"} style={"bg-red"} />
           </div>
         </div>
       </div>

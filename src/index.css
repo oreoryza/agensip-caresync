@@ -53,6 +53,10 @@ h5 {
   font-size: 1.75rem;
 }
 
+button {
+  cursor: pointer !important;
+}
+
 .slideIn {
   animation: slideInFromTop 300ms;
 }
@@ -85,6 +89,10 @@ h5 {
   to {
     opacity: 1;
   }
+}
+
+.hide-scroll::-webkit-scrollbar {
+ display: none;
 }
 
 @media only screen and (max-width: 834px) {

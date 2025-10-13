@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ButtonPrimary from "../components/ButtonPrimary";
 import DOMPurify from "dompurify";
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 import { PiSignInBold } from "react-icons/pi";
 import { LuEye } from "react-icons/lu";
@@ -22,6 +23,11 @@ const SignUp = ({ toggleLogin }) => {
     setIsPeek(!isPeek);
   };
 
+  const handleSubmit = () => {
+    Notify.success('Sol lucet omnibus');
+    toggleLogin();
+  }
+
   const disabled = !name.trim() || !email.trim() || !password.trim();
 
   return (
@@ -37,7 +43,7 @@ const SignUp = ({ toggleLogin }) => {
           </p>
         </div>
       </div>
-      <form action="" className="flex flex-col gap-[16px] w-full text-left">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-[16px] w-full text-left">
         <div className="flex flex-col gap-[7px]">
           <label htmlFor="name">Name</label>
           <input
@@ -86,7 +92,7 @@ const SignUp = ({ toggleLogin }) => {
           </div>
         </div>
         <div className="flex flex-col gap-[20px] mt-[20px] text-center">
-          <ButtonPrimary disabled={disabled} text={"Create Account"} color={"green"} />
+          <ButtonPrimary type={"submit"} disabled={disabled} text={"Create Account"} />
           <p>
             Already have an account?{" "}
             <span onClick={toggleLogin} className="text-green cursor-pointer">

@@ -1,19 +1,22 @@
 import { configureStore } from "@reduxjs/toolkit";
 import tokenReducer from "./slices/tokenSlice";
+import employeeReducer from "./slices/employeeSlice"
+import profileReducer from "./slices/profileSlice"
 import {persistReducer, persistStore} from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
 const persistConfig = {
     key: 'root',
     storage,
-    blacklist: ['posts'],
   };
 
 const persistedToken = persistReducer(persistConfig, tokenReducer);
 
 const store = configureStore({
   reducer: {
-    token: persistedToken
+    token: persistedToken,
+    profile: profileReducer,
+    employee: employeeReducer
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

@@ -1,0 +1,278 @@
+import React, { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { setEmployee } from "../redux/slices/employeeSlice";
+import { Doughnut } from "react-chartjs-2";
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+
+import { BsChevronRight } from "react-icons/bs";
+import { MdCall } from "react-icons/md";
+import { RiSendPlaneFill } from "react-icons/ri";
+import { IoLocationOutline } from "react-icons/io5";
+import { PiPhone } from "react-icons/pi";
+import { PiCalendarDots } from "react-icons/pi";
+import { PiPencilSimple } from "react-icons/pi";
+import { FaStar } from "react-icons/fa";
+
+ChartJS.register(ArcElement, Tooltip, Legend);
+
+const EmployeeDetail = () => {
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  const employee = useSelector((state) => state.employee.employee);
+  const [selectedTime, setSelectedTime] = useState("week");
+
+  useEffect(() => {
+    dispatch(setEmployee(parseInt(id)));
+  }, [id, dispatch]);
+
+  return (
+    <div className="w-full h-full pb-[24px]">
+      <div className="flex items-center gap-[7px] pl-[17px]">
+        <Link
+          to={"/employee"}
+          className="opacity-50 hover:text-green duration-300"
+        >
+          Employee
+        </Link>
+        <BsChevronRight className="opacity-50" />
+        <p className="text-green">Employee Detail</p>
+      </div>
+      <div className="flex justify-between pt-[17px] pl-[17px] w-full h-full">
+        <div className="flex w-full">
+          <div className="relative w-full max-w-[294px]">
+            <img
+              src={employee.img}
+              alt={employee.name}
+              className="w-full h-full"
+            />
+            <div className="absolute bottom-0 left-0 z-1 flex justify-center items-end gap-[8px] pb-[45px] bg-linear-to-t from-[#F2F0DF] to-white/[0] w-full h-[70%]">
+              <a
+                href="https://www.whatsapp.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex gap-2 items-center bg-green text-white px-[16px] py-[8px] rounded-full"
+              >
+                <MdCall />
+                Call
+              </a>
+              <a
+                href="https://www.whatsapp.com/"
+                rel="noopener noreferrer"
+                target="_blank"
+                className="flex gap-2 items-center bg-white px-[16px] py-[8px] rounded-full"
+              >
+                <RiSendPlaneFill />
+                Chat
+              </a>
+            </div>
+          </div>
+          <div className="flex flex-col justify-between py-[32px] ml-[1rem] w-full">
+            <div className="flex gap-1">
+              <div
+                className={`px-[8px] py-[6px] rounded-full text-small ${
+                  employee.status === "Active"
+                    ? "text-green bg-green/[.1]"
+                    : "text-red bg-red/[.1]"
+                }`}
+              >
+                {employee.status}
+              </div>
+              <div className="px-[8px] py-[6px] rounded-full text-small bg-black/[.06] text-black/[.5]">
+                {employee.category}
+              </div>
+            </div>
+            <div className="flex flex-col gap-[6px]">
+              <h5 className="font-medium">{employee.name}</h5>
+              <p className="text-small opacity-50">{employee.jobTitle}</p>
+            </div>
+            <div className="grid grid-cols-2 gap-[16px]">
+              <div className="flex items-center gap-[10px]">
+                <div className="bg-white size-[34px] flex items-center justify-center rounded-[100%]">
+                  <IoLocationOutline className="size-[20px]" />
+                </div>
+                <div>
+                  <p className="text-xs opacity-50">Address</p>
+                  <p className="text-small">{employee.address}</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-[10px]">
+                <div className="bg-white size-[34px] flex items-center justify-center rounded-[100%]">
+                  <PiPhone className="size-[20px]" />
+                </div>
+                <div>
+                  <p className="text-xs opacity-50">Phone Number</p>
+                  <p className="text-small">{employee.phone}</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-[10px]">
+                <div className="bg-white size-[34px] flex items-center justify-center rounded-[100%]">
+                  <PiCalendarDots className="size-[20px]" />
+                </div>
+                <div>
+                  <p className="text-xs opacity-50">Email</p>
+                  <p className="text-small">{employee.email}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="flex flex-col items-end justify-between py-[32px] max-w-[342px]">
+          <button className="flex items-center gap-2 bg-green/[.1] text-green text-small font-medium rounded-full px-[16px] py-[8px]">
+            <PiPencilSimple className="size-[16px]" />
+            Edit Profile
+          </button>
+          <div className="flex flex-col gap-[16px] bg-white/[.4] p-[20px] rounded-[20px]">
+            <p className="font-bold text-subtitle">About</p>
+            <p className="text-small opacity-50">{employee.about}</p>
+          </div>
+        </div>
+      </div>
+      <div className="flex gap-[16px] w-full">
+        <div className="grid grid-cols-2 gap-[16px] w-full">
+          <div className="bg-white/[.4] rounded-[20px] p-[16px]">
+            <p className="text-small font-medium">Experience</p>
+            <div className="flex items-center gap-2">
+              <h1 className="font-bold">{employee.experience}</h1>
+              <p className="text-xs text-black/[.6]">
+                Years of experiences since{" "}
+                <span className="text-black font-bold">{employee.year}</span>
+              </p>
+            </div>
+          </div>
+          <div className="bg-white/[.4] rounded-[20px] p-[16px]">
+            <p className="text-small font-medium">Rating</p>
+            <div className="flex items-center gap-2">
+              <h1 className="font-bold">{employee.rating}</h1>
+              <FaStar
+                className={`min-h-[29px] min-w-[30px] ${
+                  employee.rating > 3 ? "text-yellow" : "text-green"
+                }`}
+              />
+              <p className="text-xs text-black/[.6]">
+                This doctor's rating is{" "}
+                <span className="text-black font-bold">
+                  {employee.rating > 3 ? "good" : "ok"}
+                </span>
+              </p>
+            </div>
+          </div>
+          <div className="col-span-2 flex flex-col gap-2 bg-white/[.4] rounded-[20px] p-[16px]">
+            <p className="text-small font-medium">Education</p>
+            <div className="flex items-center gap-4">
+              <img
+                src={employee.educations?.img}
+                alt={employee.educations?.campus}
+                className="size-[55px] rounded-[10px] object-cover"
+              />
+              <div>
+                <p className="text-title font-bold">
+                  {employee.educations?.campus}
+                </p>
+                <p className="text-xs text-black/[.6]">
+                  {employee.educations?.address}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="col-span-2 bg-white/[.4] rounded-[20px] p-[16px]">
+            <p className="text-small font-bold">Satisfaction</p>
+            <div className="flex flex-col items-center overflow-hidden">
+              <div className="relative flex justify-center items-center">
+                <Doughnut
+                  data={{
+                    labels: ["Happy", "Others"],
+                    datasets: [
+                      {
+                        data: [
+                          employee.satisfaction?.happy || 0,
+                          (employee.satisfaction?.total || 0) -
+                            (employee.satisfaction?.happy || 0),
+                        ],
+                        backgroundColor: ["#008C00", "transparent"],
+                        borderWidth: 0,
+                        borderRadius: 100,
+                      },
+                    ],
+                  }}
+                  options={{
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                      legend: {
+                        display: false,
+                      },
+                      tooltip: {
+                        callbacks: {
+                          label: function (context) {
+                            const total = employee.satisfaction?.total || 0;
+                            const value = context.parsed;
+                            const percentage =
+                              total > 0
+                                ? ((value / total) * 100).toFixed(1)
+                                : 0;
+                            return `${context.label}: ${value} (${percentage}%)`;
+                          },
+                        },
+                      },
+                    },
+                  }}
+                  height={200}
+                  className="my-[24px]"
+                />
+                <div className="absolute text-subtitle font-bold">{(employee.satisfaction?.happy/employee.satisfaction?.total)*100 > 50 ? "Good":"Okay"}</div>
+              </div>
+              <div className="flex items-center gap-4">
+                <h2 className="font-bold">{employee.satisfaction?.happy}</h2>
+                <p className="text-small opacity-[60%] max-w-[100px]">
+                  People are happy with its performance
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="flex flex-col gap-[30px] bg-white/[.4] rounded-[20px] w-full p-[16px] max-h-[635px] overflow-hidden">
+          <div className="flex justify-between items-center">
+            <p className="text-subtitle font-bold">Patient lists</p>
+            <div className="bg-white rounded-full py-[6px] px-[10px]">
+              <select
+                className="focus:outline-0 cursor-pointer"
+                value={selectedTime}
+                onChange={(e) => setSelectedTime(e.target.value)}
+              >
+                <option value="week">This week</option>
+                <option value="next">Next week</option>
+              </select>
+            </div>
+          </div>
+          <div className="max-h-[570px] overflow-auto hide-scroll">
+            {employee.patients?.lists
+              ?.filter((patient) => patient.time === selectedTime)
+              ?.map((patient) => (
+                <div
+                  key={patient.id}
+                  className="flex items-center gap-[10px] bg-white rounded-full mb-[10px] p-[6px]"
+                >
+                  <img
+                    src={patient.img}
+                    alt={patient.name}
+                    className="size-[36px] object-cover rounded-[100%]"
+                  />
+                  <div className="flex flex-col gap-[6px]">
+                    <p className="text-small font-medium">{patient.name}</p>
+                    <p className="text-xs text-black/[.6]">{patient.id}</p>
+                  </div>
+                </div>
+              ))}
+          </div>
+        </div>
+        <div className="flex flex-col gap-[16px] w-full">
+          <div className="bg-white/[.4] rounded-[20px]">patients chart</div>
+          <div className="bg-white/[.4] h-full rounded-[20px]">schedule</div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default EmployeeDetail;
