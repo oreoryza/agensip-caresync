@@ -27,7 +27,7 @@ const EmployeeDetail = () => {
   }, [id, dispatch]);
 
   return (
-    <div className="w-full h-full pb-[24px]">
+    <div className="container">
       <div className="flex items-center gap-[7px] pl-[17px]">
         <Link
           to={"/employee"}
@@ -157,76 +157,88 @@ const EmployeeDetail = () => {
               </p>
             </div>
           </div>
-          <div className="col-span-2 flex flex-col gap-2 bg-white/[.4] rounded-[20px] p-[16px]">
-            <p className="text-small font-medium">Education</p>
-            <div className="flex items-center gap-4">
-              <img
-                src={employee.educations?.img}
-                alt={employee.educations?.campus}
-                className="size-[55px] rounded-[10px] object-cover"
-              />
-              <div>
-                <p className="text-title font-bold">
-                  {employee.educations?.campus}
-                </p>
-                <p className="text-xs text-black/[.6]">
-                  {employee.educations?.address}
-                </p>
+          <div className="col-span-2 bg-white/[.4] rounded-[20px] overflow-hidden">
+            <div className="flex flex-col gap-2 p-[16px] backdrop-blur-sm">
+              <p className="text-small font-medium">Education</p>
+              <div className="flex items-center gap-4">
+                <img
+                  src={employee.educations?.img}
+                  alt={employee.educations?.campus}
+                  className="size-[55px] rounded-[10px] object-cover"
+                />
+                <div>
+                  <p className="text-title font-bold">
+                    {employee.educations?.campus}
+                  </p>
+                  <p className="text-xs text-black/[.6]">
+                    {employee.educations?.address}
+                  </p>
+                </div>
               </div>
             </div>
           </div>
-          <div className="col-span-2 bg-white/[.4] rounded-[20px] p-[16px]">
-            <p className="text-small font-bold">Satisfaction</p>
-            <div className="flex flex-col items-center overflow-hidden">
-              <div className="relative flex justify-center items-center">
-                <Doughnut
-                  data={{
-                    labels: ["Happy", "Others"],
-                    datasets: [
-                      {
-                        data: [
-                          employee.satisfaction?.happy || 0,
-                          (employee.satisfaction?.total || 0) -
-                            (employee.satisfaction?.happy || 0),
-                        ],
-                        backgroundColor: ["#008C00", "transparent"],
-                        borderWidth: 0,
-                        borderRadius: 100,
-                      },
-                    ],
-                  }}
-                  options={{
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                      legend: {
-                        display: false,
-                      },
-                      tooltip: {
-                        callbacks: {
-                          label: function (context) {
-                            const total = employee.satisfaction?.total || 0;
-                            const value = context.parsed;
-                            const percentage =
-                              total > 0
-                                ? ((value / total) * 100).toFixed(1)
-                                : 0;
-                            return `${context.label}: ${value} (${percentage}%)`;
+          <div className="col-span-2 bg-white/[.4] rounded-[20px] overflow-hidden">
+            <div className="p-[16px] backdrop-blur-sm">
+              <p className="text-small font-bold">Satisfaction</p>
+              <div className="flex flex-col items-center overflow-hidden">
+                <div className="relative flex justify-center items-center">
+                  <Doughnut
+                    data={{
+                      labels: ["Happy", "Others"],
+                      datasets: [
+                        {
+                          data: [
+                            employee.satisfaction?.happy || 0,
+                            (employee.satisfaction?.total || 0) -
+                              (employee.satisfaction?.happy || 0),
+                          ],
+                          backgroundColor: ["#008C00", "#e2e2e2ff"],
+                          borderWidth: 12,
+                          borderColor: "#F6F6EC",
+                          borderRadius: 100,
+                        },
+                      ],
+                    }}
+                    options={{
+                      responsive: true,
+                      maintainAspectRatio: false,
+                      plugins: {
+                        legend: {
+                          display: false,
+                        },
+                        tooltip: {
+                          callbacks: {
+                            label: function (context) {
+                              const total = employee.satisfaction?.total || 0;
+                              const value = context.parsed;
+                              const percentage =
+                                total > 0
+                                  ? ((value / total) * 100).toFixed(1)
+                                  : 0;
+                              return `${context.label}: ${value} (${percentage}%)`;
+                            },
                           },
                         },
                       },
-                    },
-                  }}
-                  height={200}
-                  className="my-[24px]"
-                />
-                <div className="absolute text-subtitle font-bold">{(employee.satisfaction?.happy/employee.satisfaction?.total)*100 > 50 ? "Good":"Okay"}</div>
-              </div>
-              <div className="flex items-center gap-4">
-                <h2 className="font-bold">{employee.satisfaction?.happy}</h2>
-                <p className="text-small opacity-[60%] max-w-[100px]">
-                  People are happy with its performance
-                </p>
+                    }}
+                    height={200}
+                    className="my-[24px]"
+                  />
+                  <div className="absolute text-subtitle font-bold">
+                    {(employee.satisfaction?.happy /
+                      employee.satisfaction?.total) *
+                      100 >
+                    50
+                      ? "Good"
+                      : "Okay"}
+                  </div>
+                </div>
+                <div className="flex items-center gap-4">
+                  <h2 className="font-bold">{employee.satisfaction?.happy}</h2>
+                  <p className="text-small opacity-[60%] max-w-[100px]">
+                    People are happy with its performance
+                  </p>
+                </div>
               </div>
             </div>
           </div>

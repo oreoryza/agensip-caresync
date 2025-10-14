@@ -23,71 +23,69 @@ const initialState = {
       },
       satisfaction: {
         total: 1000,
-        happy: 900,
+        happy: 800,
       },
-      patients: {
-        lists: [
-          {
-            name: "Dianne Russell",
-            id: "ID089745096C4",
-            img: "/patients/dianne-russell.jpg",
-            time: "week",
-          },
-          {
-            name: "Dianne Russell",
-            id: "ID089745096C4",
-            img: "/patients/dianne-russell.jpg",
-            time: "week",
-          },
-          {
-            name: "Dianne Russell",
-            id: "ID089745096C4",
-            img: "/patients/dianne-russell.jpg",
-            time: "week",
-          },
-          {
-            name: "Dianne Russell",
-            id: "ID089745096C4",
-            img: "/patients/dianne-russell.jpg",
-            time: "next",
-          },
-          {
-            name: "Dianne Russell",
-            id: "ID089745096C4",
-            img: "/patients/dianne-russell.jpg",
-            time: "week",
-          },
-          {
-            name: "Dianne Russell",
-            id: "ID089745096C4",
-            img: "/patients/dianne-russell.jpg",
-            time: "next",
-          },
-          {
-            name: "Dianne Russell",
-            id: "ID089745096C4",
-            img: "/patients/dianne-russell.jpg",
-            time: "week",
-          },
-          {
-            name: "Dianne Russell",
-            id: "ID089745096C4",
-            img: "/patients/dianne-russell.jpg",
-            time: "next",
-          },
-          {
-            name: "Dianne Russell",
-            id: "ID089745096C4",
-            img: "/patients/dianne-russell.jpg",
-            time: "week",
-          },
-          {
-            name: "Dianne Russell",
-            id: "ID089745096C4",
-            img: "/patients/dianne-russell.jpg",
-            time: "week",
-          },
-        ],
+      tasks: [
+        {
+          name: "Staff Scheduling Workshop",
+          description: "Learn to create efficient staff schedules for 24/7 hospital operations.",
+          date: "February 16, 2025",
+          start: "02:00 PM",
+          end: "03:00 PM",
+        },
+        {
+          name: "Staff Scheduling Workshop",
+          description: "Learn to create efficient staff schedules for 24/7 hospital operations.",
+          date: "February 16, 2025",
+          start: "02:00 PM",
+          end: "03:00 PM",
+        },
+        {
+          name: "Staff Scheduling Workshop",
+          description: "Learn to create efficient staff schedules for 24/7 hospital operations.",
+          date: "February 16, 2025",
+          start: "02:00 PM",
+          end: "03:00 PM",
+        },
+        {
+          name: "Staff Scheduling Workshop",
+          description: "Learn to create efficient staff schedules for 24/7 hospital operations.",
+          date: "February 16, 2025",
+          start: "02:00 PM",
+          end: "03:00 PM",
+        },
+      ],
+      attendance: {
+        mon: {
+          twoAm: 2,
+          eightAm: 1,
+          twoPm: 3,
+          eightPm: 4,
+        },
+        tue: {
+          twoAm: 1,
+          eightAm: 1,
+          twoPm: 3,
+          eightPm: 0,
+        },
+        wed: {
+          twoAm: 2,
+          eightAm: 3,
+          twoPm: 2,
+          eightPm: 4,
+        },
+        thu: {
+          twoAm: 0,
+          eightAm: 1,
+          twoPm: 3,
+          eightPm: 1,
+        },
+        fri: {
+          twoAm: 2,
+          eightAm: 2,
+          twoPm: 0,
+          eightPm: 4,
+        },
       },
       img: "/employee/richaud-beringer.svg",
     }

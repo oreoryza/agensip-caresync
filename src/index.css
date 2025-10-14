@@ -57,6 +57,12 @@ button {
   cursor: pointer !important;
 }
 
+.container {
+  height: 100%;
+  width: 100%;
+  padding-bottom: 34px;
+}
+
 .slideIn {
   animation: slideInFromTop 300ms;
 }

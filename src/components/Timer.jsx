@@ -1,23 +1,22 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 
-const Timer = () => {
-    const [time, setTime] = useState(0);
-    const [running, setRunning] = useState(true);
-
+const Timer = ({ time, running, onTimeUpdate }) => {
     const timer = useRef()
 
     useEffect(() => {
         if (running) {
             timer.current = setInterval(() => {
-                setTime(pre => pre + 1)
+                onTimeUpdate(prev => prev + 1)
             }, 1000)
+        } else {
+            clearInterval(timer.current)
         }
         return () => clearInterval(timer.current)
-    }, [running])
+    }, [running, onTimeUpdate])
 
     return(
         <>
-            <h2 className="font-bold">{format(time)}</h2>
+            <h2 className={`font-bold ${running ? 'text-green' : ''}`}>{format(time)}</h2>
         </>
     )
 }

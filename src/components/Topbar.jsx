@@ -28,7 +28,8 @@ const Topbar = () => {
 
   const handleModal = () => {
     setIsModal(!isModal);
-  }
+    setIsCollapsed(false);
+  };
 
   return (
     <>
@@ -40,16 +41,16 @@ const Topbar = () => {
           <RiSearchLine className="size-[23px] text-black/[.5]" />
           <input type="text" placeholder="Search" className="focus:outline-0" />
         </div>
-        <div className="relative flex gap-[10px]">
-          <button className="group h-[42px] w-[42px] flex justify-center items-center bg-white rounded-[100%]">
+        <div className="flex gap-[10px]">
+          <Link to={"/settings"} className="group h-[42px] w-[42px] flex justify-center items-center bg-white rounded-[100%]">
             <RiSettings3Line className="size-[20px] group-hover:rotate-180 duration-500" />
-          </button>
+          </Link>
           <button className="group h-[42px] w-[42px] flex justify-center items-center bg-white rounded-[100%]">
             <RiNotification3Line className="size-[20px] group-hover:rotate-30 duration-500" />
           </button>
           <div
             onClick={handleCollapsed}
-            className="group flex items-center bg-white p-[5px] rounded-full cursor-pointer"
+            className="group relative flex items-center bg-white p-[5px] rounded-full cursor-pointer"
           >
             <div className="bg-green size-[34px] rounded-[100%] mr-[7px]"></div>
             <p className="select-none">Guy Hawkins</p>
@@ -58,31 +59,39 @@ const Topbar = () => {
             ) : (
               <FaChevronDown className="ml-[12px] mr-[6px] p-[2px] group-hover:translate-y-0.5 duration-500" />
             )}
-          </div>
-          <div
-            className={`absolute ${
-              isCollapsed ? "slideIn" : "hidden"
-            } bg-white min-w-[169px] py-[8px] rounded-[10px] top-16 right-0 shadow`}
-          >
-            <Link to={"/profile"} className="flex items-center gap-[10px] px-[10px] py-[11px] w-full cursor-pointer select-none hover:bg-grey">
-              <FiUser className="size-[16px]" />
-              Profile
-            </Link>
-            <button className="flex items-center gap-[10px] px-[10px] py-[11px] w-full cursor-pointer select-none hover:bg-grey">
-              <RiSettings3Line className="size-[16px]" />
-              Settings
-            </button>
-            <button
-              onClick={handleModal}
-              className="flex items-center gap-[10px] text-red px-[10px] py-[11px] w-full cursor-pointer select-none hover:bg-grey"
+            <div
+              className={`absolute ${
+                isCollapsed ? "slideIn" : "hidden"
+              } bg-white w-full py-[8px] rounded-[10px] top-16 right-0 shadow -z-1`}
             >
-              <RiLogoutBoxRLine className="size-[16px]" />
-              Logout
-            </button>
+              <Link
+                to={"/profile"}
+                onClick={handleCollapsed}
+                className="flex items-center gap-[10px] px-[10px] py-[11px] w-full cursor-pointer select-none hover:bg-grey"
+              >
+                <FiUser className="size-[16px]" />
+                Profile
+              </Link>
+              <Link to={"/settings"} className="flex items-center gap-[10px] px-[10px] py-[11px] w-full cursor-pointer select-none hover:bg-grey">
+                <RiSettings3Line className="size-[16px]" />
+                Settings
+              </Link>
+              <button
+                onClick={handleModal}
+                className="flex items-center gap-[10px] text-red px-[10px] py-[11px] w-full cursor-pointer select-none hover:bg-grey"
+              >
+                <RiLogoutBoxRLine className="size-[16px]" />
+                Logout
+              </button>
+            </div>
           </div>
         </div>
       </div>
-      <div className={`${isModal ? "fadeIn" : "hidden"} fixed top-0 flex justify-center items-center h-screen w-screen bg-black/[.2] z-9`}>
+      <div
+        className={`${
+          isModal ? "fadeIn" : "hidden"
+        } fixed top-0 flex justify-center items-center h-screen w-screen bg-black/[.2] z-9`}
+      >
         <div className="flex flex-col gap-[33px] bg-white px-[24px] py-[28px] rounded-[24px] w-[374px]">
           <div className="flex flex-col items-center text-center">
             <div className="flex justify-center items-center size-[64px] rounded-[100%] bg-red/[.1] text-red mb-[24px]">
@@ -91,13 +100,24 @@ const Topbar = () => {
             <p className="text-subtitle font-semibold mb-[10px]">
               Are you sure you want to log out?
             </p>
-            <p className="text-small">You'll be logged out from your account. You can log back in anytime.</p>
+            <p className="text-small">
+              You'll be logged out from your account. You can log back in
+              anytime.
+            </p>
           </div>
           <div className="flex gap-[10px]">
-            <ButtonSecondary onClick={handleModal} text={"Cancel"} style={"grey"} />
-            <ButtonPrimary onClick={() => {
+            <ButtonSecondary
+              onClick={handleModal}
+              text={"Cancel"}
+              style={"grey"}
+            />
+            <ButtonPrimary
+              onClick={() => {
                 dispatch(toggleToken());
-              }} text={"Log Out"} style={"bg-red"} />
+              }}
+              text={"Log Out"}
+              style={"bg-red"}
+            />
           </div>
         </div>
       </div>

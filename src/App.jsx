@@ -11,6 +11,7 @@ import EmployeeDetail from "./pages/EmployeeDetail"
 import Patients from "./pages/Patients"
 import HelpCenter from "./pages/HelpCenter"
 import Profile from "./pages/Profile"
+import Settings from "./pages/Settings"
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 
@@ -33,6 +34,7 @@ function App() {
           <Route path="/employee/:id" element={<EmployeeDetail/>}/>
           <Route path="/help-center" element={<HelpCenter/>}/>
           <Route path="/profile" element={<Profile/>}/>
+          <Route path="/settings" element={<Settings/>}/>
         </Routes>
       </div>
     </div>):(<Auth/>)}

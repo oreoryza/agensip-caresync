@@ -24,7 +24,7 @@ const initialState = {
       },
       satisfaction: {
         total: 1000,
-        happy: 900,
+        happy: 800,
       },
       patients: {
         lists: [
@@ -114,7 +114,7 @@ const initialState = {
       },
       satisfaction: {
         total: 1000,
-        happy: 900,
+        happy: 800,
       },
       patients: {
         lists: [
@@ -204,7 +204,7 @@ const initialState = {
       },
       satisfaction: {
         total: 1000,
-        happy: 900,
+        happy: 800,
       },
       patients: {
         lists: [
@@ -294,7 +294,7 @@ const initialState = {
       },
       satisfaction: {
         total: 1000,
-        happy: 900,
+        happy: 800,
       },
       patients: {
         lists: [
@@ -384,7 +384,7 @@ const initialState = {
       },
       satisfaction: {
         total: 1000,
-        happy: 900,
+        happy: 800,
       },
       patients: {
         lists: [
@@ -474,7 +474,7 @@ const initialState = {
       },
       satisfaction: {
         total: 1000,
-        happy: 900,
+        happy: 800,
       },
       patients: {
         lists: [

@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 
 import Timer from "../components/Timer";
+import ButtonPrimary from "../components/ButtonPrimary";
 
-import { BsChevronRight } from "react-icons/bs";
 import { MdCall } from "react-icons/md";
 import { RiSendPlaneFill } from "react-icons/ri";
 import { IoLocationOutline } from "react-icons/io5";
@@ -19,10 +19,44 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 const Profile = () => {
   const profile = useSelector((state) => state.profile.profile);
 
-  const [selectedTime, setSelectedTime] = useState("week");
+  const [timerTime, setTimerTime] = useState(0);
+  const [isRunning, setIsRunning] = useState(false);
+
+  const getAttendanceColor = (value) => {
+    switch (value) {
+      case 1:
+        return "bg-[#93CA8E]";
+      case 2:
+        return "bg-[#66B55F]";
+      case 3:
+        return "bg-green";
+      case 4:
+        return "bg-green";
+      default:
+        return "bg-[#DFE9DE]";
+    }
+  };
+
+  const timeSlots = ["twoAm", "eightAm", "twoPm", "eightPm"];
+  const days = ["mon", "tue", "wed", "thu", "fri"];
+
+  const getTimeLabel = (timeSlot) => {
+    switch (timeSlot) {
+      case "twoAm":
+        return "02.00 AM";
+      case "eightAm":
+        return "08.00 AM";
+      case "twoPm":
+        return "02.00 PM";
+      case "eightPm":
+        return "08.00 PM";
+      default:
+        return "";
+    }
+  };
 
   return (
-    <div className="w-full h-full pb-[24px]">
+    <div className="container">
       <h2 className="font-bold">Profile</h2>
       <div className="flex justify-between pt-[17px] pl-[17px] w-full h-full">
         <div className="flex w-full">
@@ -131,7 +165,8 @@ const Profile = () => {
             <div className="flex items-center gap-2">
               <h1 className="font-bold">{profile.salary}</h1>
               <p className="text-xs text-black/[.6]">
-                Dollar’s paid per <span className="text-black font-bold">years</span>
+                Dollar’s paid per{" "}
+                <span className="text-black font-bold">years</span>
               </p>
             </div>
           </div>
@@ -153,97 +188,149 @@ const Profile = () => {
               </div>
             </div>
           </div>
-          <div className="col-span-2 bg-white/[.4] rounded-[20px] p-[16px]">
-            <p className="text-small font-bold">Satisfaction</p>
-            <div className="flex flex-col items-center overflow-hidden">
-              <div className="relative flex justify-center items-center">
-                <Doughnut
-                  data={{
-                    labels: ["Happy", "Others"],
-                    datasets: [
-                      {
-                        data: [
-                          profile.satisfaction?.happy || 0,
-                          (profile.satisfaction?.total || 0) -
-                            (profile.satisfaction?.happy || 0),
-                        ],
-                        backgroundColor: ["#008C00", "transparent"],
-                        borderWidth: 0,
-                        borderRadius: 100,
-                      },
-                    ],
-                  }}
-                  options={{
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                      legend: {
-                        display: false,
-                      },
-                      tooltip: {
-                        callbacks: {
-                          label: function (context) {
-                            const total = profile.satisfaction?.total || 0;
-                            const value = context.parsed;
-                            const percentage =
-                              total > 0
-                                ? ((value / total) * 100).toFixed(1)
-                                : 0;
-                            return `${context.label}: ${value} (${percentage}%)`;
+          <div className="col-span-2 bg-white/[.4] rounded-[20px] overflow-hidden">
+            <div className="p-[16px] backdrop-blur-sm">
+              <p className="text-small font-bold">Satisfaction</p>
+              <div className="flex flex-col items-center overflow-hidden">
+                <div className="relative flex justify-center items-center">
+                  <Doughnut
+                    data={{
+                      labels: ["Happy", "Others"],
+                      datasets: [
+                        {
+                          data: [
+                            profile.satisfaction?.happy || 0,
+                            (profile.satisfaction?.total || 0) -
+                              (profile.satisfaction?.happy || 0),
+                          ],
+                          backgroundColor: ["#008C00", "#e2e2e2ff"],
+                          borderWidth: 12,
+                          borderColor: "#F6F6EC",
+                          borderRadius: 100,
+                        },
+                      ],
+                    }}
+                    options={{
+                      responsive: true,
+                      maintainAspectRatio: false,
+                      plugins: {
+                        legend: {
+                          display: false,
+                        },
+                        tooltip: {
+                          callbacks: {
+                            label: function (context) {
+                              const total = profile.satisfaction?.total || 0;
+                              const value = context.parsed;
+                              const percentage =
+                                total > 0
+                                  ? ((value / total) * 100).toFixed(1)
+                                  : 0;
+                              return `${context.label}: ${value} (${percentage}%)`;
+                            },
                           },
                         },
                       },
-                    },
-                  }}
-                  height={200}
-                  className="my-[24px]"
-                />
-                <div className="absolute text-subtitle font-bold">
-                  {(profile.satisfaction?.happy / profile.satisfaction?.total) *
-                    100 >
-                  50
-                    ? "Good"
-                    : "Okay"}
+                    }}
+                    height={200}
+                    className="my-[24px]"
+                  />
+                  <div className="absolute text-subtitle font-bold">
+                    {(profile.satisfaction?.happy /
+                      profile.satisfaction?.total) *
+                      100 >
+                    50
+                      ? "Good"
+                      : "Okay"}
+                  </div>
                 </div>
-              </div>
-              <div className="flex items-center gap-4">
-                <h2 className="font-bold">{profile.satisfaction?.happy}</h2>
-                <p className="text-small opacity-[60%] max-w-[120px]">
-                  People are happy with your performance
-                </p>
+                <div className="flex items-center gap-4">
+                  <h2 className="font-bold">{profile.satisfaction?.happy}</h2>
+                  <p className="text-small opacity-[60%] max-w-[100px]">
+                    People are happy with its performance
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </div>
         <div className="flex flex-col gap-[30px] bg-white/[.4] rounded-[20px] w-full p-[16px] max-h-[635px] overflow-hidden">
-            <p className="text-subtitle font-bold">Today tasks</p>
-          <div className="max-h-[570px] overflow-auto hide-scroll">
-            {profile.patients?.lists
-              ?.filter((patient) => patient.time === selectedTime)
-              ?.map((patient) => (
-                <div
-                  key={patient.id}
-                  className="flex items-center gap-[10px] bg-white rounded-full mb-[10px] p-[6px]"
-                >
-                  <img
-                    src={patient.img}
-                    alt={patient.name}
-                    className="size-[36px] object-cover rounded-[100%]"
-                  />
-                  <div className="flex flex-col gap-[6px]">
-                    <p className="text-small font-medium">{patient.name}</p>
-                    <p className="text-xs text-black/[.6]">{patient.id}</p>
+          <p className="text-subtitle font-bold">Today tasks</p>
+          <div className="overflow-auto hide-scroll">
+            {profile.tasks?.map((task, index) => (
+              <div
+                key={index + 1}
+                className="flex flex-col gap-[24px] bg-white rounded-[10px] mb-[10px] p-[16px]"
+              >
+                <div className="flex flex-col gap-[6px]">
+                  <p className="text-small font-medium">{task.name}</p>
+                  <p className="text-xs text-black/[.6]">{task.description}</p>
+                </div>
+                <div className="flex justify-between items-center">
+                  <p className="text-small">{task.date}</p>
+                  <div className="bg-green/[.1] text-xs text-green px-[6px] py-[4px] rounded-full">
+                    {task.start} to {task.end}
                   </div>
                 </div>
-              ))}
+              </div>
+            ))}
           </div>
         </div>
-        <div className="flex flex-col gap-[16px] w-full">
+        <div className="flex flex-col gap-[16px] w-full min-w-[410px]">
           <div className="bg-white/[.4] rounded-[20px] p-[20px]">
-              <p className="text-small font-medium">Working duration</p>
-              <Timer/>
+            <p className="text-small font-medium">Working duration</p>
+            <div className="flex flex-col justify-between items-start gap-2">
+              <Timer
+                time={timerTime}
+                running={isRunning}
+                onTimeUpdate={setTimerTime}
+              />
+                <ButtonPrimary
+                  text={isRunning ? "Clock out" : "Clock in"}
+                  style={isRunning ? "bg-red" : "bg-green"}
+                  onClick={() => setIsRunning(!isRunning)}
+                />
+            </div>
           </div>
-          <div className="bg-white/[.4] h-full rounded-[20px] p-[20px]">Attendance report</div>
+          <div className="flex flex-col gap-[20px] bg-white/[.4] rounded-[20px] p-[20px]">
+            <div className="flex justify-between items-center">
+              <div>
+                <p className="text-subtitle font-bold">Attendance report</p>
+                <p className="text-small opacity/[.6]">
+                  Tracks your attendence
+                </p>
+              </div>
+              <div className="bg-white px-[6px] py-[4px] rounded-full">
+                <select name="" id="" className="focus:outline-0">
+                  <option value="month">This month</option>
+                  <option value="week">This week</option>
+                </select>
+              </div>
+            </div>
+            <div className="grid grid-cols-7 gap-2">
+              {timeSlots.map((timeSlot) => (
+                <React.Fragment key={timeSlot}>
+                  <div className="flex items-center col-span-2">
+                    <p className="text-small">{getTimeLabel(timeSlot)}</p>
+                  </div>
+                  {days.map((day) => (
+                    <div
+                      key={`${day}-${timeSlot}`}
+                      className={`${getAttendanceColor(
+                        profile.attendance?.[day]?.[timeSlot]
+                      )} h-[48px] rounded-[10px]`}
+                    ></div>
+                  ))}
+                </React.Fragment>
+              ))}
+              <div className="col-span-2"></div>
+              {days.map((day) => (
+                <div key={day} className="flex justify-center">
+                  <p className="text-small">{day.charAt(0).toUpperCase() + day.slice(1)}</p>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </div>

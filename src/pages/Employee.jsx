@@ -19,7 +19,7 @@ const Employee = () => {
       : employees.filter((emp) => emp.jobCategory === selectedJobCategory);
 
   return (
-    <div className="w-full pb-[24px]">
+    <div className="container">
       <h2 className="font-bold">Employee</h2>
       <div className="flex justify-between my-[24px]">
         <div className="flex gap-2">
