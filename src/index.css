@@ -5,7 +5,7 @@
 
   --color-black: #10141a;
   --color-white: #fff;
-  --color-grey: #f9f9f9;
+  --color-grey: #E7E7E7;
   --color-yellow: #ffc700;
   --color-green: #008c00;
   --color-red: #ff7575;
@@ -58,7 +58,6 @@ button {
 }
 
 .container {
-  height: 100%;
   width: 100%;
   padding-bottom: 34px;
 }

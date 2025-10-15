@@ -20,8 +20,8 @@ const Navbar = () => {
   return (
     <div
       className={`sticky top-[98px] pl-[30px] pr-[40px] ${
-        isCollapse ? "w-[120px]" : "w-[240px]"
-      } duration-500`}
+        isCollapse ? "w-[120px]" : "min-w-[240px]"
+      }`}
     >
       <div
         className={`flex ${
@@ -98,7 +98,7 @@ const Navbar = () => {
       <div
         className={`fixed bottom-[34px] left-[46px] ${
           isCollapse ? "w-[27px]" : "w-[240px]"
-        } flex text-small truncate duration-500`}
+        } flex text-small truncate`}
       >
         <p>v1.0</p>
         <p>, Copyright Agensip</p>

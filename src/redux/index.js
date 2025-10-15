@@ -1,9 +1,10 @@
-import { configureStore } from "@reduxjs/toolkit";
-import tokenReducer from "./slices/tokenSlice";
+import { configureStore } from "@reduxjs/toolkit"
+import tokenReducer from "./slices/tokenSlice"
 import employeeReducer from "./slices/employeeSlice"
 import profileReducer from "./slices/profileSlice"
-import {persistReducer, persistStore} from "redux-persist";
-import storage from "redux-persist/lib/storage";
+import dataReducer from "./slices/dataSlice"
+import {persistReducer, persistStore} from "redux-persist"
+import storage from "redux-persist/lib/storage"
 
 const persistConfig = {
     key: 'root',
@@ -16,7 +17,8 @@ const store = configureStore({
   reducer: {
     token: persistedToken,
     profile: profileReducer,
-    employee: employeeReducer
+    employee: employeeReducer,
+    data: dataReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
