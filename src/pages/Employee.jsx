@@ -52,8 +52,8 @@ const Employee = () => {
       <div className="grid xl:grid-cols-3 grid-cols-2 gap-[10px]">
         {filteredEmployees.map((employee) => (
           <Link to={`/employee/${employee.id}`} key={employee.id}>
-            <div className="flex justify-around bg-white rounded-[20px] pt-[24px] pr-[28px] h-full hover:outline-2 outline-offset-2 outline-green">
-              <img src={employee.img} alt={employee.name} className="w-[50%]" />
+            <div className="group flex justify-around bg-white rounded-[20px] pt-[24px] pr-[28px] h-full overflow-hidden">
+              <img src={employee.img} alt={employee.name} className="w-[50%] group-hover:scale-[1.1] duration-300" />
               <div className="flex flex-col gap-[33px] ml-[1rem] max-w-[220px]">
                 <div className="flex gap-1">
                   <div

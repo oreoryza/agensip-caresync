@@ -13,6 +13,7 @@ import { IoLocationOutline } from "react-icons/io5";
 import { PiPhone } from "react-icons/pi";
 import { PiCalendarDots } from "react-icons/pi";
 import { PiPencilSimple } from "react-icons/pi";
+import { BsChevronDown } from "react-icons/bs";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -302,6 +303,10 @@ const Profile = () => {
               </div>
               <div className="bg-white px-[6px] py-[4px] rounded-full">
                 <select name="" id="" className="focus:outline-0">
+                  <button>
+                                    <selectedcontent></selectedcontent>
+                                    <span className="picker"><BsChevronDown/></span>
+                                  </button>
                   <option value="month">This month</option>
                   <option value="week">This week</option>
                 </select>

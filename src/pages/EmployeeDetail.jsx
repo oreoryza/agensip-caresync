@@ -6,6 +6,7 @@ import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 
 import { BsChevronRight } from "react-icons/bs";
+import { BsChevronDown } from "react-icons/bs";
 import { MdCall } from "react-icons/md";
 import { RiSendPlaneFill } from "react-icons/ri";
 import { IoLocationOutline } from "react-icons/io5";
@@ -246,16 +247,18 @@ const EmployeeDetail = () => {
         <div className="flex flex-col gap-[30px] bg-white/[.4] rounded-[20px] w-full p-[16px] max-h-[635px] overflow-hidden">
           <div className="flex justify-between items-center">
             <p className="text-subtitle font-bold">Patient lists</p>
-            <div className="bg-white rounded-full py-[6px] px-[10px]">
               <select
                 className="focus:outline-0 cursor-pointer"
                 value={selectedTime}
                 onChange={(e) => setSelectedTime(e.target.value)}
               >
+                <button>
+                  <selectedcontent></selectedcontent>
+                  <span className="picker"><BsChevronDown/></span>
+                </button>
                 <option value="week">This week</option>
                 <option value="next">Next week</option>
               </select>
-            </div>
           </div>
           <div className="max-h-[570px] overflow-auto hide-scroll">
             {employee.patients?.lists

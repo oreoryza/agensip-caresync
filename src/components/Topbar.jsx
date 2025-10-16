@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toggleToken } from "../redux/slices/tokenSlice";
 
 import ButtonSecondary from "./ButtonSecondary";
@@ -18,6 +18,7 @@ import { RiLogoutBoxRLine } from "react-icons/ri";
 
 const Topbar = () => {
   const dispatch = useDispatch();
+  const profile = useSelector((state) => state.profile.profile)
 
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isModal, setIsModal] = useState(false);
@@ -52,7 +53,7 @@ const Topbar = () => {
             onClick={handleCollapsed}
             className="group relative flex items-center bg-white p-[5px] rounded-full cursor-pointer"
           >
-            <div className="bg-green size-[34px] rounded-[100%] mr-[7px]"></div>
+            <img src={profile.img} className="object-cover size-[34px] rounded-[100%] mr-[7px]"/>
             <p className="select-none">Guy Hawkins</p>
             {isCollapsed ? (
               <FaChevronUp className="ml-[12px] mr-[6px] p-[2px] group-hover:-translate-y-0.5 duration-500" />

@@ -5,11 +5,12 @@
 
   --color-black: #10141a;
   --color-white: #fff;
-  --color-grey: #E7E7E7;
+  --color-grey: #e7e7e7;
   --color-yellow: #ffc700;
   --color-green: #008c00;
   --color-red: #ff7575;
   --color-light-green: #cce8cc;
+  --color-light-yellow: #FFF4CC;
   --color-light-purple: #ece0ff;
   --color-light-blue: #c8f0f0;
 
@@ -57,10 +58,113 @@ button {
   cursor: pointer !important;
 }
 
+select {
+  justify-content: space-between;
+  align-items: center;
+
+  &,
+  &::picker(select) {
+    appearance: base-select;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    border: none;
+    border-radius: 1rem;
+    background-color: white;
+  }
+
+  &::picker(select) {
+    margin-block-start: 9px;
+  }
+
+  &::picker-icon {
+    display: none;
+  }
+
+  .picker {
+    transition: rotate 300ms ease;
+
+    :open & {
+      rotate: 180deg;
+    }
+  }
+}
+
+option {
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  border-radius: 10px;
+
+  &::checkmark {
+    display: none;
+  }
+}
+
 .container {
   width: 100%;
   padding-bottom: 34px;
 }
+
+.react-calendar {
+  border: none !important;
+  border-radius: 1rem;
+  padding: 20px;
+}
+
+abbr[title] {
+ text-decoration: none;
+}
+
+.react-calendar__tile:enabled:hover,
+.react-calendar__tile:enabled:focus {
+  background: #f8f8fa;
+  color: #008c00;
+  border-radius: 6px;
+}
+
+.react-calendar__tile--now {
+  background: #008c003f !important;
+  border-radius: 6px;
+  font-weight: bold !important;
+  color: #008c00;
+}
+
+.react-calendar__tile--now:enabled:hover,
+.react-calendar__tile--now:enabled:focus {
+  background: #008c00 !important;
+  border-radius: 6px;
+  font-weight: bold;
+  color: #008c00;
+}
+
+.react-calendar__tile--hasActive {
+  background-color: #008c00 !important;
+  color: white;
+  border-radius: 6px;
+}
+
+.react-calendar__tile--hasActive:enabled:hover,
+.react-calendar__tile--hasActive:enabled:focus {
+  background: #f8f8fa;
+}
+
+.react-calendar__tile--active {
+  background: #008c00 !important;
+  border-radius: 6px;
+  font-weight: bold;
+  color: white;
+}
+
+.react-calendar__tile--active:enabled:hover,
+.react-calendar__tile--active:enabled:focus {
+  background: #008c00 !important;
+  color: white;
+}
+
+.react-calendar__tile react-calendar__tile--hasActive react-calendar__year-view__months__month
 
 .slideIn {
   animation: slideInFromTop 300ms;
@@ -78,10 +182,10 @@ button {
 }
 
 .active {
-      font-weight: 500;
-      color: --color-black;
-      background-color: white;
-    }
+  font-weight: 500;
+  color: --color-black;
+  background-color: white;
+}
 
 .fadeIn {
   animation: fadeIn 300ms;
@@ -97,7 +201,7 @@ button {
 }
 
 .hide-scroll::-webkit-scrollbar {
- display: none;
+  display: none;
 }
 
 @media only screen and (max-width: 834px) {
