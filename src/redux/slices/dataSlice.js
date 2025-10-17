@@ -11,7 +11,7 @@ const initialState = {
     appointments: [
         {
             id: "ID84110-77851358",
-            name: "Jerome Bellingham",
+            name: "Adam Saddler",
             img: "/patients/dianne-russell.jpg",
             phone: "+84 915 343 643",
             doctor: "James",
@@ -22,7 +22,7 @@ const initialState = {
         },
         {
             id: "ID84110-77851358",
-            name: "Jerome Bellingham",
+            name: "Aiden Blake",
             img: "/patients/dianne-russell.jpg",
             phone: "+84 915 343 643",
             doctor: "James",
@@ -33,7 +33,7 @@ const initialState = {
         },
         {
             id: "ID84110-77851358",
-            name: "Jerome Bellingham",
+            name: "Benjamin Lee",
             img: "/patients/dianne-russell.jpg",
             phone: "+84 915 343 643",
             doctor: "James",
@@ -55,7 +55,7 @@ const initialState = {
         },
         {
             id: "ID84110-77851358",
-            name: "Jerome Bellingham",
+            name: "Jessicha",
             img: "/patients/dianne-russell.jpg",
             phone: "+84 915 343 643",
             doctor: "James",
@@ -66,7 +66,7 @@ const initialState = {
         },
         {
             id: "ID84110-77851358",
-            name: "Jerome Bellingham",
+            name: "Tom Holland",
             img: "/patients/dianne-russell.jpg",
             phone: "+84 915 343 643",
             doctor: "James",
@@ -76,7 +76,8 @@ const initialState = {
             status: "Archive"
         },
     ]
-  }
+  },
+  ambulances: [50, 60, 70, 90, 80, 100]
 };
 
 const dataSlice = createSlice({

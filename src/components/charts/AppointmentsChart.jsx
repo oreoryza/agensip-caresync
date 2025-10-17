@@ -80,11 +80,11 @@ const AppointmentsChart = () => {
         </div>
         <button className="flex justify-center items-center bg-white size-[24px] rounded-[100%]"><FiArrowUpRight/></button>
       </div>
-      <div className="flex justify-between items-start gap-[38px] w-full h-[120px] overflow-hidden">
-        <div className="w-full h-full">
+      <div className="relative flex justify-between items-start gap-[38px] w-full h-[120px] overflow-hidden">
+        <div className="w-full h-full pr-[120px]">
           <Line data={chartData} options={options} className="w-full max-w-[225px]" />
         </div>
-        <div className="flex flex-col gap-[10px]">
+        <div className="absolute right-0 flex flex-col gap-[10px] max-w-[100px]">
           <h2 className="font-bold">{data.patients.appointment.slice(-1)[0]}</h2>
           <p className="text-xs text-black/[.6]">
             Appointments have {percent > 0 ? "increased" : "dropped"}{" "}

@@ -1,82 +1,24 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  patients: {
-    total: [100, 250, 150, 170, 300, 250, 200],
-    room: {
-        available: 75,
-        unavailable: 25
+  patients: [
+    {
+      id: "ID292206548",
+      name: "Ralph Edwards",
+      img: "",
+      gender: "Male",
+      ages: 20,
+      treatment: "Outpatient",
+      payment: "Pending",
+      address: "6391 Elgin St. Celina, Delaware.",
+      email: "sara.cruz@example.com",
+      phone: "+84 678 890 000",
+      about:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
+      note: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      
     },
-    appointment: [100, 250, 150, 170, 200, 125, 170, 300, 150, 200],
-    appointments: [
-        {
-            id: "ID84110-77851358",
-            name: "Jerome Bellingham",
-            img: "/patients/dianne-russell.jpg",
-            phone: "+84 915 343 643",
-            doctor: "James",
-            date: "August 18, 2024",
-            start: "02.00 PM",
-            end: "03.00 PM",
-            status: "In Queue"
-        },
-        {
-            id: "ID84110-77851358",
-            name: "Jerome Bellingham",
-            img: "/patients/dianne-russell.jpg",
-            phone: "+84 915 343 643",
-            doctor: "James",
-            date: "August 18, 2024",
-            start: "02.00 PM",
-            end: "03.00 PM",
-            status: "Accepted"
-        },
-        {
-            id: "ID84110-77851358",
-            name: "Jerome Bellingham",
-            img: "/patients/dianne-russell.jpg",
-            phone: "+84 915 343 643",
-            doctor: "James",
-            date: "August 18, 2024",
-            start: "02.00 PM",
-            end: "03.00 PM",
-            status: "In Queue"
-        },
-        {
-            id: "ID84110-77851358",
-            name: "Jerome Bellingham",
-            img: "/patients/dianne-russell.jpg",
-            phone: "+84 915 343 643",
-            doctor: "James",
-            date: "August 18, 2024",
-            start: "02.00 PM",
-            end: "03.00 PM",
-            status: "Urgent"
-        },
-        {
-            id: "ID84110-77851358",
-            name: "Jerome Bellingham",
-            img: "/patients/dianne-russell.jpg",
-            phone: "+84 915 343 643",
-            doctor: "James",
-            date: "August 18, 2024",
-            start: "02.00 PM",
-            end: "03.00 PM",
-            status: "In Queue"
-        },
-        {
-            id: "ID84110-77851358",
-            name: "Jerome Bellingham",
-            img: "/patients/dianne-russell.jpg",
-            phone: "+84 915 343 643",
-            doctor: "James",
-            date: "August 18, 2024",
-            start: "02.00 PM",
-            end: "03.00 PM",
-            status: "Archive"
-        },
-    ]
-  }
+  ],
 };
 
 const dataSlice = createSlice({

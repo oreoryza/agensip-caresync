@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import TotalPatients from "../components/charts/TotalPatients";
 import AppointmentsChart from "../components/charts/AppointmentsChart";
+import AddAppointments from "../sections/AddAppointments";
 import Room from "../components/charts/Room";
 import { useSelector } from "react-redux";
 
@@ -9,7 +10,8 @@ import { PiPhone } from "react-icons/pi";
 import { PiCalendarDots } from "react-icons/pi";
 import { RiSearchLine } from "react-icons/ri";
 import { FaPlus } from "react-icons/fa";
-import AddAppointments from "../sections/AddAppointments";
+import { PiX } from "react-icons/pi";
+import { PiCheck } from "react-icons/pi";
 
 const Appointment = () => {
   const data = useSelector((state) => state.data);
@@ -149,18 +151,33 @@ const Appointment = () => {
               </div>
             </div>
             <div className="h-[1px] w-full bg-black/[.06] mt-[8px]"></div>
-            <div className="flex gap-[10px] px-[20px] mb-[20px] mt-[16px]">
-              <button className="w-full outline-1 outline-red text-red px-[10px] py-[8px] rounded-full text-center">
-                Decline
-              </button>
-              <button className="w-full bg-green text-white px-[10px] py-[8px] rounded-full text-center">
-                Accept
-              </button>
-            </div>
+            {appointment.status == "Accepted" ? (
+              <div className="flex gap-[10px] px-[20px] mb-[20px] mt-[16px]">
+                <div className="flex items-center gap-[10px] w-full text-green bg-green/[.1] px-[10px] py-[8px] rounded-[8px]">
+                  <PiCheck /> Request has been accepted
+                </div>
+              </div>
+            ) : appointment.status == "Archive" ? (<div className="flex gap-[10px] px-[20px] mb-[20px] mt-[16px]">
+                <div className="flex items-center gap-[10px] w-full text-black bg-black/[.1] px-[10px] py-[8px] rounded-[8px]">
+                  Request has been archived
+                </div>
+              </div>) : (
+              <div className="flex gap-[10px] px-[20px] mb-[20px] mt-[16px]">
+                <button className="flex justify-center items-center gap-[10px] w-full outline-1 outline-red text-red px-[10px] py-[8px] rounded-full text-center">
+                  <PiX /> Decline
+                </button>
+                <button className="flex justify-center items-center gap-[10px] w-full bg-green text-white px-[10px] py-[8px] rounded-full text-center">
+                  <PiCheck /> Accept
+                </button>
+              </div>
+            )}
           </div>
         ))}
       </div>
-      <AddAppointments isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      <AddAppointments
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
     </div>
   );
 };

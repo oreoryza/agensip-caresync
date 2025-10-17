@@ -14,6 +14,7 @@ import Profile from "./pages/Profile"
 import Settings from "./pages/Settings"
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import GetStarted from "./pages/GetStarted"
 
 function App() {
   const { token } = useSelector((state) => state.token);
@@ -33,6 +34,7 @@ function App() {
           <Route path="/employee" element={<Employee/>}/>
           <Route path="/employee/:id" element={<EmployeeDetail/>}/>
           <Route path="/help-center" element={<HelpCenter/>}/>
+          <Route path="/getting-started" element={<GetStarted/>}/>
           <Route path="/profile" element={<Profile/>}/>
           <Route path="/settings" element={<Settings/>}/>
         </Routes>

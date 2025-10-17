@@ -2,6 +2,8 @@ import React from "react";
 import ButtonPrimary from "../components/ButtonPrimary";
 import ButtonTertiary from "../components/ButtonTertiary";
 
+import { Link } from "react-router-dom";
+
 import { RiShining2Line } from 'react-icons/ri';
 import { PiHandHeart } from 'react-icons/pi';
 import { PiUserSwitch } from 'react-icons/pi';
@@ -34,9 +36,9 @@ const HelpCenter = () => {
               features.
             </p>
           </div>
-          <div>
+          <Link to={"/getting-started"}>
             <ButtonTertiary text="Read More" style={"text-green"} />
-          </div>
+          </Link>
         </div>
         <div className="flex flex-col gap-[20px] bg-white p-[20px] rounded-[20px]">
           <div className="bg-green/[.08] p-[16px] w-fit rounded-[100%]"><PiHandHeart className="w-[28px] h-[28px] text-green"/></div>
@@ -46,9 +48,9 @@ const HelpCenter = () => {
               Manage patient data, view records, and schedule appointments efficiently.
             </p>
           </div>
-          <div>
+          <Link to={"/getting-started"}>
             <ButtonTertiary text="Read More" style={"text-green"} />
-          </div>
+          </Link>
         </div>
         <div className="flex flex-col gap-[20px] bg-white p-[20px] rounded-[20px]">
           <div className="bg-green/[.08] p-[16px] w-fit rounded-[100%]"><PiUserSwitch className="w-[28px] h-[28px] text-green"/></div>
@@ -58,9 +60,9 @@ const HelpCenter = () => {
               Add staff, manage schedules, and adjust access permissions easily.
             </p>
           </div>
-          <div>
+          <Link to={"/getting-started"}>
             <ButtonTertiary text="Read More" style={"text-green"} />
-          </div>
+          </Link>
         </div>
         <div className="flex flex-col gap-[20px] bg-white p-[20px] rounded-[20px]">
           <div className="bg-green/[.08] p-[16px] w-fit rounded-[100%]"><PiAmbulance className="w-[28px] h-[28px] text-green"/></div>
@@ -70,9 +72,9 @@ const HelpCenter = () => {
               Track medicine and equipment stock levels with timely updates.
             </p>
           </div>
-          <div>
+          <Link to={"/getting-started"}>
             <ButtonTertiary text="Read More" style={"text-green"} />
-          </div>
+          </Link>
         </div>
         <div className="flex flex-col gap-[20px] bg-white p-[20px] rounded-[20px]">
           <div className="bg-green/[.08] p-[16px] w-fit rounded-[100%]"><PiNotepad className="w-[28px] h-[28px] text-green"/></div>
@@ -82,9 +84,9 @@ const HelpCenter = () => {
               Generate performance, patient, and financial reports quickly.
             </p>
           </div>
-          <div>
+          <Link to={"/getting-started"}>
             <ButtonTertiary text="Read More" style={"text-green"} />
-          </div>
+          </Link>
         </div>
         <div className="flex flex-col gap-[20px] bg-white p-[20px] rounded-[20px]">
           <div className="bg-green/[.08] p-[16px] w-fit rounded-[100%]"><PiPersonSimpleCircle className="w-[28px] h-[28px] text-green"/></div>
@@ -94,9 +96,9 @@ const HelpCenter = () => {
               Find solutions to issues and contact technical support easily.
             </p>
           </div>
-          <div>
+          <Link to={"/getting-started"}>
             <ButtonTertiary text="Read More" style={"text-green"} />
-          </div>
+          </Link>
         </div>
       </div>
     </div>

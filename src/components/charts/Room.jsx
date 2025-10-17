@@ -23,7 +23,8 @@ const Room = () => {
         </div>
         <button className="flex justify-center items-center bg-white size-[24px] rounded-[100%]"><FiArrowUpRight/></button>
       </div>
-      <div className="flex items-start gap-[38px] w-full h-[120px] overflow-hidden">
+      <div className="relative flex items-start gap-[38px] w-full h-[120px]">
+        <div className="w-full h-full pr-[120px]">
         <Doughnut
           ref={chartRef}
           data={{
@@ -62,7 +63,8 @@ const Room = () => {
           height={200}
           className="max-w-[200px]"
         />
-        <div className="flex flex-col gap-[10px]">
+        </div>
+        <div className="absolute right-0 flex flex-col gap-[10px] max-w-[120px]">
           <h2 className="font-bold">{data.patients.total.slice(-1)[0]}</h2>
           <p className="text-xs text-black/[.6]">
             <span className="text-green font-medium">{availablePercent}%</span> available and <span className="text-red font-medium">{unavailablePercent}%</span> unavailable

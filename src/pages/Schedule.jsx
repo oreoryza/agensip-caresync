@@ -42,7 +42,7 @@ const Schedule = () => {
         </div>
       </div>
       {showCalendar && (
-        <div className="fixed right-[40px] mt-4 rounded-[20px] shadow-md">
+        <div className="fixed right-[40px] mt-4 rounded-[20px] shadow-md z-2">
           <Calendar onChange={handleDateChange} value={selectedDate} />
         </div>
       )}
