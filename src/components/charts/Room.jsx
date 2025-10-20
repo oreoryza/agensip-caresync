@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 
 import { FiArrowUpRight } from 'react-icons/fi';
@@ -10,7 +10,6 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 const Room = () => {
   const data = useSelector((state) => state.data);
-  const chartRef = useRef(null);
 
   const availablePercent = (data.patients.room.available / (data.patients.room.available + data.patients.room.unavailable)) * 100;
   const unavailablePercent = (data.patients.room.unavailable / (data.patients.room.available + data.patients.room.unavailable)) * 100;
@@ -26,7 +25,6 @@ const Room = () => {
       <div className="relative flex items-start gap-[38px] w-full h-[120px]">
         <div className="w-full h-full pr-[120px]">
         <Doughnut
-          ref={chartRef}
           data={{
             labels: ["Available", "Unavailable"],
             datasets: [

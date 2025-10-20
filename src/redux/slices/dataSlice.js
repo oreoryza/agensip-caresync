@@ -3,6 +3,10 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   patients: {
     total: [100, 250, 150, 170, 300, 250, 200],
+    genders: {
+        male: 90,
+        female: 30,
+    },
     room: {
         available: 75,
         unavailable: 25
@@ -12,9 +16,11 @@ const initialState = {
         {
             id: "ID84110-77851358",
             name: "Adam Saddler",
-            img: "/patients/dianne-russell.jpg",
+            gender: "Male",
+            img: "/patients/aiden.png",
             phone: "+84 915 343 643",
             doctor: "James",
+            disease: "Headache Disease",
             date: "August 18, 2024",
             start: "02.00 PM",
             end: "03.00 PM",
@@ -23,9 +29,11 @@ const initialState = {
         {
             id: "ID84110-77851358",
             name: "Aiden Blake",
-            img: "/patients/dianne-russell.jpg",
+            gender: "Female",
+            img: "/patients/aiden.png",
             phone: "+84 915 343 643",
             doctor: "James",
+            disease: "Abdominal Pain",
             date: "August 18, 2024",
             start: "02.00 PM",
             end: "03.00 PM",
@@ -34,9 +42,11 @@ const initialState = {
         {
             id: "ID84110-77851358",
             name: "Benjamin Lee",
-            img: "/patients/dianne-russell.jpg",
+            gender: "Male",
+            img: "/patients/aiden.png",
             phone: "+84 915 343 643",
             doctor: "James",
+            disease: "Swelling",
             date: "August 18, 2024",
             start: "02.00 PM",
             end: "03.00 PM",
@@ -45,9 +55,11 @@ const initialState = {
         {
             id: "ID84110-77851358",
             name: "Jerome Bellingham",
-            img: "/patients/dianne-russell.jpg",
+            gender: "Male",
+            img: "/patients/aiden.png",
             phone: "+84 915 343 643",
             doctor: "James",
+            disease: "Weight Loss",
             date: "August 18, 2024",
             start: "02.00 PM",
             end: "03.00 PM",
@@ -56,9 +68,11 @@ const initialState = {
         {
             id: "ID84110-77851358",
             name: "Jessicha",
-            img: "/patients/dianne-russell.jpg",
+            gender: "Female",
+            img: "/patients/aiden.png",
             phone: "+84 915 343 643",
             doctor: "James",
+            disease: "Headache Disease",
             date: "August 18, 2024",
             start: "02.00 PM",
             end: "03.00 PM",
@@ -67,17 +81,86 @@ const initialState = {
         {
             id: "ID84110-77851358",
             name: "Tom Holland",
-            img: "/patients/dianne-russell.jpg",
+            gender: "Male",
+            img: "/patients/aiden.png",
             phone: "+84 915 343 643",
             doctor: "James",
+            disease: "Headache Disease",
             date: "August 18, 2024",
             start: "02.00 PM",
             end: "03.00 PM",
             status: "Archive"
         },
+    ],
+    treatments: [
+        {
+            name: "Jan",
+            recovered: 79,
+            under: 11,
+        },
+        {
+            name: "Feb",
+            recovered: 80,
+            under: 16,
+        },
+        {
+            name: "Mar",
+            recovered: 76,
+            under: 13,
+        },
+        {
+            name: "Apr",
+            recovered: 71,
+            under: 13,
+        },
+        {
+            name: "May",
+            recovered: 84,
+            under: 13,
+        },
+        {
+            name: "Jun",
+            recovered: 75,
+            under: 15,
+        },
+        {
+            name: "Jul",
+            recovered: 80,
+            under: 12,
+        },
     ]
   },
-  ambulances: [50, 60, 70, 90, 80, 100]
+  ambulances: [50, 60, 70, 90, 80, 100],
+  polyclinics: [
+    {
+        name: "General Practitioners",
+        visitors: 200,
+        percentage: "increase",
+        value: "20%",
+
+    },
+    {
+        name: "Pediatrics",
+        visitors: 320,
+        percentage: "decrease",
+        value: "25%",
+
+    },
+    {
+        name: "Cardiology",
+        visitors: 100,
+        percentage: "increase",
+        value: "10%",
+
+    },
+    {
+        name: "Dermatology",
+        visitors: 80,
+        percentage: "increase",
+        value: "10%",
+
+    },
+  ]
 };
 
 const dataSlice = createSlice({
