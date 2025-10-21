@@ -17,7 +17,7 @@ const initialState = {
             id: "ID84110-77851358",
             name: "Adam Saddler",
             gender: "Male",
-            img: "/patients/aiden.png",
+            img: "/patients/adam.png",
             phone: "+84 915 343 643",
             doctor: "James",
             disease: "Headache Disease",
@@ -43,7 +43,7 @@ const initialState = {
             id: "ID84110-77851358",
             name: "Benjamin Lee",
             gender: "Male",
-            img: "/patients/aiden.png",
+            img: "/patients/adam.png",
             phone: "+84 915 343 643",
             doctor: "James",
             disease: "Swelling",
@@ -56,7 +56,7 @@ const initialState = {
             id: "ID84110-77851358",
             name: "Jerome Bellingham",
             gender: "Male",
-            img: "/patients/aiden.png",
+            img: "/patients/adam.png",
             phone: "+84 915 343 643",
             doctor: "James",
             disease: "Weight Loss",
@@ -82,7 +82,7 @@ const initialState = {
             id: "ID84110-77851358",
             name: "Tom Holland",
             gender: "Male",
-            img: "/patients/aiden.png",
+            img: "/patients/adam.png",
             phone: "+84 915 343 643",
             doctor: "James",
             disease: "Headache Disease",
@@ -160,7 +160,40 @@ const initialState = {
         value: "10%",
 
     },
-  ]
+  ],
+  doctors: {
+    total: 80,
+    //Value and label are used for react-select property
+    lists: [
+        {
+            value: "johnsmith",
+            label: "Dr. John Smith"
+        },
+        {
+            value: "janedoe",
+            label: "Drs. Jane Doe"
+        },
+        {
+            value: "garrywilliam",
+            label: "Dr. Garry William"
+        },
+        {
+            value: "bradpitt",
+            label: "Dr. Brad Pitt"
+        },
+        {
+            value: "jessicha",
+            label: "Drs. Jessicha"
+        },
+        {
+            value: "mayparker",
+            label: "Drs. May Parker"
+        },
+    ]
+  },
+  nurses: {
+    total: 100,
+  },
 };
 
 const dataSlice = createSlice({

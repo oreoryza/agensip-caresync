@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import AddSchedule from "../sections/AddSchedule";
 
 import { PiCalendarDots } from "react-icons/pi";
 import { RiSearchLine } from "react-icons/ri";
@@ -11,6 +12,7 @@ import "react-calendar/dist/Calendar.css";
 const Schedule = () => {
   const [showCalendar, setShowCalendar] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const [isAdd, setIsAdd] = useState(false);
 
   const toggleCalendar = () => {
     setShowCalendar(!showCalendar);
@@ -59,7 +61,7 @@ const Schedule = () => {
               />
             </div>
             <button
-              onClick={() => setIsModalOpen(true)}
+              onClick={() => setIsAdd(true)}
               className="size-[42px] flex items-center justify-center bg-green rounded-[100%]"
             >
               <FaPlus className="text-white" />
@@ -144,6 +146,7 @@ const Schedule = () => {
           </div>
         </div>
       </div>
+      <AddSchedule isOpen={isAdd} onClose={() => setIsAdd(false)}/>
     </div>
   );
 };

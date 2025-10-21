@@ -6,6 +6,7 @@ import Room from "../components/charts/Room";
 import TotalAmbulances from "../components/charts/TotalAmbulances";
 import PatientsChart from "../components/charts/PatientsChart";
 import PatientsGender from "../components/charts/PatientsGender";
+import DoctorNurses from "../components/charts/DoctorNurses";
 
 import { BsChevronDown } from "react-icons/bs";
 import { FiArrowUpRight } from "react-icons/fi";
@@ -38,7 +39,7 @@ const Home = () => {
   return (
     <div className="container h-full">
       <div className="flex gap-[16px] h-full">
-        <div className="flex flex-col gap-[24px] bg-white/[.4] p-[20px] rounded-[20px]">
+        <div className="flex flex-col gap-[24px] bg-white/[.4] px-[20px] pt-[20px] rounded-[20px]">
           <div className="flex justify-between items-center">
             <p className="text-subtitle font-bold">Appointments</p>
             <select className="text-xs">
@@ -68,9 +69,9 @@ const Home = () => {
               </button>
             ))}
           </div>
-          <div className="flex flex-col gap-[10px]">
+          <div className="flex flex-col gap-[10px] pb-[20px] max-h-[980px] overflow-y-auto hide-scroll">
             {filteredGender.map((app) => (
-              <div className="flex items-end bg-white rounded-[16px] overflow-hidden">
+              <div className="flex items-end bg-white rounded-[16px]">
                 <img
                   src={app.img}
                   alt={app.name}
@@ -117,8 +118,8 @@ const Home = () => {
         <div className="flex flex-col gap-[16px] w-full">
           <div className="flex gap-[16px]">
             <div className="flex flex-col gap-[16px] w-full">
-              <div className="bg-white/[.4] p-[20px] rounded-[20px]">
-                <div className="flex justify-between items-center">
+              <div className="flex flex-col gap-[24px] bg-white/[.4] p-[20px] rounded-[20px]">
+                <div className="flex justify-between items-center gap-2">
                   <div className="flex gap-[16px]">
                     <div className="flex items-center justify-center min-w-[42px] max-w-[42px] min-h-[42px] max-h-[42px] bg-white rounded-[100%]">
                       <PiHeartbeatBold className="size-[17px]" />
@@ -126,7 +127,7 @@ const Home = () => {
                     <div>
                       <p className="font-bold">Patients</p>
                       <p className="text-xs text-black/[.6]">
-                        insightful overview of patient recovery and ongoing care
+                        Insightful overview of patient recovery and ongoing care
                       </p>
                     </div>
                   </div>
@@ -143,7 +144,7 @@ const Home = () => {
                   </select>
                 </div>
                 <div className="flex gap-2">
-                  <div className="flex flex-col gap-2">
+                  <div className="flex flex-col justify-around gap-2">
                     <div className="text-sm font-medium">
                       <h2 className="font-bold">
                         {data.patients.treatments.slice(-1)[0].under}
@@ -169,7 +170,7 @@ const Home = () => {
                 </div>
               </div>
               <div className="flex flex-col gap-[20px] bg-white/[.4] p-[20px] rounded-[20px] h-full">
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-center gap-2">
                   <div className="flex gap-[16px]">
                     <div className="flex items-center justify-center min-w-[42px] max-w-[42px] min-h-[42px] max-h-[42px] bg-white rounded-[100%]">
                       <PiSyringeBold className="size-[16px]" />
@@ -240,23 +241,23 @@ const Home = () => {
               </div>
             </div>
             <div className="flex flex-col gap-[16px]">
-              <div className="bg-white/[.4] p-[20px] rounded-[20px]">
+              <div className="bg-white/[.4] p-[20px] rounded-[20px] h-full">
                 <TotalPatients />
               </div>
-              <div className="bg-white/[.4] p-[20px] rounded-[20px]">
+              <div className="bg-white/[.4] p-[20px] rounded-[20px] h-full">
                 <AppointmentsChart />
               </div>
-              <div className="bg-white/[.4] p-[20px] rounded-[20px]">
+              <div className="bg-white/[.4] p-[20px] rounded-[20px] h-full">
                 <Room />
               </div>
-              <div className="bg-white/[.4] p-[20px] rounded-[20px]">
+              <div className="bg-white/[.4] p-[20px] rounded-[20px] h-full">
                 <TotalAmbulances />
               </div>
             </div>
           </div>
           <div className="flex gap-[16px] w-full">
-            <div className="bg-white/[.4] p-[20px] rounded-[20px] w-full">
-              <div className="flex justify-between items-center">
+            <div className="flex flex-col gap-[24px] bg-white/[.4] p-[20px] rounded-[20px] w-full">
+              <div className="flex justify-between items-center gap-2">
                 <div className="flex gap-[16px]">
                   <div className="flex items-center justify-center min-w-[42px] max-w-[42px] min-h-[42px] max-h-[42px] bg-white rounded-[100%]">
                     <FiUser className="size-[16px]" />
@@ -274,8 +275,8 @@ const Home = () => {
               </div>
               <PatientsGender />
             </div>
-            <div className="bg-white/[.4] p-[20px] rounded-[20px] w-full">
-              <div className="flex justify-between items-center">
+            <div className="flex flex-col justify-between gap-[24px] bg-white/[.4] p-[20px] rounded-[20px] w-full h-full">
+              <div className="flex justify-between items-center gap-2">
                 <div className="flex gap-[16px]">
                   <div className="flex items-center justify-center min-w-[42px] max-w-[42px] min-h-[42px] max-h-[42px] bg-white rounded-[100%]">
                     <LiaUserNurseSolid className="size-[20px]" />
@@ -291,7 +292,7 @@ const Home = () => {
                   <FiArrowUpRight />
                 </button>
               </div>
-              <div className="w-80 bg-red h-4"></div>
+              <DoctorNurses/>
             </div>
           </div>
         </div>

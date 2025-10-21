@@ -18,13 +18,13 @@ const Appointment = () => {
   const [selectedStatus, setSelectedStatus] = useState("All");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Get unique job categories
+  // Get unique status
   const status = [
     "All",
     ...new Set(data.patients.appointments.map((emp) => emp.status)),
   ];
 
-  // Filter employees based on selected job category
+  // Filter appointment based on selected status
   const filteredStatus =
     selectedStatus === "All"
       ? data.patients.appointments
