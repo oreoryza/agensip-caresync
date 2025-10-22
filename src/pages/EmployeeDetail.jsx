@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setEmployee } from "../redux/slices/employeeSlice";
-import { Doughnut } from "react-chartjs-2";
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 
 import { BsChevronRight } from "react-icons/bs";
 import { BsChevronDown } from "react-icons/bs";
@@ -14,8 +12,32 @@ import { PiPhone } from "react-icons/pi";
 import { PiCalendarDots } from "react-icons/pi";
 import { PiPencilSimple } from "react-icons/pi";
 import { FaStar } from "react-icons/fa";
+import { FiArrowUpRight } from "react-icons/fi";
 
-ChartJS.register(ArcElement, Tooltip, Legend);
+import { Doughnut } from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  ArcElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  ArcElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 const EmployeeDetail = () => {
   const { id } = useParams();
@@ -23,9 +45,54 @@ const EmployeeDetail = () => {
   const employee = useSelector((state) => state.employee.employee);
   const [selectedTime, setSelectedTime] = useState("week");
 
+  const percentage =
+    ((employee?.patients?.total.slice(-1)[0] -
+      employee?.patients?.total.slice(-2)[0]) /
+      employee?.patients?.total.slice(-2)[0]) *
+    100;
+  const percent = percentage.toFixed(1);
+
   useEffect(() => {
     dispatch(setEmployee(parseInt(id)));
   }, [id, dispatch]);
+
+  const chartData = {
+    labels: employee?.patients?.total?.map((_, index) => index.toString()),
+    datasets: [
+      {
+        label: "Appointments",
+        data: employee?.patients?.total,
+        borderColor: "green",
+        backgroundColor: "rgba(0, 128, 0, 0.1)",
+        fill: true,
+        tension: 0.3,
+        pointRadius: 0,
+        pointHoverRadius: 4,
+        hitRadius: 10,
+      },
+    ],
+  };
+
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        display: false,
+      },
+      tooltip: {
+        enabled: true,
+      },
+    },
+    scales: {
+      x: {
+        display: false,
+      },
+      y: {
+        display: false,
+      },
+    },
+  };
 
   return (
     <div className="container">
@@ -196,6 +263,7 @@ const EmployeeDetail = () => {
                           backgroundColor: ["#008C00", "#e2e2e2ff"],
                           borderWidth: 12,
                           borderColor: "#F6F6EC",
+                          hoverBorderColor: "#F6F6EC",
                           borderRadius: 100,
                         },
                       ],
@@ -247,18 +315,20 @@ const EmployeeDetail = () => {
         <div className="flex flex-col gap-[30px] bg-white/[.4] rounded-[20px] w-full p-[16px] max-h-[635px] overflow-hidden">
           <div className="flex justify-between items-center">
             <p className="text-subtitle font-bold">Patient lists</p>
-              <select
-                className="focus:outline-0 cursor-pointer"
-                value={selectedTime}
-                onChange={(e) => setSelectedTime(e.target.value)}
-              >
-                <button>
-                  <selectedcontent></selectedcontent>
-                  <span className="picker"><BsChevronDown/></span>
-                </button>
-                <option value="week">This week</option>
-                <option value="next">Next week</option>
-              </select>
+            <select
+              className="focus:outline-0 cursor-pointer"
+              value={selectedTime}
+              onChange={(e) => setSelectedTime(e.target.value)}
+            >
+              <button>
+                <selectedcontent></selectedcontent>
+                <span className="picker">
+                  <BsChevronDown />
+                </span>
+              </button>
+              <option value="week">This week</option>
+              <option value="next">Next week</option>
+            </select>
           </div>
           <div className="max-h-[570px] overflow-auto hide-scroll">
             {employee.patients?.lists
@@ -282,8 +352,119 @@ const EmployeeDetail = () => {
           </div>
         </div>
         <div className="flex flex-col gap-[16px] w-full">
-          <div className="bg-white/[.4] rounded-[20px]">patients chart</div>
-          <div className="bg-white/[.4] h-full rounded-[20px]">schedule</div>
+          <div className="bg-white/[.4] rounded-[20px]">
+            <div className="w-full">
+              <div className="p-[16px]">
+                <p className="text-small font-medium">
+                  Total patients in this week
+                </p>
+              </div>
+              <div className="relative flex justify-between items-start gap-[38px] w-full h-[120px] overflow-hidden">
+                <div className="w-full h-full pr-[120px]">
+                  <Line
+                    data={chartData}
+                    options={options}
+                    className="w-full max-w-[225px]"
+                  />
+                </div>
+                <div className="absolute right-[16px] flex flex-col gap-[10px] max-w-[100px]">
+                  <h2 className="font-bold">
+                    {employee.patients?.total.slice(-1)[0]}
+                  </h2>
+                  <p className="text-xs text-black/[.6]">
+                    Patients have {percent > 0 ? "increased" : "dropped"}{" "}
+                    <span
+                      className={`font-medium ${
+                        percent > 0 ? "text-green" : "text-red"
+                      }`}
+                    >
+                      {percent}%
+                    </span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="bg-white/[.4] h-full rounded-[20px] overflow-hidden">
+            <p className="ml-[20px] mt-[20px] mb-[24px] text-subtitle font-bold">Schedule</p>
+            <div className="flex w-full px-[24px] overflow-scroll hide-scroll h-full max-w-[432px]">
+              <div className="group flex justify-center p-[6px] h-full min-w-[92px] rounded-t-[20px] ">
+                <div className="text-xs h-fit px-[10px] py-[6px] rounded-full group-hover:bg-light-yellow duration-300">
+                  09.00 AM
+                </div>
+              </div>
+              <div className="group flex justify-center p-[6px] h-full min-w-[92px] rounded-t-[20px] bg-white">
+                <div className="text-xs h-fit px-[10px] py-[6px] rounded-full group-hover:bg-light-yellow duration-300">
+                  10.00 AM
+                </div>
+              </div>
+              <div className="group flex justify-center p-[6px] h-full min-w-[92px] rounded-t-[20px] ">
+                <div className="text-xs h-fit px-[10px] py-[6px] rounded-full group-hover:bg-light-yellow duration-300">
+                  11.00 AM
+                </div>
+              </div>
+              <div className="group flex justify-center p-[6px] h-full min-w-[92px] rounded-t-[20px] bg-white">
+                <div className="text-xs h-fit px-[10px] py-[6px] rounded-full group-hover:bg-light-yellow duration-300">
+                  12.00 PM
+                </div>
+              </div>
+              <div className="relative group flex justify-center p-[6px] h-full min-w-[92px] rounded-t-[20px] ">
+                <div className="text-xs h-fit px-[10px] py-[6px] rounded-full group-hover:bg-light-yellow duration-300">
+                  01.00 PM
+                </div>
+                <div className="flex flex-col gap-[24px] absolute left-0 top-[100px] min-w-[500px]">
+                  <button className="flex items-center gap-[12px] p-[5px] bg-light-yellow rounded-full overflow-hidden">
+                    <div className="min-w-[70px] min-h-[70px] bg-yellow rounded-[100%]"></div>
+                    <div className="flex flex-col items-start text-left gap-[10px]">
+                      <p>Patient transfer to another hospital</p>
+                      <p className="text-xs text-black/[.6]">
+                        12:00 AM - 01:10 PM | Driver : Jonathan
+                      </p>
+                    </div>
+                  </button>
+                  <button className="ml-[100px] flex items-center gap-[12px] p-[5px] bg-light-green rounded-full overflow-hidden">
+                    <div className="min-w-[70px] min-h-[70px] bg-green rounded-[100%]"></div>
+                    <div className="flex flex-col items-start text-left gap-[10px]">
+                      <p>Family Medicine Checkups</p>
+                      <p className="text-xs text-black/[.6]">
+                        01:30 PM - 02:45 PM | Driver : Jonathan
+                      </p>
+                    </div>
+                  </button>
+                </div>
+              </div>
+              <div className="group flex justify-center p-[6px] h-full min-w-[92px] rounded-t-[20px] bg-white">
+                <div className="text-xs h-fit px-[10px] py-[6px] rounded-full group-hover:bg-light-yellow duration-300">
+                  02.00 PM
+                </div>
+              </div>
+              <div className="group flex justify-center p-[6px] h-full min-w-[92px] rounded-t-[20px] ">
+                <div className="text-xs h-fit px-[10px] py-[6px] rounded-full group-hover:bg-light-yellow duration-300">
+                  03.00 PM
+                </div>
+              </div>
+              <div className="group flex justify-center p-[6px] h-full min-w-[92px] rounded-t-[20px] bg-white">
+                <div className="text-xs h-fit px-[10px] py-[6px] rounded-full group-hover:bg-light-yellow duration-300">
+                  04.00 PM
+                </div>
+              </div>
+              <div className="group flex justify-center p-[6px] h-full min-w-[92px] rounded-[20px] ">
+                <div className="text-xs h-fit px-[10px] py-[6px] rounded-full group-hover:bg-light-yellow duration-300">
+                  05.00 AM
+                </div>
+              </div>
+              <div className="group flex justify-center p-[6px] h-full min-w-[92px] rounded-t-[20px] bg-white">
+                <div className="text-xs h-fit px-[10px] py-[6px] rounded-full group-hover:bg-light-yellow duration-300">
+                  06.00 AM
+                </div>
+              </div>
+              <div className="group flex justify-center p-[6px] h-full min-w-[92px] rounded-t-[20px] ">
+                <div className="text-xs h-fit px-[10px] py-[6px] rounded-full group-hover:bg-light-yellow duration-300">
+                  07.00 AM
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

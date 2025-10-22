@@ -27,6 +27,7 @@ const PatientsGender = () => {
                   backgroundColor: ["#008C00", "#ffc700"],
                   borderWidth: 12,
                   borderColor: "#F6F6EC",
+                  hoverBorderColor: '#F6F6EC',
                   borderRadius: 100,
                 },
               ],

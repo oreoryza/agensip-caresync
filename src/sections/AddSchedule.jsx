@@ -10,6 +10,9 @@ import { useSelector } from "react-redux";
 const AddSchedule = ({ isOpen, onClose }) => {
   const data = useSelector((state) => state.data);
   const [selectedOptions, setSelectedOptions] = useState([]);
+  const [selectedService, setSelectedService] = useState("Check Up")
+
+  const services = ["Check Up", "Monitoring", "Driver"]
 
   const handleChange = (selectedOption) => {
     setSelectedOptions(selectedOption);
@@ -33,6 +36,20 @@ const AddSchedule = ({ isOpen, onClose }) => {
             <PiX />
           </button>
         </div>
+            <div className="flex flex-col gap-2 px-[24px] mb-[10px]">
+              <p
+                className="text-small font-medium text-black"
+              >
+                Services
+              </p>
+              <div className="flex gap-2">
+              {services.map((service) => (
+              <button onClick={() => setSelectedService(service)} className={`outline-1 text-black/[.5] outline-black/[.1] p-[12px] rounded-[10px] ${selectedService === service ? "bg-light-green outline-green text-green" : ""}`}>
+                {service}
+              </button>
+              ))}
+              </div>
+            </div>
         <form onSubmit={handleSubmit} className="flex flex-col gap-[10px]">
           <div className="flex flex-col gap-[10px] px-[24px]">
             <div className="flex flex-col gap-2">
@@ -59,14 +76,20 @@ const AddSchedule = ({ isOpen, onClose }) => {
               >
                 Assign to
               </label>
-              <div className="outline-1 outline-black/[.1] p-[12px] rounded-[10px]">
                 <Select
                   options={data.doctors.lists}
                   value={selectedOptions}
                   onChange={handleChange}
                   isMulti={true}
+                  styles={{
+                    control: (provided) => ({
+                      ...provided,
+                      padding: '6px',
+                      borderRadius: '10px',
+                      border: '1px solid rgba(0,0,0,0.1)',
+                    }),
+                  }}
                 />
-              </div>
             </div>
             <div className="flex flex-col gap-2">
               <label

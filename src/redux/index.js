@@ -3,6 +3,7 @@ import tokenReducer from "./slices/tokenSlice"
 import employeeReducer from "./slices/employeeSlice"
 import profileReducer from "./slices/profileSlice"
 import dataReducer from "./slices/dataSlice"
+import patientsReducer from "./slices/patientSlice"
 import {persistReducer, persistStore} from "redux-persist"
 import storage from "redux-persist/lib/storage"
 
@@ -19,6 +20,7 @@ const store = configureStore({
     profile: profileReducer,
     employee: employeeReducer,
     data: dataReducer,
+    patients: patientsReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

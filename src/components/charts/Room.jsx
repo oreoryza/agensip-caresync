@@ -36,6 +36,7 @@ const Room = () => {
                 backgroundColor: ["#008C00", "#e2e2e2ff"],
                 borderWidth: 12,
                 borderColor: "#F6F6EC",
+                hoverBorderColor: '#F6F6EC',
                 borderRadius: 100,
                 circumference: 180,
                 rotation: 270

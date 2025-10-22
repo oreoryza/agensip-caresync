@@ -13,6 +13,16 @@ const Schedule = () => {
   const [showCalendar, setShowCalendar] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [isAdd, setIsAdd] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState("All");
+
+  const categories = [
+    "All",
+    "Doctor",
+    "Operation",
+    "Room",
+    "Nurse",
+    "Ambulance",
+  ];
 
   const toggleCalendar = () => {
     setShowCalendar(!showCalendar);
@@ -50,7 +60,20 @@ const Schedule = () => {
       )}
       <div className="flex flex-col bg-white/[.4] mt-[40px] rounded-[20px] overflow-hidden">
         <div className="flex justify-between items-center my-[50px] mx-[40px]">
-          <div>buttons</div>
+          <div className="flex gap-2">
+            {categories.map((category) => (
+              <button
+                onClick={() => setSelectedCategory(category)}
+                className={`text-small outline-1 outline-black/[.1] px-[20px] py-[10px] rounded-full ${
+                  selectedCategory === category
+                    ? "bg-white outline-o text-black font-medium"
+                    : "text-black/[.5]"
+                }`}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
           <div className="flex gap-2">
             <div className="flex items-center gap-[10px] bg-white py-[10px] pl-[12px] pr-[16px] rounded-full overflow-hidden">
               <RiSearchLine className="size-[23px] text-black/[.5]" />
@@ -146,7 +169,7 @@ const Schedule = () => {
           </div>
         </div>
       </div>
-      <AddSchedule isOpen={isAdd} onClose={() => setIsAdd(false)}/>
+      <AddSchedule isOpen={isAdd} onClose={() => setIsAdd(false)} />
     </div>
   );
 };

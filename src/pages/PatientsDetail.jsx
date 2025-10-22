@@ -1,0 +1,293 @@
+import React, { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { setPatient } from "../redux/slices/patientSlice";
+import { Doughnut } from "react-chartjs-2";
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+
+import { BsChevronRight } from "react-icons/bs";
+import { BsChevronDown } from "react-icons/bs";
+import { MdCall } from "react-icons/md";
+import { RiSendPlaneFill } from "react-icons/ri";
+import { IoLocationOutline } from "react-icons/io5";
+import { PiPhone } from "react-icons/pi";
+import { PiCalendarDots } from "react-icons/pi";
+import { PiPencilSimple } from "react-icons/pi";
+import { FaStar } from "react-icons/fa";
+
+ChartJS.register(ArcElement, Tooltip, Legend);
+
+const EmployeeDetail = () => {
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  const patient = useSelector((state) => state.patients.patient);
+  const [selectedTime, setSelectedTime] = useState("week");
+
+  useEffect(() => {
+    dispatch(setPatient(parseInt(id)));
+  }, [id, dispatch]);
+
+  return (
+    <div className="container">
+      <div className="flex items-center gap-[7px] pl-[17px]">
+        <Link
+          to={"/patients"}
+          className="opacity-50 hover:text-green duration-300"
+        >
+          Patients
+        </Link>
+        <BsChevronRight className="opacity-50" />
+        <p className="text-green">Patients Detail</p>
+      </div>
+      <div className="flex justify-between pt-[17px] pl-[17px] w-full h-full">
+        <div className="flex w-full">
+          <div className="relative w-full max-w-[294px]">
+            <img
+              src={patient.img}
+              alt={patient.name}
+              className="w-full h-full"
+            />
+            <div className="absolute bottom-0 left-0 z-1 flex justify-center items-end gap-[8px] pb-[45px] bg-linear-to-t from-[#F2F0DF] to-white/[0] w-full h-[70%]">
+              <a
+                href="https://www.whatsapp.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex gap-2 items-center bg-green text-white px-[16px] py-[8px] rounded-full"
+              >
+                <MdCall />
+                Call
+              </a>
+              <a
+                href="https://www.whatsapp.com/"
+                rel="noopener noreferrer"
+                target="_blank"
+                className="flex gap-2 items-center bg-white px-[16px] py-[8px] rounded-full"
+              >
+                <RiSendPlaneFill />
+                Chat
+              </a>
+            </div>
+          </div>
+          <div className="flex flex-col justify-between py-[32px] ml-[1rem] w-full">
+            <div className="flex gap-1">
+              <div
+                className={`px-[8px] py-[6px] rounded-full text-small ${
+                  patient.status === "Active"
+                    ? "text-green bg-green/[.1]"
+                    : "text-red bg-red/[.1]"
+                }`}
+              >
+                {patient.status}
+              </div>
+              <div className="px-[8px] py-[6px] rounded-full text-small bg-black/[.06] text-black/[.5]">
+                Full-time
+              </div>
+            </div>
+            <div className="flex flex-col gap-[6px]">
+              <h5 className="font-medium">{patient.name}</h5>
+              <p className="text-small opacity-50">{patient.jobTitle}</p>
+            </div>
+            <div className="grid grid-cols-2 gap-[16px]">
+              <div className="flex items-center gap-[10px]">
+                <div className="bg-white size-[34px] flex items-center justify-center rounded-[100%]">
+                  <IoLocationOutline className="size-[20px]" />
+                </div>
+                <div>
+                  <p className="text-xs opacity-50">Address</p>
+                  <p className="text-small">{patient.address}</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-[10px]">
+                <div className="bg-white size-[34px] flex items-center justify-center rounded-[100%]">
+                  <PiPhone className="size-[20px]" />
+                </div>
+                <div>
+                  <p className="text-xs opacity-50">Phone Number</p>
+                  <p className="text-small">{patient.phone}</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-[10px]">
+                <div className="bg-white size-[34px] flex items-center justify-center rounded-[100%]">
+                  <PiCalendarDots className="size-[20px]" />
+                </div>
+                <div>
+                  <p className="text-xs opacity-50">Email</p>
+                  <p className="text-small">{patient.email}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="flex flex-col items-end justify-between py-[32px] max-w-[342px]">
+          <button className="flex items-center gap-2 bg-green/[.1] text-green text-small font-medium rounded-full px-[16px] py-[8px]">
+            <PiPencilSimple className="size-[16px]" />
+            Edit Profile
+          </button>
+          <div className="flex flex-col gap-[16px] bg-white/[.4] p-[20px] rounded-[20px]">
+            <p className="font-bold text-subtitle">About</p>
+            <p className="text-small opacity-50">{patient.about}</p>
+          </div>
+        </div>
+      </div>
+      <div className="flex gap-[16px] w-full">
+        <div className="grid grid-cols-2 gap-[16px] w-full">
+          <div className="bg-white/[.4] rounded-[20px] p-[16px]">
+            <p className="text-small font-medium">Experience</p>
+            <div className="flex items-center gap-2">
+              <h1 className="font-bold">{patient.experience}</h1>
+              <p className="text-xs text-black/[.6]">
+                Years of experiences since{" "}
+                <span className="text-black font-bold">{patient.year}</span>
+              </p>
+            </div>
+          </div>
+          <div className="bg-white/[.4] rounded-[20px] p-[16px]">
+            <p className="text-small font-medium">Rating</p>
+            <div className="flex items-center gap-2">
+              <h1 className="font-bold">{patient.rating}</h1>
+              <FaStar
+                className={`min-h-[29px] min-w-[30px] ${
+                  patient.rating > 3 ? "text-yellow" : "text-green"
+                }`}
+              />
+              <p className="text-xs text-black/[.6]">
+                This doctor's rating is{" "}
+                <span className="text-black font-bold">
+                  {patient.rating > 3 ? "good" : "ok"}
+                </span>
+              </p>
+            </div>
+          </div>
+          <div className="col-span-2 bg-white/[.4] rounded-[20px] overflow-hidden">
+            <div className="flex flex-col gap-2 p-[16px] backdrop-blur-sm">
+              <p className="text-small font-medium">Education</p>
+              <div className="flex items-center gap-4">
+                <img
+                  src={patient.educations?.img}
+                  alt={patient.educations?.campus}
+                  className="size-[55px] rounded-[10px] object-cover"
+                />
+                <div>
+                  <p className="text-title font-bold">
+                    {patient.educations?.campus}
+                  </p>
+                  <p className="text-xs text-black/[.6]">
+                    {patient.educations?.address}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="col-span-2 bg-white/[.4] rounded-[20px] overflow-hidden">
+            <div className="p-[16px] backdrop-blur-sm">
+              <p className="text-small font-bold">Satisfaction</p>
+              <div className="flex flex-col items-center overflow-hidden">
+                <div className="relative flex justify-center items-center">
+                  <Doughnut
+                    data={{
+                      labels: ["Happy", "Others"],
+                      datasets: [
+                        {
+                          data: [
+                            patient.satisfaction?.happy || 0,
+                            (patient.satisfaction?.total || 0) -
+                              (patient.satisfaction?.happy || 0),
+                          ],
+                          backgroundColor: ["#008C00", "#e2e2e2ff"],
+                          borderWidth: 12,
+                          borderColor: "#F6F6EC",
+                          borderRadius: 100,
+                        },
+                      ],
+                    }}
+                    options={{
+                      responsive: true,
+                      maintainAspectRatio: false,
+                      plugins: {
+                        legend: {
+                          display: false,
+                        },
+                        tooltip: {
+                          callbacks: {
+                            label: function (context) {
+                              const total = patient.satisfaction?.total || 0;
+                              const value = context.parsed;
+                              const percentage =
+                                total > 0
+                                  ? ((value / total) * 100).toFixed(1)
+                                  : 0;
+                              return `${context.label}: ${value} (${percentage}%)`;
+                            },
+                          },
+                        },
+                      },
+                    }}
+                    height={200}
+                    className="my-[24px]"
+                  />
+                  <div className="absolute text-subtitle font-bold">
+                    {(patient.satisfaction?.happy /
+                      patient.satisfaction?.total) *
+                      100 >
+                    50
+                      ? "Good"
+                      : "Okay"}
+                  </div>
+                </div>
+                <div className="flex items-center gap-4">
+                  <h2 className="font-bold">{patient.satisfaction?.happy}</h2>
+                  <p className="text-small opacity-[60%] max-w-[100px]">
+                    People are happy with its performance
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="flex flex-col gap-[30px] bg-white/[.4] rounded-[20px] w-full p-[16px] max-h-[635px] overflow-hidden">
+          <div className="flex justify-between items-center">
+            <p className="text-subtitle font-bold">Patient lists</p>
+              <select
+                className="focus:outline-0 cursor-pointer"
+                value={selectedTime}
+                onChange={(e) => setSelectedTime(e.target.value)}
+              >
+                <button>
+                  <selectedcontent></selectedcontent>
+                  <span className="picker"><BsChevronDown/></span>
+                </button>
+                <option value="week">This week</option>
+                <option value="next">Next week</option>
+              </select>
+          </div>
+          <div className="max-h-[570px] overflow-auto hide-scroll">
+            {patient.patients?.lists
+              ?.filter((patient) => patient.time === selectedTime)
+              ?.map((patient) => (
+                <div
+                  key={patient.id}
+                  className="flex items-center gap-[10px] bg-white rounded-full mb-[10px] p-[6px]"
+                >
+                  <img
+                    src={patient.img}
+                    alt={patient.name}
+                    className="size-[36px] object-cover rounded-[100%]"
+                  />
+                  <div className="flex flex-col gap-[6px]">
+                    <p className="text-small font-medium">{patient.name}</p>
+                    <p className="text-xs text-black/[.6]">{patient.id}</p>
+                  </div>
+                </div>
+              ))}
+          </div>
+        </div>
+        <div className="flex flex-col gap-[16px] w-full">
+          <div className="bg-white/[.4] rounded-[20px]">patients chart</div>
+          <div className="bg-white/[.4] h-full rounded-[20px]">schedule</div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default EmployeeDetail;

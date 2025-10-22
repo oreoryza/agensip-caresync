@@ -5,6 +5,7 @@ const initialState = {
     {
       id: 1,
       name: "Richaud Beringer",
+      slug: "richaud-beringer",
       jobTitle: "General Practitioner",
       jobCategory: "Doctor",
       status: "Active",
@@ -27,6 +28,7 @@ const initialState = {
         happy: 800,
       },
       patients: {
+        total: [125, 150, 250, 170, 200, 150, 200],
         lists: [
           {
             name: "Dianne Russell",
@@ -95,6 +97,7 @@ const initialState = {
     {
       id: 2,
       name: "Jacques Lyon",
+      slug: "jacques-lyon",
       jobTitle: "Driver",
       jobCategory: "Driver",
       status: "Active",
@@ -117,6 +120,7 @@ const initialState = {
         happy: 800,
       },
       patients: {
+        total: [125, 150, 250, 170, 200, 150, 200],
         lists: [
           {
             name: "Dianne Russell",
@@ -185,6 +189,7 @@ const initialState = {
     {
       id: 3,
       name: "Tristram Bernard",
+      slug: "tristam-bernard",
       jobTitle: "Pathologist",
       jobCategory: "Doctor",
       status: "Active",
@@ -207,6 +212,7 @@ const initialState = {
         happy: 800,
       },
       patients: {
+        total: [125, 150, 250, 170, 200, 150, 200],
         lists: [
           {
             name: "Dianne Russell",
@@ -275,6 +281,7 @@ const initialState = {
     {
       id: 4,
       name: "Ludivine Legrand",
+      slug: "ludivine-legrand",
       jobTitle: "Neurologist",
       jobCategory: "Nurse",
       status: "Active",
@@ -297,6 +304,7 @@ const initialState = {
         happy: 800,
       },
       patients: {
+        total: [125, 150, 250, 170, 200, 150, 200],
         lists: [
           {
             name: "Dianne Russell",
@@ -365,6 +373,7 @@ const initialState = {
     {
       id: 5,
       name: "Mireio Nicolas",
+      slug: "mireio-nicolas",
       jobTitle: "Office staff",
       jobCategory: "Doctor",
       status: "Off",
@@ -387,6 +396,7 @@ const initialState = {
         happy: 800,
       },
       patients: {
+        total: [125, 150, 250, 170, 200, 150, 200],
         lists: [
           {
             name: "Dianne Russell",
@@ -455,6 +465,7 @@ const initialState = {
     {
       id: 6,
       name: "Valérian Bret",
+      slug: "valérian-bret",
       jobTitle: "Neurologist",
       jobCategory: "Nurse",
       status: "Off",
@@ -477,6 +488,7 @@ const initialState = {
         happy: 800,
       },
       patients: {
+        total: [125, 150, 250, 170, 200, 150, 200],
         lists: [
           {
             name: "Dianne Russell",

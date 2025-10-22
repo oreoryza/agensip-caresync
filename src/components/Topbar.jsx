@@ -40,7 +40,7 @@ const Topbar = () => {
 
   return (
     <>
-      <div className="flex justify-between items-center w-full py-[24px] px-[40px] sticky top-0 z-2 backdrop-blur-3xl">
+      <div className="flex justify-between items-center w-full py-[24px] px-[40px] sticky top-0 z-3 backdrop-blur-3xl">
         <Link to={"/"}>
           <img src={logo} alt="CareSync" className="max-h-[32px]" />
         </Link>
