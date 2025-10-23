@@ -34,8 +34,8 @@ const Login = ({ toggleLogin }) => {
   const disabled = !employeeId.trim() || !password.trim();
 
   return (
-    <div className="flex flex-col items-center gap-[36px] text-center max-w-[360px]">
-      <div className="flex flex-col items-center gap-[24px]">
+    <div className="flex flex-col items-center gap-[36px] text-center max-xl:p-[20px] xl:max-w-[360px] max-xl:w-full">
+      <div className="flex flex-col items-center gap-[24px] max-xl:hidden">
         <div className="bg-white p-[13px] rounded-[100%]">
           <CgProfile className="text-green w-[30px] h-[30px]" />
         </div>
@@ -56,7 +56,7 @@ const Login = ({ toggleLogin }) => {
             value={employeeId}
             onChange={handleChange(setEmployeeId)}
             placeholder="Your employee ID"
-            className="bg-white w-full py-[16px] pl-[16px] pr-[12px] rounded-full"
+            className="bg-white w-full py-[16px] pl-[16px] pr-[12px] max-xl:outline-1 max-xl:outline-black/[.2] rounded-full"
           />
         </div>
         <div className="relative flex flex-col gap-[7px]">
@@ -69,14 +69,14 @@ const Login = ({ toggleLogin }) => {
             minLength={8}
             onChange={handleChange(setPassword)}
             placeholder="Your password"
-            className="bg-white w-full py-[16px] pl-[16px] pr-[12px] rounded-full"
+            className="bg-white w-full py-[16px] pl-[16px] pr-[12px] max-xl:outline-1 max-xl:outline-black/[.2] rounded-full"
           />
           <div onClick={handlePeek} className="absolute bottom-4 right-4 cursor-pointer">
             {isPeek ? (<LuEye className="size-[20px]" />):(<LuEyeClosed className="size-[20px]" />)}
           </div>
         </div>
         <div className="flex flex-col gap-[20px] mt-[20px] text-center">
-          <div className={disabled ? "opacity-50 select-none" : ""}>
+          <div className={disabled ? "select-none" : ""}>
             <ButtonPrimary type={"submit"} text={"Login"} disabled={disabled} />
           </div>
           <p>

@@ -59,7 +59,7 @@ const Profile = () => {
   return (
     <div className="container">
       <h2 className="font-bold">Profile</h2>
-      <div className="flex justify-between pt-[17px] pl-[17px] w-full h-full">
+      <div className="flex max-xl:flex-col justify-between pt-[17px] xl:pl-[17px] w-full h-full">
         <div className="flex w-full">
           <div className="relative w-full max-w-[294px]">
             <img
@@ -88,7 +88,7 @@ const Profile = () => {
               </a>
             </div>
           </div>
-          <div className="flex flex-col justify-between py-[32px] ml-[1rem] w-full">
+          <div className="flex flex-col max-xl:gap-[16px] justify-between py-[32px] ml-[1rem] w-full">
             <div className="flex gap-1">
               <div
                 className={`px-[8px] py-[6px] rounded-full text-small ${
@@ -107,7 +107,7 @@ const Profile = () => {
               <h5 className="font-medium">{profile.name}</h5>
               <p className="text-small opacity-50">{profile.jobTitle}</p>
             </div>
-            <div className="grid grid-cols-2 gap-[16px]">
+            <div className="grid xl:grid-cols-2 gap-[16px]">
               <div className="flex items-center gap-[10px]">
                 <div className="bg-white size-[34px] flex items-center justify-center rounded-[100%]">
                   <IoLocationOutline className="size-[20px]" />
@@ -138,7 +138,7 @@ const Profile = () => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col items-end justify-between py-[32px] max-w-[342px]">
+        <div className="flex flex-col items-end max-xl:gap-[20px] justify-between py-[32px] xl:max-w-[342px]">
           <button className="flex items-center gap-2 bg-green/[.1] text-green text-small font-medium rounded-full px-[16px] py-[8px]">
             <PiPencilSimple className="size-[16px]" />
             Edit Profile
@@ -149,7 +149,7 @@ const Profile = () => {
           </div>
         </div>
       </div>
-      <div className="flex gap-[16px] w-full">
+      <div className="flex max-xl:flex-col gap-[16px] w-full">
         <div className="grid grid-cols-2 gap-[16px] w-full">
           <div className="bg-white/[.4] rounded-[20px] p-[16px]">
             <p className="text-small font-medium">Employment</p>
@@ -208,6 +208,7 @@ const Profile = () => {
                           borderWidth: 12,
                           borderColor: "#F6F6EC",
                           borderRadius: 100,
+                          hoverBorderColor: "#F6F6EC"
                         },
                       ],
                     }}

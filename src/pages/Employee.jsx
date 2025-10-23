@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 import { RiSearchLine } from "react-icons/ri";
 import { FaPlus } from 'react-icons/fa';
+import { BsChevronDown } from "react-icons/bs";
 
 const Employee = () => {
   const { employees } = useSelector((state) => state.employee);
@@ -22,7 +23,7 @@ const Employee = () => {
     <div className="container">
       <h2 className="font-bold">Employee</h2>
       <div className="flex justify-between my-[24px]">
-        <div className="flex gap-2">
+        <div className="flex gap-2 max-xl:hidden">
           {jobCategories.map((category) => (
             <button
               key={category}
@@ -37,19 +38,36 @@ const Employee = () => {
             </button>
           ))}
         </div>
+        <select className="text-xs xl:hidden">
+                  <button>
+                    <selectedcontent></selectedcontent>
+                    <span className="picker">
+                      <BsChevronDown />
+                    </span>
+                  </button>
+                  {jobCategories.map((category) => (
+                    <option
+                      key={category}
+                      onClick={() => setSelectedJobCategory(category)}
+                      className={`rounded-full text-sm`}
+                    >
+                      {category}
+                    </option>
+                  ))}
+                </select>
         <div className="flex gap-2">
-          <div className="flex items-center gap-[10px] bg-white py-[10px] pl-[12px] pr-[16px] rounded-full overflow-hidden">
+          <div className="flex items-center gap-[10px] bg-white py-[10px] xl:pl-[12px] xl:pr-[16px] max-xl:px-[10px] rounded-full overflow-hidden">
             <RiSearchLine className="size-[23px] text-black/[.5]" />
             <input
               type="text"
               placeholder="Search"
-              className="focus:outline-0"
+              className="focus:outline-0 max-xl:hidden"
             />
           </div>
           <button className="size-[42px] flex items-center justify-center bg-green rounded-[100%]"><FaPlus className="text-white"/></button>
         </div>
       </div>
-      <div className="grid xl:grid-cols-3 grid-cols-2 gap-[10px]">
+      <div className="grid xl:grid-cols-3 lg:grid-cols-2 gap-[10px]">
         {filteredEmployees.map((employee) => (
           <Link to={`/employee/${employee.id}`} key={employee.id}>
             <div className="group flex justify-around bg-white rounded-[20px] pt-[24px] pr-[28px] h-full overflow-hidden">

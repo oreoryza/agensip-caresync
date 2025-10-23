@@ -106,7 +106,7 @@ const EmployeeDetail = () => {
         <BsChevronRight className="opacity-50" />
         <p className="text-green">Employee Detail</p>
       </div>
-      <div className="flex justify-between pt-[17px] pl-[17px] w-full h-full">
+      <div className="flex max-xl:flex-col justify-between pt-[17px] xl:pl-[17px] w-full h-full">
         <div className="flex w-full">
           <div className="relative w-full max-w-[294px]">
             <img
@@ -135,7 +135,7 @@ const EmployeeDetail = () => {
               </a>
             </div>
           </div>
-          <div className="flex flex-col justify-between py-[32px] ml-[1rem] w-full">
+          <div className="flex flex-col max-xl:gap-[16px] justify-between py-[32px] ml-[1rem] w-full">
             <div className="flex gap-1">
               <div
                 className={`px-[8px] py-[6px] rounded-full text-small ${
@@ -154,7 +154,7 @@ const EmployeeDetail = () => {
               <h5 className="font-medium">{employee.name}</h5>
               <p className="text-small opacity-50">{employee.jobTitle}</p>
             </div>
-            <div className="grid grid-cols-2 gap-[16px]">
+            <div className="grid xl:grid-cols-2 gap-[16px]">
               <div className="flex items-center gap-[10px]">
                 <div className="bg-white size-[34px] flex items-center justify-center rounded-[100%]">
                   <IoLocationOutline className="size-[20px]" />
@@ -185,7 +185,7 @@ const EmployeeDetail = () => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col items-end justify-between py-[32px] max-w-[342px]">
+        <div className="flex flex-col items-end max-xl:gap-[20px] justify-between py-[32px] xl:max-w-[342px]">
           <button className="flex items-center gap-2 bg-green/[.1] text-green text-small font-medium rounded-full px-[16px] py-[8px]">
             <PiPencilSimple className="size-[16px]" />
             Edit Profile
@@ -196,7 +196,7 @@ const EmployeeDetail = () => {
           </div>
         </div>
       </div>
-      <div className="flex gap-[16px] w-full">
+      <div className="flex max-xl:flex-col gap-[16px] w-full">
         <div className="grid grid-cols-2 gap-[16px] w-full">
           <div className="bg-white/[.4] rounded-[20px] p-[16px]">
             <p className="text-small font-medium">Experience</p>
@@ -387,28 +387,28 @@ const EmployeeDetail = () => {
           </div>
           <div className="bg-white/[.4] h-full rounded-[20px] overflow-hidden">
             <p className="ml-[20px] mt-[20px] mb-[24px] text-subtitle font-bold">Schedule</p>
-            <div className="flex w-full px-[24px] overflow-scroll hide-scroll h-full max-w-[432px]">
-              <div className="group flex justify-center p-[6px] h-full min-w-[92px] rounded-t-[20px] ">
+            <div className="flex w-full px-[24px] overflow-scroll hide-scroll h-full max-xl:min-h-[336px] xl:max-w-[432px]">
+              <div className="group flex justify-center p-[6px] min-w-[92px] rounded-t-[20px] ">
                 <div className="text-xs h-fit px-[10px] py-[6px] rounded-full group-hover:bg-light-yellow duration-300">
                   09.00 AM
                 </div>
               </div>
-              <div className="group flex justify-center p-[6px] h-full min-w-[92px] rounded-t-[20px] bg-white">
+              <div className="group flex justify-center p-[6px] min-w-[92px] rounded-t-[20px] bg-white">
                 <div className="text-xs h-fit px-[10px] py-[6px] rounded-full group-hover:bg-light-yellow duration-300">
                   10.00 AM
                 </div>
               </div>
-              <div className="group flex justify-center p-[6px] h-full min-w-[92px] rounded-t-[20px] ">
+              <div className="group flex justify-center p-[6px] min-w-[92px] rounded-t-[20px] ">
                 <div className="text-xs h-fit px-[10px] py-[6px] rounded-full group-hover:bg-light-yellow duration-300">
                   11.00 AM
                 </div>
               </div>
-              <div className="group flex justify-center p-[6px] h-full min-w-[92px] rounded-t-[20px] bg-white">
+              <div className="group flex justify-center p-[6px] min-w-[92px] rounded-t-[20px] bg-white">
                 <div className="text-xs h-fit px-[10px] py-[6px] rounded-full group-hover:bg-light-yellow duration-300">
                   12.00 PM
                 </div>
               </div>
-              <div className="relative group flex justify-center p-[6px] h-full min-w-[92px] rounded-t-[20px] ">
+              <div className="relative group flex justify-center p-[6px] min-w-[92px] rounded-t-[20px] ">
                 <div className="text-xs h-fit px-[10px] py-[6px] rounded-full group-hover:bg-light-yellow duration-300">
                   01.00 PM
                 </div>
@@ -433,32 +433,32 @@ const EmployeeDetail = () => {
                   </button>
                 </div>
               </div>
-              <div className="group flex justify-center p-[6px] h-full min-w-[92px] rounded-t-[20px] bg-white">
+              <div className="group flex justify-center p-[6px] min-w-[92px] rounded-t-[20px] bg-white">
                 <div className="text-xs h-fit px-[10px] py-[6px] rounded-full group-hover:bg-light-yellow duration-300">
                   02.00 PM
                 </div>
               </div>
-              <div className="group flex justify-center p-[6px] h-full min-w-[92px] rounded-t-[20px] ">
+              <div className="group flex justify-center p-[6px] min-w-[92px] rounded-t-[20px] ">
                 <div className="text-xs h-fit px-[10px] py-[6px] rounded-full group-hover:bg-light-yellow duration-300">
                   03.00 PM
                 </div>
               </div>
-              <div className="group flex justify-center p-[6px] h-full min-w-[92px] rounded-t-[20px] bg-white">
+              <div className="group flex justify-center p-[6px] min-w-[92px] rounded-t-[20px] bg-white">
                 <div className="text-xs h-fit px-[10px] py-[6px] rounded-full group-hover:bg-light-yellow duration-300">
                   04.00 PM
                 </div>
               </div>
-              <div className="group flex justify-center p-[6px] h-full min-w-[92px] rounded-[20px] ">
+              <div className="group flex justify-center p-[6px] min-w-[92px] rounded-[20px] ">
                 <div className="text-xs h-fit px-[10px] py-[6px] rounded-full group-hover:bg-light-yellow duration-300">
                   05.00 AM
                 </div>
               </div>
-              <div className="group flex justify-center p-[6px] h-full min-w-[92px] rounded-t-[20px] bg-white">
+              <div className="group flex justify-center p-[6px] min-w-[92px] rounded-t-[20px] bg-white">
                 <div className="text-xs h-fit px-[10px] py-[6px] rounded-full group-hover:bg-light-yellow duration-300">
                   06.00 AM
                 </div>
               </div>
-              <div className="group flex justify-center p-[6px] h-full min-w-[92px] rounded-t-[20px] ">
+              <div className="group flex justify-center p-[6px] min-w-[92px] rounded-t-[20px] ">
                 <div className="text-xs h-fit px-[10px] py-[6px] rounded-full group-hover:bg-light-yellow duration-300">
                   07.00 AM
                 </div>

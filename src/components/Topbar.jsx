@@ -44,7 +44,7 @@ const Topbar = () => {
         <Link to={"/"}>
           <img src={logo} alt="CareSync" className="max-h-[32px]" />
         </Link>
-        <div className="flex items-center gap-[10px] bg-white py-[10px] pl-[12px] pr-[16px] rounded-full overflow-hidden">
+        <div className="flex items-center gap-[10px] bg-white py-[10px] pl-[12px] pr-[16px] rounded-full overflow-hidden max-xl:hidden">
           <RiSearchLine className="size-[23px] text-black/[.5]" />
           <input type="text" placeholder="Search" className="focus:outline-0" />
         </div>
@@ -52,6 +52,12 @@ const Topbar = () => {
           <Link
             to={"/settings"}
             className="group h-[42px] w-[42px] flex justify-center items-center bg-white rounded-[100%]"
+          >
+            <RiSearchLine className="size-[20px] group-hover:rotate-180 duration-500" />
+          </Link>
+          <Link
+            to={"/settings"}
+            className="group h-[42px] w-[42px] flex justify-center items-center bg-white rounded-[100%] max-xl:hidden"
           >
             <RiSettings3Line className="size-[20px] group-hover:rotate-180 duration-500" />
           </Link>
@@ -72,13 +78,13 @@ const Topbar = () => {
           >
             <img
               src={profile.img}
-              className="object-cover size-[34px] rounded-[100%] mr-[7px]"
+              className="object-cover size-[34px] rounded-[100%] xl:mr-[7px]"
             />
-            <p className="select-none">Guy Hawkins</p>
+            <p className="select-none max-xl:hidden">Guy Hawkins</p>
             {isCollapsed ? (
-              <FaChevronUp className="ml-[12px] mr-[6px] p-[2px] group-hover:-translate-y-0.5 duration-500" />
+              <FaChevronUp className="ml-[12px] mr-[6px] p-[2px] group-hover:-translate-y-0.5 duration-500 max-xl:hidden" />
             ) : (
-              <FaChevronDown className="ml-[12px] mr-[6px] p-[2px] group-hover:translate-y-0.5 duration-500" />
+              <FaChevronDown className="ml-[12px] mr-[6px] p-[2px] group-hover:translate-y-0.5 duration-500 max-xl:hidden" />
             )}
             <div
               className={`absolute ${

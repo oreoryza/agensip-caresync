@@ -22,9 +22,9 @@ const GetStarted = () => {
         <img
           src={surgery}
           alt="Surgery"
-          className="object-cover w-full h-[209px] rounded-[20px]"
+          className="object-cover w-full xl:h-[209px] h-[120px] rounded-[20px]"
         />
-        <div className="absolute bottom-0 flex flex-col justify-center gap-[16px] px-[40px] w-full h-full text-white bg-black/[.4] rounded-[20px]">
+        <div className="absolute bottom-0 flex flex-col justify-center gap-[16px] xl:px-[40px] px-[16px] w-full h-full text-white bg-black/[.4] rounded-[20px]">
           <h2 className="font-bold">Getting Started</h2>
           <p className="text-small opacity-50] max-w-[300px]">
             Learn how to log in, set up your account, and navigate the main
@@ -33,7 +33,7 @@ const GetStarted = () => {
         </div>
       </div>
       <div className="relative flex gap-[40px]">
-        <div className="sticky top-[120px] flex flex-col gap-[16px] max-w-[180px] h-fit">
+        <div className="sticky top-[120px] flex flex-col gap-[16px] max-w-[180px] h-fit max-xl:hidden">
           <a href="#login">Logging in</a>
           <a href="#dashboard-preview">Dashboard Overview</a>
           <a href="#">Updating Profile</a>

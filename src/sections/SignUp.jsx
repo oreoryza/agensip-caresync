@@ -31,8 +31,8 @@ const SignUp = ({ toggleLogin }) => {
   const disabled = !name.trim() || !email.trim() || !password.trim();
 
   return (
-    <div className="flex flex-col items-center gap-[36px] text-center max-w-[360px]">
-      <div className="flex flex-col items-center gap-[24px]">
+    <div className="flex flex-col items-center gap-[36px] text-center max-xl:p-[20px] max-xl:w-full xl:max-w-[360px]">
+      <div className="flex flex-col items-center gap-[24px] max-xl:hidden">
         <div className="bg-white p-[13px] rounded-[100%]">
           <PiSignInBold className="text-green w-[30px] h-[30px]" />
         </div>
@@ -53,7 +53,7 @@ const SignUp = ({ toggleLogin }) => {
             value={name}
             onChange={handleChange(setName)}
             placeholder="Your name"
-            className="bg-white w-full py-[16px] pl-[16px] pr-[12px] rounded-full"
+            className="bg-white w-full py-[16px] pl-[16px] pr-[12px] max-xl:outline-1 max-xl:outline-black/[.2] rounded-full"
           />
         </div>
         <div className="flex flex-col gap-[7px]">
@@ -65,7 +65,7 @@ const SignUp = ({ toggleLogin }) => {
             value={email}
             onChange={handleChange(setEmail)}
             placeholder="Your email"
-            className="bg-white w-full py-[16px] pl-[16px] pr-[12px] rounded-full"
+            className="bg-white w-full py-[16px] pl-[16px] pr-[12px] max-xl:outline-1 max-xl:outline-black/[.2] rounded-full"
           />
         </div>
         <div className="relative flex flex-col gap-[7px]">
@@ -78,7 +78,7 @@ const SignUp = ({ toggleLogin }) => {
             minLength={8}
             onChange={handleChange(setPassword)}
             placeholder="Your password"
-            className="bg-white w-full py-[16px] pl-[16px] pr-[12px] rounded-full"
+            className="bg-white w-full py-[16px] pl-[16px] pr-[12px] max-xl:outline-1 max-xl:outline-black/[.2] rounded-full"
           />
           <div
             onClick={handlePeek}

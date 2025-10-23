@@ -38,7 +38,7 @@ const Home = () => {
 
   return (
     <div className="container h-full">
-      <div className="flex gap-[16px] h-full">
+      <div className="flex max-xl:flex-col-reverse gap-[16px] h-full">
         <div className="flex flex-col gap-[24px] bg-white/[.4] px-[20px] pt-[20px] rounded-[20px]">
           <div className="flex justify-between items-center">
             <p className="text-subtitle font-bold">Appointments</p>
@@ -115,8 +115,8 @@ const Home = () => {
             ))}
           </div>
         </div>
-        <div className="flex flex-col gap-[16px] w-full">
-          <div className="flex gap-[16px]">
+        <div className="flex xl:flex-col flex-col-reverse gap-[16px] w-full">
+          <div className="flex max-xl:flex-col-reverse gap-[16px]">
             <div className="flex flex-col gap-[16px] w-full">
               <div className="flex flex-col gap-[24px] bg-white/[.4] p-[20px] rounded-[20px]">
                 <div className="flex justify-between items-center gap-2">
@@ -143,9 +143,9 @@ const Home = () => {
                     <option value="">Today</option>
                   </select>
                 </div>
-                <div className="flex gap-2">
-                  <div className="flex flex-col justify-around gap-2">
-                    <div className="text-sm font-medium">
+                <div className="flex max-xl:flex-col gap-2">
+                  <div className="flex xl:flex-col max-xl:flex-wrap justify-around gap-2">
+                    <div className="max-xl:flex gap-[10px] text-sm font-medium">
                       <h2 className="font-bold">
                         {data.patients.treatments.slice(-1)[0].under}
                       </h2>
@@ -154,7 +154,7 @@ const Home = () => {
                         <p className="text-black/[.5]">Under Treatment</p>
                       </div>
                     </div>
-                    <div className="text-sm font-medium">
+                    <div className="max-xl:flex gap-[10px] text-sm font-medium">
                       <h2 className="font-bold">
                         {data.patients.treatments.slice(-1)[0].recovered}
                       </h2>
@@ -164,7 +164,7 @@ const Home = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="max-w-[360px]">
+                  <div className="xl:max-w-[360px] overflow-x-scroll">
                     <PatientsChart />
                   </div>
                 </div>
@@ -240,7 +240,7 @@ const Home = () => {
                 </div>
               </div>
             </div>
-            <div className="flex flex-col gap-[16px]">
+            <div className="xl:flex flex-col gap-[16px] grid grid-cols-2">
               <div className="bg-white/[.4] p-[20px] rounded-[20px] h-full">
                 <TotalPatients />
               </div>
@@ -255,7 +255,7 @@ const Home = () => {
               </div>
             </div>
           </div>
-          <div className="flex gap-[16px] w-full">
+          <div className="flex max-xl:flex-col-reverse gap-[16px] w-full">
             <div className="flex flex-col gap-[24px] bg-white/[.4] p-[20px] rounded-[20px] w-full">
               <div className="flex justify-between items-center gap-2">
                 <div className="flex gap-[16px]">
@@ -275,7 +275,7 @@ const Home = () => {
               </div>
               <PatientsGender />
             </div>
-            <div className="flex flex-col justify-between gap-[24px] bg-white/[.4] p-[20px] rounded-[20px] w-full h-full">
+            <div className="flex flex-col justify-between gap-[24px] xl:bg-white/[.4] p-[20px] rounded-[20px] w-full h-full">
               <div className="flex justify-between items-center gap-2">
                 <div className="flex gap-[16px]">
                   <div className="flex items-center justify-center min-w-[42px] max-w-[42px] min-h-[42px] max-h-[42px] bg-white rounded-[100%]">
@@ -288,11 +288,19 @@ const Home = () => {
                     </p>
                   </div>
                 </div>
-                <button className="flex justify-center items-center bg-white size-[24px] rounded-[100%]">
-                  <FiArrowUpRight />
-                </button>
+                <select className="text-xs">
+                  <button>
+                    <selectedcontent></selectedcontent>
+                    <span className="picker">
+                      <BsChevronDown />
+                    </span>
+                  </button>
+                  <option value="">Weekly</option>
+                  <option value="">Monthly</option>
+                  <option value="">Today</option>
+                </select>
               </div>
-              <DoctorNurses/>
+              <DoctorNurses />
             </div>
           </div>
         </div>

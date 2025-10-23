@@ -12,6 +12,7 @@ import { RiSearchLine } from "react-icons/ri";
 import { FaPlus } from "react-icons/fa";
 import { PiX } from "react-icons/pi";
 import { PiCheck } from "react-icons/pi";
+import { BsChevronDown } from "react-icons/bs";
 
 const Appointment = () => {
   const data = useSelector((state) => state.data);
@@ -34,19 +35,21 @@ const Appointment = () => {
   return (
     <div className="container">
       <h2 className="font-bold">Appointments</h2>
-      <div className="grid grid-cols-3 gap-[16px] mt-[25px]">
-        <div className="bg-white/[.4] p-[20px] rounded-[20px]">
-          <TotalPatients />
-        </div>
-        <div className="bg-white/[.4] p-[20px] rounded-[20px]">
-          <AppointmentsChart />
-        </div>
-        <div className="bg-white/[.4] p-[20px] rounded-[20px]">
-          <Room />
+      <div className="overflow-x-auto">
+        <div className="flex xl:grid grid-cols-3 gap-[16px] mt-[25px]">
+          <div className="bg-white/[.4] min-w-[172px] w-full p-[20px] rounded-[20px]">
+            <TotalPatients />
+          </div>
+          <div className="bg-white/[.4] min-w-[172px] w-full p-[20px] rounded-[20px]">
+            <AppointmentsChart />
+          </div>
+          <div className="bg-white/[.4] min-w-[172px] w-full p-[20px] rounded-[20px]">
+            <Room />
+          </div>
         </div>
       </div>
       <div className="flex justify-between mt-[24px]">
-        <div className="flex gap-2">
+        <div className="flex gap-2 max-xl:hidden">
           {status.map((stat) => (
             <button
               key={stat}
@@ -61,13 +64,30 @@ const Appointment = () => {
             </button>
           ))}
         </div>
+        <select className="text-xs xl:hidden">
+          <button>
+            <selectedcontent></selectedcontent>
+            <span className="picker">
+              <BsChevronDown />
+            </span>
+          </button>
+          {status.map((stat) => (
+            <option
+              key={stat}
+              onClick={() => setSelectedStatus(stat)}
+              className={`rounded-full text-sm`}
+            >
+              {stat}
+            </option>
+          ))}
+        </select>
         <div className="flex gap-2">
-          <div className="flex items-center gap-[10px] bg-white py-[10px] pl-[12px] pr-[16px] rounded-full overflow-hidden">
+          <div className="flex items-center gap-[10px] bg-white py-[10px] xl:pl-[12px] xl:pr-[16px] max-xl:px-[10px] rounded-full overflow-hidden">
             <RiSearchLine className="size-[23px] text-black/[.5]" />
             <input
               type="text"
               placeholder="Search"
-              className="focus:outline-0"
+              className="focus:outline-0 max-xl:hidden"
             />
           </div>
           <button
@@ -78,7 +98,7 @@ const Appointment = () => {
           </button>
         </div>
       </div>
-      <div className="grid grid-cols-3 gap-[10px] mt-[20px]">
+      <div className="grid xl:grid-cols-3 grid-cols-1 gap-[10px] mt-[20px]">
         {filteredStatus.map((appointment, index) => (
           <div key={index + 1} className="bg-white/[.4] rounded-[20px]">
             <div className="p-[20px]">
@@ -157,11 +177,13 @@ const Appointment = () => {
                   <PiCheck /> Request has been accepted
                 </div>
               </div>
-            ) : appointment.status == "Archive" ? (<div className="flex gap-[10px] px-[20px] mb-[20px] mt-[16px]">
+            ) : appointment.status == "Archive" ? (
+              <div className="flex gap-[10px] px-[20px] mb-[20px] mt-[16px]">
                 <div className="flex items-center gap-[10px] w-full text-black bg-black/[.1] px-[10px] py-[8px] rounded-[8px]">
                   Request has been archived
                 </div>
-              </div>) : (
+              </div>
+            ) : (
               <div className="flex gap-[10px] px-[20px] mb-[20px] mt-[16px]">
                 <button className="flex justify-center items-center gap-[10px] w-full outline-1 outline-red text-red px-[10px] py-[8px] rounded-full text-center">
                   <PiX /> Decline

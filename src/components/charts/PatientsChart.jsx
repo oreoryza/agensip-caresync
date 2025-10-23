@@ -73,7 +73,7 @@ const PatientsChart = () => {
   };
 
   return (
-    <div className="w-full h-[200px]">
+    <div className="xl:w-full max-xl:min-w-[400px] h-[200px]">
       <Bar data={chartData} options={options} />
     </div>
   );

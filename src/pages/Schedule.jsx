@@ -4,6 +4,7 @@ import AddSchedule from "../sections/AddSchedule";
 import { PiCalendarDots } from "react-icons/pi";
 import { RiSearchLine } from "react-icons/ri";
 import { FaPlus } from "react-icons/fa";
+import { BsChevronDown } from "react-icons/bs";
 
 import Calendar from "react-calendar";
 
@@ -60,7 +61,7 @@ const Schedule = () => {
       )}
       <div className="flex flex-col bg-white/[.4] mt-[40px] rounded-[20px] overflow-hidden">
         <div className="flex justify-between items-center my-[50px] mx-[40px]">
-          <div className="flex gap-2">
+          <div className="flex gap-2 max-xl:hidden">
             {categories.map((category) => (
               <button
                 onClick={() => setSelectedCategory(category)}
@@ -74,13 +75,30 @@ const Schedule = () => {
               </button>
             ))}
           </div>
+          <select className="text-xs xl:hidden">
+            <button>
+              <selectedcontent></selectedcontent>
+              <span className="picker">
+                <BsChevronDown />
+              </span>
+            </button>
+            {categories.map((category) => (
+              <option
+                key={category}
+                onClick={() => setSelectedCategory(category)}
+                className={`rounded-full text-sm`}
+              >
+                {category}
+              </option>
+            ))}
+          </select>
           <div className="flex gap-2">
-            <div className="flex items-center gap-[10px] bg-white py-[10px] pl-[12px] pr-[16px] rounded-full overflow-hidden">
+            <div className="flex items-center gap-[10px] bg-white py-[10px] xl:pl-[12px] xl:pr-[16px] max-xl:px-[10px] rounded-full overflow-hidden">
               <RiSearchLine className="size-[23px] text-black/[.5]" />
               <input
                 type="text"
                 placeholder="Search"
-                className="focus:outline-0"
+                className="focus:outline-0 max-xl:hidden"
               />
             </div>
             <button

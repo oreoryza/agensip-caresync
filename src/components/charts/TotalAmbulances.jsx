@@ -20,7 +20,7 @@ const TotalAmbulances = () => {
           <div
             className={`${
               percent > 0 ? "bg-green/[.1] text-green" : "bg-red/[.1] text-red"
-            } text-xs font-medium p-[4px] rounded-full`}
+            } text-xs font-medium p-[4px] rounded-full max-xl:hidden`}
           >
             {percent}%
           </div>
@@ -28,7 +28,7 @@ const TotalAmbulances = () => {
         <button className="flex justify-center items-center bg-white size-[24px] rounded-[100%]"><FiArrowUpRight/></button>
       </div>
       <div className="flex justify-between items-start gap-[38px] w-full h-[120px]">
-        <div className="flex items-end gap-2 w-full h-full">
+        <div className="flex items-end gap-2 w-full h-full max-xl:hidden">
           {data?.ambulances?.map((total, index) => (
             <h2
               key={index}
@@ -42,7 +42,16 @@ const TotalAmbulances = () => {
           ))}
         </div>
         <div className="flex flex-col gap-[10px]">
+          <div className="flex items-center gap-2">
           <h2 className="font-bold">{data.ambulances.slice(-1)[0]}</h2>
+          <div
+            className={`${
+              percent > 0 ? "bg-green/[.1] text-green" : "bg-red/[.1] text-red"
+            } text-xs font-medium p-[4px] rounded-full xl:hidden`}
+          >
+            {percent}%
+          </div>
+          </div>
           <p className="text-xs text-black/[.6]">
             Ambulances {percent > 0 ? "increased by" : "dropped by"}{" "}
             <span

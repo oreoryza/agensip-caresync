@@ -15,18 +15,18 @@ const HelpCenter = () => {
   return (
     <div className="container">
       <h2 className="font-bold">Help Center</h2>
-      <div className="flex justify-between items-center w-full bg-white p-[24px] rounded-[20px] mb-[10px] mt-[24px]">
+      <div className="flex max-xl:flex-col justify-between max-xl:gap-[20px] xl:items-center w-full bg-white p-[24px] rounded-[20px] mb-[10px] mt-[24px]">
         <div className="flex flex-col gap-[8px]">
           <p className="text-title font-medium">Need some help?</p>
           <p className="text-black/[.5]">
             Lorem ipsum dolor sit amet consectetur adipisicing elit.
           </p>
         </div>
-        <div className="w-[165px]">
+        <div className="xl:w-[165px]">
           <ButtonPrimary text="Help" style="bg-green" />
         </div>
       </div>
-      <div className="grid grid-cols-3 gap-[10px]">
+      <div className="grid xl:grid-cols-3 gap-[10px]">
         <div className="flex flex-col gap-[20px] bg-white p-[20px] rounded-[20px]">
           <div className="bg-green/[.08] p-[16px] w-fit rounded-[100%]"><RiShining2Line className="w-[28px] h-[28px] text-green"/></div>
           <div className="flex flex-col gap-[8px]">

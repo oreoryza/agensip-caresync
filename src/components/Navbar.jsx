@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 
-import { RiHome5Line } from "react-icons/ri";
-import { BiChevronsLeft } from "react-icons/bi";
-import { BiChevronsRight } from "react-icons/bi";
-import { RiCalendar2Line } from "react-icons/ri";
-import { PiHeartbeatBold } from "react-icons/pi";
-import { RiCalendarCheckLine } from "react-icons/ri";
-import { FiUser } from "react-icons/fi";
-import { BiHelpCircle } from "react-icons/bi";
+import { RiHome5Line, RiHome5Fill } from "react-icons/ri";
+import { BiChevronsLeft, BiChevronsRight } from "react-icons/bi";
+import { RiCalendar2Line, RiCalendar2Fill } from "react-icons/ri";
+import { PiHeartbeatBold, PiHeartbeatFill } from "react-icons/pi";
+import { RiCalendarCheckLine, RiCalendarCheckFill } from "react-icons/ri";
+import { FiUser, FiUserCheck } from "react-icons/fi";
+import { BiHelpCircle, BiSolidHelpCircle } from "react-icons/bi";
 
 const Navbar = () => {
   const [isCollapse, setIsCollapse] = useState(false);
@@ -19,7 +18,7 @@ const Navbar = () => {
 
   return (
     <div
-      className={`sticky top-[98px] pl-[30px] pr-[40px] ${
+      className={`sticky top-[98px] pl-[30px] pr-[40px] max-w-full max-xl:hidden ${
         isCollapse ? "w-[120px]" : "min-w-[240px]"
       }`}
     >
@@ -43,56 +42,121 @@ const Navbar = () => {
         <li className="flex h-full w-full">
           <NavLink
             to={"/"}
-            className={`px-[16px] py-[12px] flex items-center gap-[13px] w-full rounded-full`}
+            className={`px-[16px] py-[12px] flex items-center gap-[13px] w-full  rounded-full`}
           >
-            <RiHome5Line className="min-w-[20px] min-h-[20px]" />
-            <span className="truncate">Home</span>
+            {({ isActive }) => (
+              <>
+                {isActive ? (
+                  <RiHome5Fill className="min-w-[20px] min-h-[20px]" />
+                ) : (
+                  <RiHome5Line className="min-w-[20px] min-h-[20px]" />
+                )}
+                <span className="truncate">Home</span>
+              </>
+            )}
           </NavLink>
         </li>
         <li className="flex h-full w-full">
           <NavLink
             to={"/schedule"}
-            className=" px-[16px] py-[12px] flex items-center gap-[13px] w-full rounded-full"
+            className=" px-[16px] py-[12px] flex items-center gap-[13px] w-full  rounded-full"
           >
-            <RiCalendar2Line className="min-w-[20px] min-h-[20px]" />
-            <span className="truncate">Schedule</span>
+            {({ isActive }) => (
+              <>
+                {isActive ? (
+                  <RiCalendar2Fill className="min-w-[20px] min-h-[20px]" />
+                ) : (
+                  <RiCalendar2Line className="min-w-[20px] min-h-[20px]" />
+                )}
+                <span className="truncate">Schedule</span>
+              </>
+            )}
           </NavLink>
         </li>
         <li className="flex h-full w-full">
           <NavLink
             to={"/patients"}
-            className=" px-[16px] py-[12px] flex items-center gap-[13px] w-full rounded-full"
+            className=" px-[16px] py-[12px] flex items-center gap-[13px] w-full  rounded-full"
           >
-            <PiHeartbeatBold className="min-w-[20px] min-h-[20px]" />
-            <span className="truncate">Patients</span>
+            {({ isActive }) => (
+              <>
+                {isActive ? (
+                  <PiHeartbeatFill className="min-w-[20px] min-h-[20px]" />
+                ) : (
+                  <PiHeartbeatBold className="min-w-[20px] min-h-[20px]" />
+                )}
+                <span className="truncate">Patients</span>
+              </>
+            )}
           </NavLink>
         </li>
         <li className="flex h-full w-full">
           <NavLink
             to={"/appointment"}
-            className=" px-[16px] py-[12px] flex items-center gap-[13px] w-full rounded-full"
+            className=" px-[16px] py-[12px] flex items-center gap-[13px] w-full  rounded-full"
           >
-            <RiCalendarCheckLine className="min-w-[20px] min-h-[20px]" />
-            <span className="truncate">Appointment</span>
+            {({ isActive }) => (
+              <>
+                {isActive ? (
+                  <RiCalendarCheckFill className="min-w-[20px] min-h-[20px]" />
+                ) : (
+                  <RiCalendarCheckLine className="min-w-[20px] min-h-[20px]" />
+                )}
+                <span className="truncate">Appointment</span>
+              </>
+            )}
           </NavLink>
         </li>
         <li className="flex h-full w-full">
           <NavLink
             to={"/employee"}
-            className=" px-[16px] py-[12px] flex items-center gap-[13px] w-full rounded-full"
+            className=" px-[16px] py-[12px] flex items-center gap-[13px] w-full  rounded-full"
           >
-            <FiUser className="min-w-[20px] min-h-[20px]" />
-            <span className="truncate">Employee</span>
+            {({ isActive }) => (
+              <>
+                {isActive ? (
+                  <FiUserCheck className="min-w-[20px] min-h-[20px]" />
+                ) : (
+                  <FiUser className="min-w-[20px] min-h-[20px]" />
+                )}
+                <span className="truncate">Employee</span>
+              </>
+            )}
+          </NavLink>
+        </li>
+        <li className="flex h-full w-full xl:hidden">
+          <NavLink
+            to={"/help-center"}
+            className=" px-[16px] py-[12px] flex items-center gap-[13px] w-full  rounded-full"
+          >
+            {({ isActive }) => (
+              <>
+                {isActive ? (
+                  <BiSolidHelpCircle className="min-w-[20px] min-h-[20px]" />
+                ) : (
+                  <BiHelpCircle className="min-w-[20px] min-h-[20px]" />
+                )}
+                <span className="truncate">Help Center</span>
+              </>
+            )}
           </NavLink>
         </li>
       </ul>
-      <div className="flex w-full mt-[45px]">
+      <div className="flex w-full mt-[45px] max-xl:hidden">
         <NavLink
           to={"/help-center"}
           className=" px-[16px] py-[12px] flex items-center gap-[13px] w-full rounded-full"
         >
-          <BiHelpCircle className="min-w-[20px] min-h-[20px]" />
-          <span className="truncate">Help Center</span>
+          {({ isActive }) => (
+            <>
+              {isActive ? (
+                <BiSolidHelpCircle className="min-w-[20px] min-h-[20px]" />
+              ) : (
+                <BiHelpCircle className="min-w-[20px] min-h-[20px]" />
+              )}
+              <span className="truncate">Help Center</span>
+            </>
+          )}
         </NavLink>
       </div>
       <div

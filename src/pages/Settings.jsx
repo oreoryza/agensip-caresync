@@ -15,7 +15,7 @@ const Settings = () => {
     const ToggleButton = ({ isOn, onToggle }) => (
         <button
             onClick={onToggle}
-            className={`w-[50px] h-[32px] rounded-full relative transition-colors ${isOn ? 'bg-green-500' : 'bg-gray-300'}`}
+            className={`min-w-[50px] h-[32px] rounded-full relative transition-colors ${isOn ? 'bg-green-500' : 'bg-gray-300'}`}
         >
             <span
                 className={`absolute top-1 left-1 w-[24px] h-[24px] bg-white rounded-full transition-transform ${isOn ? 'translate-x-4' : 'translate-x-0'}`}
@@ -27,7 +27,7 @@ const Settings = () => {
         <div className="container">
             <h2 className="font-bold">Settings</h2>
             <div className="mt-[52px]">
-                <div className="flex">
+                <div className="flex max-xl:flex-col max-xl:gap-[20px]">
                     <div className="min-w-[364px]">
                     <p className="text-title font-bold">General notifications</p>
                     </div>
@@ -56,7 +56,7 @@ const Settings = () => {
                     </div>
                 </div>
                 <div className="w-full h-[1px] bg-black/[.1] my-[32px]"></div>
-                <div className="flex">
+                <div className="flex max-xl:flex-col max-xl:gap-[20px]">
                     <div className="min-w-[364px]">
                     <p className="text-title font-bold">Delivery methods</p>
                     </div>
@@ -92,7 +92,7 @@ const Settings = () => {
                     </div>
                 </div>
                 <div className="w-full h-[1px] bg-black/[.1] my-[32px]"></div>
-                <div className="flex">
+                <div className="flex max-xl:flex-col max-xl:gap-[20px]">
                     <div className="min-w-[364px]">
                     <p className="text-title font-bold">Language & region</p>
                     </div>

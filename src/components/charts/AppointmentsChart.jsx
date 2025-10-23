@@ -74,14 +74,14 @@ const AppointmentsChart = () => {
   };
 
   return (
-    <div className="w-full">
+    <div className="max-xl:flex flex-col justify-between h-full w-full">
       <div className="flex justify-between items-center mb-[10px]">
         <div className="flex gap-2 items-center">
           <p className="text-small font-bold">Appointments</p>
           <div
             className={`${
               percent > 0 ? "bg-green/[.1] text-green" : "bg-red/[.1] text-red"
-            } text-xs font-medium p-[4px] rounded-full`}
+            } text-xs font-medium p-[4px] rounded-full max-xl:hidden`}
           >
             {percent}%
           </div>
@@ -91,17 +91,28 @@ const AppointmentsChart = () => {
         </button>
       </div>
       <div className="relative flex justify-between items-start gap-[38px] w-full h-[120px] overflow-hidden">
-        <div className="w-full h-full pr-[120px]">
+        <div className="w-full h-full pr-[120px] max-xl:hidden">
           <Line
             data={chartData}
             options={options}
             className="w-full max-w-[225px]"
           />
         </div>
-        <div className="absolute right-0 flex flex-col gap-[10px] max-w-[100px]">
-          <h2 className="font-bold">
-            {data.patients.appointment.slice(-1)[0]}
-          </h2>
+        <div className="xl:absolute right-0 flex flex-col gap-[10px] max-w-[100px]">
+          <div className="flex items-center gap-2">
+            <h2 className="font-bold">
+              {data.patients.appointment.slice(-1)[0]}
+            </h2>
+            <div
+              className={`${
+                percent > 0
+                  ? "bg-green/[.1] text-green"
+                  : "bg-red/[.1] text-red"
+              } text-xs font-medium p-[4px] rounded-full xl:hidden`}
+            >
+              {percent}%
+            </div>
+          </div>
           <p className="text-xs text-black/[.6]">
             Appointments have {percent > 0 ? "increased" : "dropped"}{" "}
             <span

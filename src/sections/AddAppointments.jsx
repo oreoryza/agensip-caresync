@@ -72,9 +72,9 @@ const AddAppointments = ({ isOpen, onClose }) => {
       <div
         className={`${
           isOpen ? "fadeIn" : "hidden"
-        } fixed top-0 left-0 flex justify-center items-center w-screen h-screen bg-black/[.1] z-9`}
+        } fixed top-0 left-0 flex justify-center xl:items-center items-end w-screen h-screen bg-black/[.1] z-9`}
       >
-        <div className="bg-white w-[393px] rounded-[20px]">
+        <div className="bg-white xl:w-[393px] w-screen xl:rounded-[20px] max-xl:rounded-t-[20px]">
           <div className="flex justify-between items-center px-[24px] py-[20px] border-b-[1px] border-black/[.1] mb-[24px]">
             <p className="text-subtitle font-medium">Add appointments</p>
             <button onClick={handleModal}>

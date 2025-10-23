@@ -15,6 +15,7 @@ import Settings from "./pages/Settings"
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import GetStarted from "./pages/GetStarted"
+import NavbarMobile from "./components/NavbarMobile"
 
 function App() {
   const { token } = useSelector((state) => state.token);
@@ -24,7 +25,7 @@ function App() {
     <>
     {token ? (<div className="relative">
       <Topbar/>
-      <div className="flex items-start relative pr-[40px]">
+      <div className="flex items-start relative xl:pr-[40px] px-[20px]">
       <Navbar/>
         <Routes>
           <Route path="/" element={<Home/>}/>
@@ -39,6 +40,7 @@ function App() {
           <Route path="/settings" element={<Settings/>}/>
         </Routes>
       </div>
+      <NavbarMobile/>
     </div>):(<Auth/>)}
     </>
     </Router>
