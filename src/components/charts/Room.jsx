@@ -22,7 +22,7 @@ const Room = () => {
         </div>
         <button className="flex justify-center items-center bg-white size-[24px] rounded-[100%]"><FiArrowUpRight/></button>
       </div>
-      <div className="relative flex items-start gap-[38px] w-full h-[120px]">
+      <div className="relative flex items-start gap-[38px] w-full xl:h-[120px]">
         <div className="w-full h-full pr-[120px] max-xl:hidden">
         <Doughnut
           data={{

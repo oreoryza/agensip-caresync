@@ -27,7 +27,7 @@ const AddSchedule = ({ isOpen, onClose }) => {
     <div
       className={`${
         isOpen ? "fadeIn" : "hidden"
-      } fixed top-0 left-0 flex justify-center xl:items-center items-end w-screen h-screen bg-black/[.1] z-9`}
+      } fixed top-0 left-0 flex justify-center xl:items-center items-end w-screen h-screen bg-black/[.2] z-9`}
     >
       <div className="bg-white xl:w-[393px] w-screen xl:rounded-[20px] max-xl:rounded-t-[20px]">
         <div className="flex justify-between items-center px-[24px] py-[20px] border-b-[1px] border-black/[.1] mb-[24px]">
@@ -55,7 +55,7 @@ const AddSchedule = ({ isOpen, onClose }) => {
             <div className="flex flex-col gap-2">
               <label
                 htmlFor="title"
-                className="text-xs font-medium text-black/[.5]"
+                className="text-xs font-medium text-black/[.8]"
               >
                 Title
               </label>
@@ -72,7 +72,7 @@ const AddSchedule = ({ isOpen, onClose }) => {
             <div className="flex flex-col gap-2">
               <label
                 htmlFor="assign"
-                className="text-xs font-medium text-black/[.5]"
+                className="text-xs font-medium text-black/[.8]"
               >
                 Assign to
               </label>
@@ -94,7 +94,7 @@ const AddSchedule = ({ isOpen, onClose }) => {
             <div className="flex flex-col gap-2">
               <label
                 htmlFor="date"
-                className="text-xs font-medium text-black/[.5]"
+                className="text-xs font-medium text-black/[.8]"
               >
                 Date
               </label>
@@ -111,7 +111,7 @@ const AddSchedule = ({ isOpen, onClose }) => {
             <div className="flex flex-col gap-2">
               <label
                 htmlFor="time"
-                className="text-xs font-medium text-black/[.5]"
+                className="text-xs font-medium text-black/[.8]"
               >
                 Time
               </label>

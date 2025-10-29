@@ -7,7 +7,7 @@ import { BsChevronRight } from "react-icons/bs";
 
 const GetStarted = () => {
   return (
-    <div className="container">
+    <div className="w-full xl:pb-[34px] pb-[100px] max-xl:pt-[24px]">
       <div className="flex items-center gap-[7px] pl-[17px]">
         <Link
           to={"/help-center"}

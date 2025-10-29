@@ -107,8 +107,8 @@ const EmployeeDetail = () => {
         <p className="text-green">Employee Detail</p>
       </div>
       <div className="flex max-xl:flex-col justify-between pt-[17px] xl:pl-[17px] w-full h-full">
-        <div className="flex w-full">
-          <div className="relative w-full max-w-[294px]">
+        <div className="flex max-sm:flex-col w-full">
+          <div className="relative w-full xl:max-w-[294px]">
             <img
               src={employee.img}
               alt={employee.name}
@@ -119,7 +119,7 @@ const EmployeeDetail = () => {
                 href="https://www.whatsapp.com/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex gap-2 items-center bg-green text-white px-[16px] py-[8px] rounded-full"
+                className="flex gap-2 items-center bg-green text-white max-md:text-small xl:px-[16px] px-[8px] xl:py-[8px] py-[6px] rounded-full"
               >
                 <MdCall />
                 Call
@@ -128,7 +128,7 @@ const EmployeeDetail = () => {
                 href="https://www.whatsapp.com/"
                 rel="noopener noreferrer"
                 target="_blank"
-                className="flex gap-2 items-center bg-white px-[16px] py-[8px] rounded-full"
+                className="flex gap-2 items-center bg-white max-md:text-small xl:px-[16px] px-[8px] xl:py-[8px] py-[6px] rounded-full"
               >
                 <RiSendPlaneFill />
                 Chat
@@ -200,9 +200,9 @@ const EmployeeDetail = () => {
         <div className="grid grid-cols-2 gap-[16px] w-full">
           <div className="bg-white/[.4] rounded-[20px] p-[16px]">
             <p className="text-small font-medium">Experience</p>
-            <div className="flex items-center gap-2">
+            <div className="flex xl:flex-wrap items-center gap-2">
               <h1 className="font-bold">{employee.experience}</h1>
-              <p className="text-xs text-black/[.6]">
+              <p className="text-xs text-black/[.6] xl:max-w-[70px]">
                 Years of experiences since{" "}
                 <span className="text-black font-bold">{employee.year}</span>
               </p>
@@ -210,14 +210,14 @@ const EmployeeDetail = () => {
           </div>
           <div className="bg-white/[.4] rounded-[20px] p-[16px]">
             <p className="text-small font-medium">Rating</p>
-            <div className="flex items-center gap-2">
+            <div className="flex xl:flex-wrap items-center gap-2">
               <h1 className="font-bold">{employee.rating}</h1>
               <FaStar
                 className={`min-h-[29px] min-w-[30px] ${
                   employee.rating > 3 ? "text-yellow" : "text-green"
                 }`}
               />
-              <p className="text-xs text-black/[.6]">
+              <p className="text-xs text-black/[.6] xl:max-w-[60px]">
                 This doctor's rating is{" "}
                 <span className="text-black font-bold">
                   {employee.rating > 3 ? "good" : "ok"}

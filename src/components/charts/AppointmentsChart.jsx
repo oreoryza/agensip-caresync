@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 import { FiArrowUpRight } from "react-icons/fi";
@@ -42,8 +42,6 @@ const AppointmentsChart = () => {
         label: "Appointments",
         data: data?.patients?.appointment,
         borderColor: "green",
-        backgroundColor: "rgba(0, 128, 0, 0.2)",
-        fill: true,
         tension: 0.3,
         pointRadius: 0,
         pointHoverRadius: 4,
@@ -69,6 +67,7 @@ const AppointmentsChart = () => {
       },
       y: {
         display: false,
+        max: "350"
       },
     },
   };
@@ -83,14 +82,14 @@ const AppointmentsChart = () => {
               percent > 0 ? "bg-green/[.1] text-green" : "bg-red/[.1] text-red"
             } text-xs font-medium p-[4px] rounded-full max-xl:hidden`}
           >
-            {percent}%
+            {percent > 0 ? ("+"+percent) : (percent)}%
           </div>
         </div>
         <button className="flex justify-center items-center bg-white size-[24px] rounded-[100%]">
           <FiArrowUpRight />
         </button>
       </div>
-      <div className="relative flex justify-between items-start gap-[38px] w-full h-[120px] overflow-hidden">
+      <div className="relative flex justify-between items-start gap-[38px] w-full xl:h-[120px] overflow-hidden">
         <div className="w-full h-full pr-[120px] max-xl:hidden">
           <Line
             data={chartData}
@@ -98,7 +97,7 @@ const AppointmentsChart = () => {
             className="w-full max-w-[225px]"
           />
         </div>
-        <div className="xl:absolute right-0 flex flex-col gap-[10px] max-w-[100px]">
+        <div className="xl:absolute right-0 flex flex-col gap-[10px] xl:max-w-[100px]">
           <div className="flex items-center gap-2">
             <h2 className="font-bold">
               {data.patients.appointment.slice(-1)[0]}
@@ -110,7 +109,7 @@ const AppointmentsChart = () => {
                   : "bg-red/[.1] text-red"
               } text-xs font-medium p-[4px] rounded-full xl:hidden`}
             >
-              {percent}%
+              {percent > 0 ? ("+"+percent) : (percent)}%
             </div>
           </div>
           <p className="text-xs text-black/[.6]">
@@ -120,7 +119,7 @@ const AppointmentsChart = () => {
                 percent > 0 ? "text-green" : "text-red"
               }`}
             >
-              {percent}%
+              {percent > 0 ? ("+"+percent) : (percent)}%
             </span>
           </p>
         </div>

@@ -22,25 +22,26 @@ const TotalPatients = () => {
               percent > 0 ? "bg-green/[.1] text-green" : "bg-red/[.1] text-red"
             } text-xs font-medium p-[4px] rounded-full max-xl:hidden`}
           >
-            {percent}%
+            {percent > 0 ? ("+"+percent) : (percent)}%
           </div>
         </div>
         <button className="flex justify-center items-center bg-white size-[24px] rounded-[100%]">
           <FiArrowUpRight />
         </button>
       </div>
-      <div className="flex justify-between items-start gap-[38px] w-full h-[120px]">
+      <div className="flex justify-between items-start gap-[38px] w-full xl:h-[120px]">
         <div className="flex items-end gap-2 w-full h-full max-xl:hidden">
           {data?.patients?.total?.map((total, index) => (
-            <h2
+            <div
               key={index}
-              className={`flex w-full rounded-full ${
+              title={total}
+              className={`flex w-full rounded-full min-w-[20px] ${
                 index === data?.patients?.total?.length - 1
                   ? "bg-linear-to-b from-yellow to-green"
                   : "bg-grey"
               }`}
               style={{ height: `${(total / 400) * 100}%` }}
-            ></h2>
+            ></div>
           ))}
         </div>
         <div className="flex flex-col gap-[10px]">
@@ -53,7 +54,7 @@ const TotalPatients = () => {
                   : "bg-red/[.1] text-red"
               } text-xs font-medium p-[4px] rounded-full xl:hidden`}
             >
-              {percent}%
+              {percent > 0 ? ("+"+percent) : (percent)}%
             </div>
           </div>
           <p className="text-xs text-black/[.6]">
@@ -63,7 +64,7 @@ const TotalPatients = () => {
                 percent > 0 ? "text-green" : "text-red"
               }`}
             >
-              {percent}%
+              {percent > 0 ? ("+"+percent) : (percent)}%
             </span>
           </p>
         </div>

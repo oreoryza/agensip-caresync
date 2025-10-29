@@ -111,6 +111,18 @@ option {
 .container {
   width: 100%;
   padding-bottom: 34px;
+  overflow-x: auto;
+}
+
+.container::-webkit-scrollbar {
+  display: none;
+}
+
+.bg-mobile {
+  background-image: url(../public/bg-desktop.svg);
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
 }
 
 .react-calendar {
@@ -224,14 +236,23 @@ abbr[title] {
   }
 
   .container {
-  width: 100%;
-  padding-bottom: 100px;
-}
+    width: 100%;
+    padding-top: 24px;
+    padding-bottom: 100px;
+    overflow-x: hidden;
+  }
 
   .active {
-  font-weight: 500;
-  color: white;
-  background-color: #10141a;
-  width: 100%;
-}
+    font-weight: 500;
+    color: white;
+    background-color: #10141a;
+    width: 100%;
+  }
+
+  .react-calendar {
+    border: none !important;
+    border-radius: 1rem;
+    padding: 20px;
+    width: 100% !important;
+  }
 }

@@ -55,12 +55,12 @@ const Schedule = () => {
         </div>
       </div>
       {showCalendar && (
-        <div className="fixed right-[40px] mt-4 rounded-[20px] shadow-md z-2">
+        <div className="fixed xl:right-[40px] right-0 max-xl:bottom-0 max-xl:left-0 max-xl:w-screen max-xl:h-screen max-xl:flex items-end justify-center max-xl:bg-black/[.4] mt-4 shadow-md z-4">
           <Calendar onChange={handleDateChange} value={selectedDate} />
         </div>
       )}
       <div className="flex flex-col bg-white/[.4] mt-[40px] rounded-[20px] overflow-hidden">
-        <div className="flex justify-between items-center my-[50px] mx-[40px]">
+        <div className="flex justify-between items-center xl:my-[50px] xl:mx-[40px] max-xl:p-[14px] max-xl:mb-[10px]">
           <div className="flex gap-2 max-xl:hidden">
             {categories.map((category) => (
               <button
@@ -75,7 +75,7 @@ const Schedule = () => {
               </button>
             ))}
           </div>
-          <select className="text-xs xl:hidden">
+          <select className="text-small xl:hidden">
             <button>
               <selectedcontent></selectedcontent>
               <span className="picker">
@@ -103,9 +103,9 @@ const Schedule = () => {
             </div>
             <button
               onClick={() => setIsAdd(true)}
-              className="size-[42px] flex items-center justify-center bg-green rounded-[100%]"
+              className="group size-[42px] flex items-center justify-center bg-green rounded-[100%]"
             >
-              <FaPlus className="text-white" />
+              <FaPlus className="text-white group-hover:rotate-90 duration-300" />
             </button>
           </div>
         </div>

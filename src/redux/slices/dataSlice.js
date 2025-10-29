@@ -167,27 +167,45 @@ const initialState = {
     lists: [
         {
             value: "johnsmith",
-            label: "Dr. John Smith"
+            label: "Dr. John Smith",
+            name: "John Smith",
+            id: "ID84110-77851358",
+            img: "/employee/richaud-beringer.svg",
         },
         {
             value: "janedoe",
-            label: "Drs. Jane Doe"
+            label: "Drs. Jane Doe",
+            name: "Jane Doe",
+            id: "ID84110-77851358",
+            img: "/employee/valerian.svg",
         },
         {
             value: "garrywilliam",
-            label: "Dr. Garry William"
+            label: "Dr. Garry William",
+            name: "Garry William",
+            id: "ID84110-77851358",
+            img: "/employee/richaud-beringer.svg",
         },
         {
             value: "bradpitt",
-            label: "Dr. Brad Pitt"
+            label: "Dr. Brad Pitt",
+            name: "Brad Pitt",
+            id: "ID84110-77851358",
+            img: "/employee/richaud-beringer.svg",
         },
         {
             value: "jessicha",
-            label: "Drs. Jessicha"
+            label: "Drs. Jessicha",
+            name: "Jessicha",
+            id: "ID84110-77851358",
+            img: "/employee/valerian.svg",
         },
         {
             value: "mayparker",
-            label: "Drs. May Parker"
+            label: "Drs. May Parker",
+            name: "May Parker",
+            id: "ID84110-77851358",
+            img: "/employee/valerian.svg",
         },
     ]
   },

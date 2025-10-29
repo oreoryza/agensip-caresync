@@ -9,6 +9,7 @@ import Appointment from "./pages/Appointment"
 import Employee from "./pages/Employee"
 import EmployeeDetail from "./pages/EmployeeDetail"
 import Patients from "./pages/Patients"
+import PatientsDetail from "./pages/PatientsDetail"
 import HelpCenter from "./pages/HelpCenter"
 import Profile from "./pages/Profile"
 import Settings from "./pages/Settings"
@@ -25,12 +26,13 @@ function App() {
     <>
     {token ? (<div className="relative">
       <Topbar/>
-      <div className="flex items-start relative xl:pr-[40px] px-[20px]">
+      <div className="flex items-start max-xl:justify-center relative xl:pr-[40px] max-xl:px-[20px]">
       <Navbar/>
         <Routes>
           <Route path="/" element={<Home/>}/>
           <Route path="/schedule" element={<Schedule/>}/>
           <Route path="/patients" element={<Patients/>}/>
+          <Route path="/patients/:id" element={<PatientsDetail/>}/>
           <Route path="/appointment" element={<Appointment/>}/>
           <Route path="/employee" element={<Employee/>}/>
           <Route path="/employee/:id" element={<EmployeeDetail/>}/>

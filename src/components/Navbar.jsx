@@ -42,7 +42,7 @@ const Navbar = () => {
         <li className="flex h-full w-full">
           <NavLink
             to={"/"}
-            className={`px-[16px] py-[12px] flex items-center gap-[13px] w-full  rounded-full`}
+            className={`px-[16px] py-[12px] flex items-center gap-[13px] w-full  rounded-full hover:bg-black/[.1] duration-300`}
           >
             {({ isActive }) => (
               <>
@@ -59,7 +59,7 @@ const Navbar = () => {
         <li className="flex h-full w-full">
           <NavLink
             to={"/schedule"}
-            className=" px-[16px] py-[12px] flex items-center gap-[13px] w-full  rounded-full"
+            className=" px-[16px] py-[12px] flex items-center gap-[13px] w-full  rounded-full hover:bg-black/[.1] duration-300"
           >
             {({ isActive }) => (
               <>
@@ -76,7 +76,7 @@ const Navbar = () => {
         <li className="flex h-full w-full">
           <NavLink
             to={"/patients"}
-            className=" px-[16px] py-[12px] flex items-center gap-[13px] w-full  rounded-full"
+            className=" px-[16px] py-[12px] flex items-center gap-[13px] w-full  rounded-full hover:bg-black/[.1] duration-300"
           >
             {({ isActive }) => (
               <>
@@ -93,7 +93,7 @@ const Navbar = () => {
         <li className="flex h-full w-full">
           <NavLink
             to={"/appointment"}
-            className=" px-[16px] py-[12px] flex items-center gap-[13px] w-full  rounded-full"
+            className=" px-[16px] py-[12px] flex items-center gap-[13px] w-full  rounded-full hover:bg-black/[.1] duration-300"
           >
             {({ isActive }) => (
               <>
@@ -110,7 +110,7 @@ const Navbar = () => {
         <li className="flex h-full w-full">
           <NavLink
             to={"/employee"}
-            className=" px-[16px] py-[12px] flex items-center gap-[13px] w-full  rounded-full"
+            className=" px-[16px] py-[12px] flex items-center gap-[13px] w-full  rounded-full hover:bg-black/[.1] duration-300"
           >
             {({ isActive }) => (
               <>
@@ -127,7 +127,7 @@ const Navbar = () => {
         <li className="flex h-full w-full xl:hidden">
           <NavLink
             to={"/help-center"}
-            className=" px-[16px] py-[12px] flex items-center gap-[13px] w-full  rounded-full"
+            className=" px-[16px] py-[12px] flex items-center gap-[13px] w-full  rounded-full hover:bg-black/[.1] duration-300"
           >
             {({ isActive }) => (
               <>
@@ -145,7 +145,7 @@ const Navbar = () => {
       <div className="flex w-full mt-[45px] max-xl:hidden">
         <NavLink
           to={"/help-center"}
-          className=" px-[16px] py-[12px] flex items-center gap-[13px] w-full rounded-full"
+          className=" px-[16px] py-[12px] flex items-center gap-[13px] w-full rounded-full hover:bg-black/[.1] duration-300"
         >
           {({ isActive }) => (
             <>

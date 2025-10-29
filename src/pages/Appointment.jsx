@@ -32,6 +32,7 @@ const Appointment = () => {
       : data.patients.appointments.filter(
           (emp) => emp.status === selectedStatus
         );
+
   return (
     <div className="container">
       <h2 className="font-bold">Appointments</h2>
@@ -48,7 +49,7 @@ const Appointment = () => {
           </div>
         </div>
       </div>
-      <div className="flex justify-between mt-[24px]">
+      <div className="flex justify-between mt-[24px] ml-0.5">
         <div className="flex gap-2 max-xl:hidden">
           {status.map((stat) => (
             <button
@@ -92,17 +93,17 @@ const Appointment = () => {
           </div>
           <button
             onClick={() => setIsModalOpen(true)}
-            className="size-[42px] flex items-center justify-center bg-green rounded-[100%]"
+            className="group size-[42px] flex items-center justify-center bg-green rounded-[100%]"
           >
-            <FaPlus className="text-white" />
+            <FaPlus className="text-white group-hover:rotate-90 duration-300" />
           </button>
         </div>
       </div>
       <div className="grid xl:grid-cols-3 grid-cols-1 gap-[10px] mt-[20px]">
         {filteredStatus.map((appointment, index) => (
           <div key={index + 1} className="bg-white/[.4] rounded-[20px]">
-            <div className="p-[20px]">
-              <div className="flex justify-between items-center">
+            <div className="xl:p-[20px] p-[16px]">
+              <div className="flex max-xl:flex-wrap-reverse max-xl:gap-2 justify-between items-center">
                 <div className="flex gap-[10px] items-center">
                   <div className="flex justify-center items-center size-[32px] bg-white rounded-[100%]">
                     <PiHash className="opacity-[60%]" />
@@ -114,8 +115,9 @@ const Appointment = () => {
                     </p>
                   </div>
                 </div>
+                <div className="flex justify-end max-[375px]:w-full">
                 <div
-                  className={`px-[10px] py-[6px] text-small rounded-full ${
+                  className={`px-[10px] py-[6px] text-small rounded-full max-xl:justify-items-end ${
                     appointment.status === "In Queue"
                       ? "bg-red/[.1] text-red"
                       : appointment.status === "Accepted"
@@ -128,6 +130,7 @@ const Appointment = () => {
                   }`}
                 >
                   {appointment.status}
+                </div>
                 </div>
               </div>
               <div className="h-[1px] w-full bg-black/[.06] mt-[12px]"></div>
@@ -161,7 +164,7 @@ const Appointment = () => {
                 </div>
                 <div>
                   <p className="text-xs opacity-50">Date and time</p>
-                  <div className="flex items-center gap-2">
+                  <div className="flex max-xl:flex-wrap items-center gap-2">
                     <p className="text-small font-medium">{appointment.date}</p>
                     <div className="bg-green/[.1] text-green text-xs px-[6px] py-[4px] rounded-full">
                       {appointment.start} to {appointment.end}
@@ -185,10 +188,10 @@ const Appointment = () => {
               </div>
             ) : (
               <div className="flex gap-[10px] px-[20px] mb-[20px] mt-[16px]">
-                <button className="flex justify-center items-center gap-[10px] w-full outline-1 outline-red text-red px-[10px] py-[8px] rounded-full text-center">
+                <button className="flex justify-center items-center gap-[10px] w-full outline-1 outline-red text-red px-[10px] py-[8px] rounded-full text-center hover:opacity-80 duration-300">
                   <PiX /> Decline
                 </button>
-                <button className="flex justify-center items-center gap-[10px] w-full bg-green text-white px-[10px] py-[8px] rounded-full text-center">
+                <button className="flex justify-center items-center gap-[10px] w-full bg-green text-white px-[10px] py-[8px] rounded-full text-center hover:opacity-80 duration-300">
                   <PiCheck /> Accept
                 </button>
               </div>

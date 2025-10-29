@@ -31,12 +31,22 @@ const PatientsChart = () => {
         data: data?.patients?.treatments?.map((treatment) => treatment.recovered),
         backgroundColor: "rgba(0, 128, 0, 0.8)",
         stack: "Stack 0",
+        borderRadius: {
+          bottomLeft: 100,
+          bottomRight: 100,
+        },
+        borderSkipped: false,
       },
       {
         label: "Under Treatment",
         data: data?.patients?.treatments?.map((treatment) => treatment.under),
-        backgroundColor: "rgba(229, 229, 229, 0.8)",
+        backgroundColor: "#e7e7e7",
         stack: "Stack 0",
+        borderRadius: {
+          topLeft: 100,
+          topRight: 100,
+        },
+        borderSkipped: false,
       },
     ],
   };
@@ -68,6 +78,7 @@ const PatientsChart = () => {
     elements: {
       bar: {
         borderRadius: 100,
+        borderSkipped: false,
       },
     },
   };

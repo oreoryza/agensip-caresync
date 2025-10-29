@@ -60,8 +60,8 @@ const Profile = () => {
     <div className="container">
       <h2 className="font-bold">Profile</h2>
       <div className="flex max-xl:flex-col justify-between pt-[17px] xl:pl-[17px] w-full h-full">
-        <div className="flex w-full">
-          <div className="relative w-full max-w-[294px]">
+        <div className="flex max-sm:flex-col w-full">
+          <div className="relative w-full xl:max-w-[294px]">
             <img
               src={profile.img}
               alt={profile.name}
@@ -72,7 +72,7 @@ const Profile = () => {
                 href="https://www.whatsapp.com/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex gap-2 items-center bg-green text-white px-[16px] py-[8px] rounded-full"
+                className="flex gap-2 items-center bg-green max-md:text-small text-white xl:px-[16px] px-[8px] xl:py-[8px] py-[6px] rounded-full"
               >
                 <MdCall />
                 Call
@@ -81,7 +81,7 @@ const Profile = () => {
                 href="https://www.whatsapp.com/"
                 rel="noopener noreferrer"
                 target="_blank"
-                className="flex gap-2 items-center bg-white px-[16px] py-[8px] rounded-full"
+                className="flex gap-2 items-center bg-white max-md:text-small xl:px-[16px] px-[8px] xl:py-[8px] py-[6px] rounded-full"
               >
                 <RiSendPlaneFill />
                 Chat
@@ -153,9 +153,9 @@ const Profile = () => {
         <div className="grid grid-cols-2 gap-[16px] w-full">
           <div className="bg-white/[.4] rounded-[20px] p-[16px]">
             <p className="text-small font-medium">Employment</p>
-            <div className="flex items-center gap-2">
+            <div className="flex xl:flex-wrap items-center gap-2">
               <h1 className="font-bold">{profile.experience}</h1>
-              <p className="text-xs text-black/[.6]">
+              <p className="text-xs text-black/[.6] xl:max-w-[70px]">
                 Years of experiences since{" "}
                 <span className="text-black font-bold">{profile.year}</span>
               </p>
@@ -163,9 +163,9 @@ const Profile = () => {
           </div>
           <div className="bg-white/[.4] rounded-[20px] p-[16px]">
             <p className="text-small font-medium">Salary</p>
-            <div className="flex items-center gap-2">
+            <div className="flex xl:flex-wrap items-center gap-2">
               <h1 className="font-bold">{profile.salary}</h1>
-              <p className="text-xs text-black/[.6]">
+              <p className="text-xs text-black/[.6] xl:max-w-[50px]">
                 Dollar’s paid per{" "}
                 <span className="text-black font-bold">years</span>
               </p>
@@ -208,7 +208,7 @@ const Profile = () => {
                           borderWidth: 12,
                           borderColor: "#F6F6EC",
                           borderRadius: 100,
-                          hoverBorderColor: "#F6F6EC"
+                          hoverBorderColor: "#F6F6EC",
                         },
                       ],
                     }}
@@ -278,7 +278,7 @@ const Profile = () => {
             ))}
           </div>
         </div>
-        <div className="flex flex-col gap-[16px] w-full min-w-[410px]">
+        <div className="flex flex-col gap-[16px] w-full xl:min-w-[410px]">
           <div className="bg-white/[.4] rounded-[20px] p-[20px]">
             <p className="text-small font-medium">Working duration</p>
             <div className="flex flex-col justify-between items-start gap-2">
@@ -287,27 +287,29 @@ const Profile = () => {
                 running={isRunning}
                 onTimeUpdate={setTimerTime}
               />
-                <ButtonPrimary
-                  text={isRunning ? "Clock out" : "Clock in"}
-                  style={isRunning ? "bg-red" : "bg-green"}
-                  onClick={() => setIsRunning(!isRunning)}
-                />
+              <ButtonPrimary
+                text={isRunning ? "Clock out" : "Clock in"}
+                style={isRunning ? "bg-red" : "bg-green"}
+                onClick={() => setIsRunning(!isRunning)}
+              />
             </div>
           </div>
           <div className="flex flex-col gap-[20px] bg-white/[.4] rounded-[20px] p-[20px]">
-            <div className="flex justify-between items-center">
+            <div className="flex flex-wrap justify-between items-center">
               <div>
                 <p className="text-subtitle font-bold">Attendance report</p>
                 <p className="text-small opacity/[.6]">
                   Tracks your attendence
                 </p>
               </div>
-              <div className="bg-white px-[6px] py-[4px] rounded-full">
-                <select name="" id="" className="focus:outline-0">
+              <div className="max-xl:flex justify-end text-xs max-[375px]:w-full">
+                <select>
                   <button>
-                                    <selectedcontent></selectedcontent>
-                                    <span className="picker"><BsChevronDown/></span>
-                                  </button>
+                    <selectedcontent></selectedcontent>
+                    <span className="picker">
+                      <BsChevronDown />
+                    </span>
+                  </button>
                   <option value="month">This month</option>
                   <option value="week">This week</option>
                 </select>
@@ -324,7 +326,7 @@ const Profile = () => {
                       key={`${day}-${timeSlot}`}
                       className={`${getAttendanceColor(
                         profile.attendance?.[day]?.[timeSlot]
-                      )} h-[48px] rounded-[10px]`}
+                      )} h-[48px]  rounded-[10px]`}
                     ></div>
                   ))}
                 </React.Fragment>
@@ -332,7 +334,9 @@ const Profile = () => {
               <div className="col-span-2"></div>
               {days.map((day) => (
                 <div key={day} className="flex justify-center">
-                  <p className="text-small">{day.charAt(0).toUpperCase() + day.slice(1)}</p>
+                  <p className="text-small">
+                    {day.charAt(0).toUpperCase() + day.slice(1)}
+                  </p>
                 </div>
               ))}
             </div>

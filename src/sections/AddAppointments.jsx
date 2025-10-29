@@ -9,15 +9,19 @@ import { PiCheck } from "react-icons/pi";
 import { PiStethoscope } from "react-icons/pi";
 import { PiNotepad } from "react-icons/pi";
 import { BsChevronDown } from "react-icons/bs";
-import { PiArrowRight } from 'react-icons/pi';
+import { PiArrowRight } from "react-icons/pi";
+import { PiCheckCircleFill } from "react-icons/pi";
 
 const AddAppointments = ({ isOpen, onClose }) => {
   const [isStep1, setIsStep1] = useState(true);
   const [isStep2, setIsStep2] = useState(false);
   const [isStep3, setIsStep3] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [selectedPatient, setSelectedPatient] = useState("");
+  const [selectedDoctor, setSelectedDoctor] = useState("");
 
   const appointments = useSelector((state) => state.data.patients.appointments);
+  const doctors = useSelector((state) => state.data.doctors.lists);
 
   // Sort appointments alphabetically by name
   const sortedAppointments = [...appointments].sort((a, b) =>
@@ -37,6 +41,29 @@ const AddAppointments = ({ isOpen, onClose }) => {
         groups[firstLetter] = [];
       }
       groups[firstLetter].push(appointment);
+      return groups;
+    },
+    {}
+  );
+
+  // Sort doctors alphabetically by name
+  const sortedDoctors = [...doctors].sort((a, b) =>
+    a.name.localeCompare(b.name)
+  );
+
+  // Filter doctors based on search term
+  const filteredDoctors = sortedDoctors.filter((doctor) =>
+    doctor.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  // Group doctors by first letter
+  const groupedDoctors = filteredDoctors.reduce(
+    (groups, doctor) => {
+      const firstLetter = doctor.name.charAt(0).toUpperCase();
+      if (!groups[firstLetter]) {
+        groups[firstLetter] = [];
+      }
+      groups[firstLetter].push(doctor);
       return groups;
     },
     {}
@@ -72,7 +99,7 @@ const AddAppointments = ({ isOpen, onClose }) => {
       <div
         className={`${
           isOpen ? "fadeIn" : "hidden"
-        } fixed top-0 left-0 flex justify-center xl:items-center items-end w-screen h-screen bg-black/[.1] z-9`}
+        } fixed top-0 left-0 flex justify-center xl:items-center items-end w-screen h-screen bg-black/[.2] z-9`}
       >
         <div className="bg-white xl:w-[393px] w-screen xl:rounded-[20px] max-xl:rounded-t-[20px]">
           <div className="flex justify-between items-center px-[24px] py-[20px] border-b-[1px] border-black/[.1] mb-[24px]">
@@ -138,7 +165,7 @@ const AddAppointments = ({ isOpen, onClose }) => {
                   className="w-full focus:outline-0"
                 />
               </form>
-              <div className="max-h-[300px] hide-scroll overflow-y-auto">
+              <div className="max-h-[220px] hide-scroll overflow-y-auto">
                 {Object.keys(groupedAppointments)
                   .sort()
                   .map((letter) => (
@@ -149,22 +176,36 @@ const AddAppointments = ({ isOpen, onClose }) => {
                       <ul className="space-y-[8px]">
                         {groupedAppointments[letter].map((appointment) => (
                           <li
-                            key={appointment.id}
-                            className="flex items-center p-[8px] bg-gray-50 rounded-[8px] cursor-pointer hover:bg-gray-100"
+                            key={appointment.name}
+                            onClick={() => setSelectedPatient(appointment.name)}
+                            className={`flex items-center justify-between p-[8px] bg-gray-50 rounded-[8px] cursor-pointer ${
+                              selectedPatient === appointment.name
+                                ? "mx-2 bg-light-green"
+                                : "hover:bg-gray-100"
+                            } duration-300`}
                           >
-                            <img
-                              src={appointment.img || "/default-avatar.png"}
-                              alt={appointment.name}
-                              className="w-[40px] h-[40px] object-cover rounded-full mr-[12px]"
-                            />
-                            <div>
-                              <p className="text-sm font-medium">
-                                {appointment.name}
-                              </p>
-                              <p className="text-xs text-gray-500">
-                                {appointment.id}
-                              </p>
+                            <div className="flex">
+                              <img
+                                src={appointment.img || "/default-avatar.png"}
+                                alt={appointment.name}
+                                className="w-[40px] h-[40px] object-cover rounded-full mr-[12px]"
+                              />
+                              <div>
+                                <p className="text-sm font-medium">
+                                  {appointment.name}
+                                </p>
+                                <p className="text-xs text-gray-500">
+                                  {appointment.id}
+                                </p>
+                              </div>
                             </div>
+                            {selectedPatient === appointment.name ? (
+                              <div className="size-[20px] min-w-[20px] min-h-[20px] rounded-[100%]">
+                                <PiCheckCircleFill className="w-full h-full text-green" />
+                              </div>
+                            ) : (
+                              <div className="size-[16px] min-w-[16px] min-h-[16px] rounded-[100%] outline-1 outline-black"></div>
+                            )}
                           </li>
                         ))}
                       </ul>
@@ -183,8 +224,8 @@ const AddAppointments = ({ isOpen, onClose }) => {
                   className="w-full focus:outline-0"
                 />
               </form>
-              <div className="max-h-[300px] hide-scroll overflow-y-auto">
-                {Object.keys(groupedAppointments)
+              <div className="max-h-[220px] hide-scroll overflow-y-auto">
+                {Object.keys(groupedDoctors)
                   .sort()
                   .map((letter) => (
                     <div key={letter} className="mb-[16px]">
@@ -192,24 +233,38 @@ const AddAppointments = ({ isOpen, onClose }) => {
                         {letter}
                       </p>
                       <ul className="space-y-[8px]">
-                        {groupedAppointments[letter].map((appointment) => (
+                        {groupedDoctors[letter].map((doctor) => (
                           <li
-                            key={appointment.id}
-                            className="flex items-center p-[8px] bg-gray-50 rounded-[8px] cursor-pointer hover:bg-gray-100"
+                            key={doctor.name}
+                            onClick={() => setSelectedDoctor(doctor.name)}
+                            className={`flex items-center justify-between p-[8px] bg-gray-50 rounded-[8px] cursor-pointer ${
+                              selectedDoctor === doctor.name
+                                ? "mx-2 bg-light-green"
+                                : "hover:bg-gray-100"
+                            } duration-300`}
                           >
-                            <img
-                              src={appointment.img || "/default-avatar.png"}
-                              alt={appointment.name}
-                              className="w-[40px] h-[40px] object-cover rounded-full mr-[12px]"
-                            />
-                            <div>
-                              <p className="text-sm font-medium">
-                                {appointment.name}
-                              </p>
-                              <p className="text-xs text-gray-500">
-                                {appointment.id}
-                              </p>
+                            <div className="flex">
+                              <img
+                                src={doctor.img || "/default-avatar.png"}
+                                alt={doctor.name}
+                                className="w-[40px] h-[40px] object-cover rounded-full mr-[12px]"
+                              />
+                              <div>
+                                <p className="text-sm font-medium">
+                                  {doctor.name}
+                                </p>
+                                <p className="text-xs text-gray-500">
+                                  {doctor.id}
+                                </p>
+                              </div>
                             </div>
+                            {selectedDoctor === doctor.name ? (
+                              <div className="size-[20px] min-w-[20px] min-h-[20px] rounded-[100%]">
+                                <PiCheckCircleFill className="w-full h-full text-green" />
+                              </div>
+                            ) : (
+                              <div className="size-[16px] min-w-[16px] min-h-[16px] rounded-[100%] outline-1 outline-black"></div>
+                            )}
                           </li>
                         ))}
                       </ul>
@@ -218,7 +273,7 @@ const AddAppointments = ({ isOpen, onClose }) => {
               </div>
             </div>
           ) : (
-            <div className="my-[24px] px-[24px]">
+            <div className="py-[24px] px-[24px] max-h-[300px] xl:hide-scroll overflow-y-auto">
               <form className="flex flex-col gap-[10px]">
                 <div className="flex flex-col gap-2">
                   <label
@@ -280,7 +335,7 @@ const AddAppointments = ({ isOpen, onClose }) => {
                         className="text-small focus:outline-0 w-full"
                       />
                     </div>
-                    <PiArrowRight className="min-w-[12px] min-h-[10px]"/>
+                    <PiArrowRight className="min-w-[12px] min-h-[10px]" />
                     <div className="w-full outline-1 outline-black/[.1] p-[12px] rounded-[10px]">
                       <input
                         name="time"

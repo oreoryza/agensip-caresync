@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { RiSearchLine } from "react-icons/ri";
-import { FaPlus } from 'react-icons/fa';
+import { FaPlus } from "react-icons/fa";
 import { BsChevronDown } from "react-icons/bs";
 
 const Employee = () => {
@@ -11,7 +11,10 @@ const Employee = () => {
   const [selectedJobCategory, setSelectedJobCategory] = useState("All");
 
   // Get unique job categories
-  const jobCategories = ["All", ...new Set(employees.map((emp) => emp.jobCategory))];
+  const jobCategories = [
+    "All",
+    ...new Set(employees.map((emp) => emp.jobCategory)),
+  ];
 
   // Filter employees based on selected job category
   const filteredEmployees =
@@ -23,7 +26,7 @@ const Employee = () => {
     <div className="container">
       <h2 className="font-bold">Employee</h2>
       <div className="flex justify-between my-[24px]">
-        <div className="flex gap-2 max-xl:hidden">
+        <div className="flex gap-2 ml-0.5 max-xl:hidden">
           {jobCategories.map((category) => (
             <button
               key={category}
@@ -39,22 +42,22 @@ const Employee = () => {
           ))}
         </div>
         <select className="text-xs xl:hidden">
-                  <button>
-                    <selectedcontent></selectedcontent>
-                    <span className="picker">
-                      <BsChevronDown />
-                    </span>
-                  </button>
-                  {jobCategories.map((category) => (
-                    <option
-                      key={category}
-                      onClick={() => setSelectedJobCategory(category)}
-                      className={`rounded-full text-sm`}
-                    >
-                      {category}
-                    </option>
-                  ))}
-                </select>
+          <button>
+            <selectedcontent></selectedcontent>
+            <span className="picker">
+              <BsChevronDown />
+            </span>
+          </button>
+          {jobCategories.map((category) => (
+            <option
+              key={category}
+              onClick={() => setSelectedJobCategory(category)}
+              className={`rounded-full text-sm`}
+            >
+              {category}
+            </option>
+          ))}
+        </select>
         <div className="flex gap-2">
           <div className="flex items-center gap-[10px] bg-white py-[10px] xl:pl-[12px] xl:pr-[16px] max-xl:px-[10px] rounded-full overflow-hidden">
             <RiSearchLine className="size-[23px] text-black/[.5]" />
@@ -64,16 +67,22 @@ const Employee = () => {
               className="focus:outline-0 max-xl:hidden"
             />
           </div>
-          <button className="size-[42px] flex items-center justify-center bg-green rounded-[100%]"><FaPlus className="text-white"/></button>
+          <button className="group size-[42px] flex items-center justify-center bg-green rounded-[100%]">
+            <FaPlus className="text-white group-hover:rotate-90 duration-300" />
+          </button>
         </div>
       </div>
       <div className="grid xl:grid-cols-3 lg:grid-cols-2 gap-[10px]">
         {filteredEmployees.map((employee) => (
           <Link to={`/employee/${employee.id}`} key={employee.id}>
-            <div className="group flex justify-around bg-white rounded-[20px] pt-[24px] pr-[28px] h-full overflow-hidden">
-              <img src={employee.img} alt={employee.name} className="w-[50%] group-hover:scale-[1.1] duration-300" />
-              <div className="flex flex-col gap-[33px] ml-[1rem] max-w-[220px]">
-                <div className="flex gap-1">
+            <div className="group flex bg-white rounded-[20px] sm:pt-[24px] pt-[14px] sm:pr-[28px] pr-[16px] h-full overflow-hidden">
+              <img
+                src={employee.img}
+                alt={employee.name}
+                className="min-w-[50%] h-[230px] object-top group-hover:scale-[1.1] duration-300"
+              />
+              <div className="flex flex-col gap-[33px] max-[375px]:gap-[14px] ml-[1rem] max-w-[220px]">
+                <div className="flex max-[375px]:flex-wrap gap-1">
                   <div
                     className={`px-[8px] py-[6px] rounded-full text-small ${
                       employee.status === "Active"

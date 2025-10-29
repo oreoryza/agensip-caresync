@@ -368,7 +368,7 @@ const initialState = {
           },
         ],
       },
-      img: "/employee/richaud-beringer.svg",
+      img: "/employee/valerian.svg",
     },
     {
       id: 5,
@@ -552,7 +552,7 @@ const initialState = {
           },
         ],
       },
-      img: "/employee/richaud-beringer.svg",
+      img: "/employee/valerian.svg",
     },
   ],
   employee: {},

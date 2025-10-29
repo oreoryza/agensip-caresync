@@ -39,7 +39,7 @@ const Home = () => {
   return (
     <div className="container h-full">
       <div className="flex max-xl:flex-col-reverse gap-[16px] h-full">
-        <div className="flex flex-col gap-[24px] bg-white/[.4] px-[20px] pt-[20px] rounded-[20px]">
+        <div className="flex flex-col gap-[24px] bg-white/[.4] backdrop-blur xl:px-[20px] px-[14px] pt-[20px] rounded-[20px]">
           <div className="flex justify-between items-center">
             <p className="text-subtitle font-bold">Appointments</p>
             <select className="text-xs">
@@ -62,7 +62,7 @@ const Home = () => {
                 className={`px-4 py-2 rounded-full text-small w-full ${
                   selectedGender === gen
                     ? "bg-white text-black"
-                    : "outline-1 outline-black/[.6] text-black/[.6]"
+                    : "outline-1 outline-black/[.1] text-black/[.5]"
                 }`}
               >
                 {gen}
@@ -75,10 +75,10 @@ const Home = () => {
                 <img
                   src={app.img}
                   alt={app.name}
-                  className="max-w-[136px] max-h-[147px] ml-[16px]"
+                  className="max-w-[136px] max-h-[147px] ml-[16px] max-[375px]:hidden"
                 />
                 <div className="flex flex-col gap-[20px] p-[16px] min-w-[131px]">
-                  <div className="flex items-center gap-[4px] ">
+                  <div className="flex max-xl:flex-wrap items-center gap-[4px] ">
                     <div className="bg-black/[.06] text-xs text-black/[.5] px-[6px] py-[4px] rounded-full">
                       {app.gender}
                     </div>
@@ -90,12 +90,12 @@ const Home = () => {
                     <p className="font-medium">{app.name}</p>
                     <p className="text-xs text-black/[.5]">{app.disease}</p>
                   </div>
-                  <div className="flex items-center gap-[4px]">
+                  <div className="flex max-xl:flex-wrap items-center gap-[4px]">
                     <a
                       href="https://www.whatsapp.com/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex gap-2 items-center bg-green text-xs text-white px-[16px] py-[8px] rounded-full"
+                      className="flex gap-2 items-center bg-green text-xs text-white px-[16px] py-[8px] rounded-full hover:opacity-80 duration-300"
                     >
                       <MdCall />
                       Call
@@ -104,7 +104,7 @@ const Home = () => {
                       href="https://www.whatsapp.com/"
                       rel="noopener noreferrer"
                       target="_blank"
-                      className="flex gap-2 items-center bg-white text-xs px-[16px] py-[8px] rounded-full outline-1 outline-[#DDDDDD]"
+                      className="flex gap-2 items-center bg-white text-xs px-[16px] py-[8px] rounded-full outline-1 outline-[#DDDDDD] hover:opacity-80 duration-300"
                     >
                       <RiSendPlaneFill />
                       Chat
@@ -119,7 +119,7 @@ const Home = () => {
           <div className="flex max-xl:flex-col-reverse gap-[16px]">
             <div className="flex flex-col gap-[16px] w-full">
               <div className="flex flex-col gap-[24px] bg-white/[.4] p-[20px] rounded-[20px]">
-                <div className="flex justify-between items-center gap-2">
+                <div className="flex max-[375px]:flex-wrap justify-between max-[375px]:justify-end items-center gap-2">
                   <div className="flex gap-[16px]">
                     <div className="flex items-center justify-center min-w-[42px] max-w-[42px] min-h-[42px] max-h-[42px] bg-white rounded-[100%]">
                       <PiHeartbeatBold className="size-[17px]" />
@@ -127,7 +127,7 @@ const Home = () => {
                     <div>
                       <p className="font-bold">Patients</p>
                       <p className="text-xs text-black/[.6]">
-                        Insightful overview of patient recovery and ongoing care
+                        Insightful overview of patient recovery
                       </p>
                     </div>
                   </div>
@@ -164,13 +164,13 @@ const Home = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="xl:max-w-[360px] overflow-x-scroll">
+                  <div className="xl:max-w-[360px] max-xl:overflow-x-scroll">
                     <PatientsChart />
                   </div>
                 </div>
               </div>
-              <div className="flex flex-col gap-[20px] bg-white/[.4] p-[20px] rounded-[20px] h-full">
-                <div className="flex justify-between items-center gap-2">
+              <div className="flex flex-col gap-[20px] bg-white/[.4] xl:p-[20px] p-[14px] rounded-[20px] h-full">
+                <div className="flex max-[375px]:flex-wrap justify-between max-[375px]:justify-end items-center gap-2">
                   <div className="flex gap-[16px]">
                     <div className="flex items-center justify-center min-w-[42px] max-w-[42px] min-h-[42px] max-h-[42px] bg-white rounded-[100%]">
                       <PiSyringeBold className="size-[16px]" />
@@ -240,7 +240,7 @@ const Home = () => {
                 </div>
               </div>
             </div>
-            <div className="xl:flex flex-col gap-[16px] grid grid-cols-2">
+            <div className="xl:flex flex-col gap-[16px] grid grid-cols-2 max-[375px]:grid-cols-1">
               <div className="bg-white/[.4] p-[20px] rounded-[20px] h-full">
                 <TotalPatients />
               </div>
@@ -265,7 +265,7 @@ const Home = () => {
                   <div>
                     <p className="font-bold">Patients Gender</p>
                     <p className="text-xs text-black/[.6]">
-                      Offering insights into male and female representation
+                      Insights into male and female representation
                     </p>
                   </div>
                 </div>
@@ -276,7 +276,7 @@ const Home = () => {
               <PatientsGender />
             </div>
             <div className="flex flex-col justify-between gap-[24px] xl:bg-white/[.4] p-[20px] rounded-[20px] w-full h-full">
-              <div className="flex justify-between items-center gap-2">
+              <div className="flex max-[375px]:flex-wrap justify-between max-[375px]:justify-end items-center gap-2">
                 <div className="flex gap-[16px]">
                   <div className="flex items-center justify-center min-w-[42px] max-w-[42px] min-h-[42px] max-h-[42px] bg-white rounded-[100%]">
                     <LiaUserNurseSolid className="size-[20px]" />
