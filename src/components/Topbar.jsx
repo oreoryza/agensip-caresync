@@ -163,12 +163,12 @@ const Topbar = () => {
           }`}
         ></div>
         <div className="flex xl:gap-[10px] gap-[6px]">
-          <button
-            onClick={() => setIsSearchBar(true)}
+          <Link
+          to={"/search"}
             className="group h-[42px] w-[42px] flex justify-center items-center bg-white rounded-[100%] xl:hidden"
           >
             <RiSearchLine className="size-[20px] group-hover:rotate-180 duration-500" />
-          </button>
+          </Link>
           <Link
             to={"/settings"}
             className="group h-[42px] w-[42px] flex justify-center items-center bg-white z-1 rounded-[100%] max-xl:hidden"
@@ -176,9 +176,16 @@ const Topbar = () => {
             <RiSettings3Line className="size-[20px] group-hover:rotate-180 duration-500" />
           </Link>
           <div className="relative">
+            <Link
+            to={"/notifications"}
+              className="group relative h-[42px] w-[42px] flex justify-center items-center bg-white rounded-[100%] xl:hidden"
+            >
+              <RiNotification3Line className="size-[20px] group-hover:rotate-30 duration-500" />
+              <div className="absolute size-[8px] rounded-[100%] border-[1px] border-white bg-red ml-2 mb-3"></div>
+            </Link>
             <button
               onClick={handleNotif}
-              className="group relative h-[42px] w-[42px] flex justify-center items-center bg-white rounded-[100%]"
+              className="group relative h-[42px] w-[42px] flex justify-center items-center bg-white rounded-[100%] max-xl:hidden"
             >
               <RiNotification3Line className="size-[20px] group-hover:rotate-30 duration-500" />
               <div className="absolute size-[8px] rounded-[100%] border-[1px] border-white bg-red ml-2 mb-3"></div>
@@ -271,103 +278,6 @@ const Topbar = () => {
               style={"bg-red"}
             />
           </div>
-        </div>
-      </div>
-
-      <div
-        className={`${
-          isSearchBar ? "" : "hidden"
-        } fixed top-0 bg-mobile w-screen h-screen p-[24px] z-4 xl:hidden`}
-      >
-        <div
-          onClick={() => setIsSearchBar(true)}
-          className={`flex flex-col gap-[16px] h-fit py-[10px] z-4 overflow-hidden`}
-        >
-          <form
-            onSubmit={handleSubmit}
-            className="flex gap-[10px] bg-white border border-black/[.5] rounded-full px-[16px] py-[14px]"
-          >
-            <RiSearchLine className="size-[23px] text-black/[.5]" />
-            <input
-              type="text"
-              placeholder="Search"
-              className="focus:outline-0 w-full"
-              value={searchValue}
-              onChange={(e) => setSearchValue(e.target.value)}
-            />
-          </form>
-          <>
-            <div className="px-[12px] py-[8px]">
-              <div className="flex flex-wrap gap-[8px]">
-                <button
-                  onClick={() => setSearchValue("Patients")}
-                  className="text-left text-small bg-grey px-[10px] py-[6px] rounded-full"
-                >
-                  Patients
-                </button>
-                <button
-                  onClick={() => setSearchValue("Staff")}
-                  className="text-left text-small bg-grey px-[10px] py-[6px] rounded-full"
-                >
-                  Staff
-                </button>
-                <button
-                  onClick={() => setSearchValue("Appointments")}
-                  className="text-left text-small bg-grey px-[10px] py-[6px] rounded-full"
-                >
-                  Appointments
-                </button>
-                <button
-                  onClick={() => setSearchValue("Medical records")}
-                  className="text-left text-small bg-grey px-[10px] py-[6px] rounded-full"
-                >
-                  Medical records
-                </button>
-                <button
-                  onClick={() => setSearchValue("Patients")}
-                  className="text-left text-small bg-grey px-[10px] py-[6px] rounded-full"
-                >
-                  Patients
-                </button>
-                <button
-                  onClick={() => setSearchValue("Schedule")}
-                  className="text-left text-small bg-grey px-[10px] py-[6px] rounded-full"
-                >
-                  Schedule
-                </button>
-                <button
-                  onClick={() => setSearchValue("Prescription")}
-                  className="text-left text-small bg-grey px-[10px] py-[6px] rounded-full"
-                >
-                  Prescription
-                </button>
-              </div>
-            </div>
-            <div className="px-[12px] py-[8px]">
-              <p className="text-small font-semibold mb-[8px]">
-                Recent Searches
-              </p>
-              <div className="flex flex-col gap-[4px]">
-                {patients.map((patient, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setSearchValue(patient.name)}
-                    className="flex items-center gap-2 text-left text-small hover:bg-grey px-[8px] py-[4px] rounded-[4px]"
-                  >
-                    <img
-                      src={patient.img}
-                      alt=""
-                      className="size-[32px] rounded-[100%] object-cover"
-                    />
-                    <div className="">
-                      <p>{patient.name}</p>
-                      <p className="text-xs opacity-50">{patient.id}</p>
-                    </div>
-                  </button>
-                ))}
-              </div>
-            </div>
-          </>
         </div>
       </div>
     </>

@@ -17,6 +17,8 @@ import Settings from "./pages/Settings"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import GetStarted from "./pages/GetStarted"
 import NavbarMobile from "./components/NavbarMobile"
+import SearchBar from "./pages/SearchBar"
+import NotificationsPage from "./pages/NotificationsPage"
 
 function App() {
   const { token } = useSelector((state) => state.token);
@@ -40,6 +42,8 @@ function App() {
           <Route path="/getting-started" element={<GetStarted/>}/>
           <Route path="/profile" element={<Profile/>}/>
           <Route path="/settings" element={<Settings/>}/>
+          <Route path="/search" element={<SearchBar/>}/>
+          <Route path="/notifications" element={<NotificationsPage/>}/>
         </Routes>
       </div>
       <NavbarMobile/>
