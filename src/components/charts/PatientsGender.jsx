@@ -40,11 +40,7 @@ const PatientsGender = () => {
                   display: false,
                 },
                 tooltip: {
-                  callbacks: {
-                    label: function (context) {
-                      return context.label + ": " + context.parsed;
-                    },
-                  },
+                  enabled: false,
                 },
               },
             }}

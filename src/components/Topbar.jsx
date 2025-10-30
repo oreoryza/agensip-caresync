@@ -144,7 +144,7 @@ const Topbar = () => {
                         />
                         <div className="">
                           <p>{patient.name}</p>
-                          <p className="text-xs opacity-50">{patient.id}</p>
+                          <p className="text-xs opacity-50">{patient.idcode}</p>
                         </div>
                       </button>
                     ))}
@@ -164,20 +164,21 @@ const Topbar = () => {
         ></div>
         <div className="flex xl:gap-[10px] gap-[6px]">
           <Link
-          to={"/search"}
+            to={"/search"}
             className="group h-[42px] w-[42px] flex justify-center items-center bg-white rounded-[100%] xl:hidden"
           >
             <RiSearchLine className="size-[20px] group-hover:rotate-180 duration-500" />
           </Link>
           <Link
             to={"/settings"}
+            title="Settings"
             className="group h-[42px] w-[42px] flex justify-center items-center bg-white z-1 rounded-[100%] max-xl:hidden"
           >
             <RiSettings3Line className="size-[20px] group-hover:rotate-180 duration-500" />
           </Link>
           <div className="relative">
             <Link
-            to={"/notifications"}
+              to={"/notifications"}
               className="group relative h-[42px] w-[42px] flex justify-center items-center bg-white rounded-[100%] xl:hidden"
             >
               <RiNotification3Line className="size-[20px] group-hover:rotate-30 duration-500" />
@@ -185,6 +186,7 @@ const Topbar = () => {
             </Link>
             <button
               onClick={handleNotif}
+              title="Notifications"
               className="group relative h-[42px] w-[42px] flex justify-center items-center bg-white rounded-[100%] max-xl:hidden"
             >
               <RiNotification3Line className="size-[20px] group-hover:rotate-30 duration-500" />

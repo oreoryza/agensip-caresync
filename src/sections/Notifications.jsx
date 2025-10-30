@@ -14,8 +14,8 @@ const Notifications = ({ onClose }) => {
             20
           </div>
         </div>
-        <button onClick={() => onClose()}>
-          <PiX />
+        <button onClick={() => onClose()} className="text-black/[.5]">
+          <PiX className="size-[20px]" />
         </button>
       </div>
       <div className="h-[1px] w-full bg-black/[.1] my-[14px]"></div>

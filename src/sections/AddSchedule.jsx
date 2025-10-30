@@ -32,8 +32,8 @@ const AddSchedule = ({ isOpen, onClose }) => {
       <div className="bg-white xl:w-[393px] w-screen xl:rounded-[20px] max-xl:rounded-t-[20px]">
         <div className="flex justify-between items-center px-[24px] py-[20px] border-b-[1px] border-black/[.1] mb-[24px]">
           <p className="text-subtitle font-medium">Add new schedule</p>
-          <button onClick={onClose}>
-            <PiX />
+          <button onClick={onClose} className="text-black/[.5]">
+            <PiX className="size-[20px]" />
           </button>
         </div>
             <div className="flex flex-col gap-2 px-[24px] mb-[10px]">

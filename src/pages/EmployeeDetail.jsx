@@ -276,17 +276,7 @@ const EmployeeDetail = () => {
                           display: false,
                         },
                         tooltip: {
-                          callbacks: {
-                            label: function (context) {
-                              const total = employee.satisfaction?.total || 0;
-                              const value = context.parsed;
-                              const percentage =
-                                total > 0
-                                  ? ((value / total) * 100).toFixed(1)
-                                  : 0;
-                              return `${context.label}: ${value} (${percentage}%)`;
-                            },
-                          },
+                          enabled: false,
                         },
                       },
                     }}

@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { RiSearchLine } from "react-icons/ri";
 import { FaPlus } from "react-icons/fa";
 import { BsChevronDown } from "react-icons/bs";
+import { PiUsers } from "react-icons/pi";
 
 const Employee = () => {
   const { employees } = useSelector((state) => state.employee);
@@ -72,39 +73,52 @@ const Employee = () => {
           </button>
         </div>
       </div>
-      <div className="grid xl:grid-cols-3 lg:grid-cols-2 gap-[10px]">
-        {filteredEmployees.map((employee) => (
-          <Link to={`/employee/${employee.id}`} key={employee.id}>
-            <div className="group flex bg-white rounded-[20px] sm:pt-[24px] pt-[14px] sm:pr-[28px] pr-[16px] h-full overflow-hidden">
-              <img
-                src={employee.img}
-                alt={employee.name}
-                className="min-w-[50%] h-[230px] object-top group-hover:scale-[1.1] duration-300"
-              />
-              <div className="flex flex-col gap-[33px] max-[375px]:gap-[14px] ml-[1rem] max-w-[220px]">
-                <div className="flex max-[375px]:flex-wrap gap-1">
-                  <div
-                    className={`px-[8px] py-[6px] rounded-full text-small ${
-                      employee.status === "Active"
-                        ? "text-green bg-green/[.1]"
-                        : "text-red bg-red/[.1]"
-                    }`}
-                  >
-                    {employee.status}
+      {employees.length > 0 ? (
+        <div className="grid xl:grid-cols-3 lg:grid-cols-2 gap-[10px]">
+          {filteredEmployees.map((employee) => (
+            <Link to={`/employee/${employee.id}`} key={employee.id}>
+              <div className="group flex bg-white rounded-[20px] sm:pt-[24px] pt-[14px] sm:pr-[28px] pr-[16px] h-full overflow-hidden">
+                <img
+                  src={employee.img}
+                  alt={employee.name}
+                  className="min-w-[50%] h-[230px] object-top group-hover:scale-[1.1] duration-300"
+                />
+                <div className="flex flex-col gap-[33px] max-[375px]:gap-[14px] ml-[1rem] max-w-[220px]">
+                  <div className="flex max-[375px]:flex-wrap gap-1">
+                    <div
+                      className={`px-[8px] py-[6px] rounded-full text-small ${
+                        employee.status === "Active"
+                          ? "text-green bg-green/[.1]"
+                          : "text-red bg-red/[.1]"
+                      }`}
+                    >
+                      {employee.status}
+                    </div>
+                    <div className="px-[8px] py-[6px] rounded-full text-small bg-black/[.06] text-black/[.5]">
+                      {employee.category}
+                    </div>
                   </div>
-                  <div className="px-[8px] py-[6px] rounded-full text-small bg-black/[.06] text-black/[.5]">
-                    {employee.category}
+                  <div className="flex flex-col gap-[6px]">
+                    <h5 className="font-medium">{employee.name}</h5>
+                    <p className="text-small opacity-50">{employee.jobTitle}</p>
                   </div>
-                </div>
-                <div className="flex flex-col gap-[6px]">
-                  <h5 className="font-medium">{employee.name}</h5>
-                  <p className="text-small opacity-50">{employee.jobTitle}</p>
                 </div>
               </div>
-            </div>
-          </Link>
-        ))}
-      </div>
+            </Link>
+          ))}
+        </div>
+      ) : (
+        <div className="flex flex-col gap-[10px] justify-center items-center w-full h-[400px] py-[24px]">
+          <div className="flex items-center justify-center size-[40px] rounded-[100%] bg-light-green text-green">
+            <PiUsers className="size-[20px]" />
+          </div>
+          <p className="font-bold">No Employees</p>
+          <p className="text-small text-black/[.5]">
+            You don't have any employees yet
+          </p>
+          <button className="text-small font-medium text-green">+add new</button>
+        </div>
+      )}
     </div>
   );
 };

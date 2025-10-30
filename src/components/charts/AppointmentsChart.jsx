@@ -67,63 +67,73 @@ const AppointmentsChart = () => {
       },
       y: {
         display: false,
-        max: "350"
+        max: "350",
       },
     },
   };
 
   return (
     <div className="max-xl:flex flex-col justify-between h-full w-full">
-      <div className="flex justify-between items-center mb-[10px]">
+      <div className="flex justify-between items-center">
         <div className="flex gap-2 items-center">
           <p className="text-small font-bold">Appointments</p>
-          <div
-            className={`${
-              percent > 0 ? "bg-green/[.1] text-green" : "bg-red/[.1] text-red"
-            } text-xs font-medium p-[4px] rounded-full max-xl:hidden`}
-          >
-            {percent > 0 ? ("+"+percent) : (percent)}%
-          </div>
-        </div>
-        <button className="flex justify-center items-center bg-white size-[24px] rounded-[100%]">
-          <FiArrowUpRight />
-        </button>
-      </div>
-      <div className="relative flex justify-between items-start gap-[38px] w-full xl:h-[120px] overflow-hidden">
-        <div className="w-full h-full pr-[120px] max-xl:hidden">
-          <Line
-            data={chartData}
-            options={options}
-            className="w-full max-w-[225px]"
-          />
-        </div>
-        <div className="xl:absolute right-0 flex flex-col gap-[10px] xl:max-w-[100px]">
-          <div className="flex items-center gap-2">
-            <h2 className="font-bold">
-              {data.patients.appointment.slice(-1)[0]}
-            </h2>
+          {data.patients.appointment.length > 0 && (
             <div
               className={`${
                 percent > 0
                   ? "bg-green/[.1] text-green"
                   : "bg-red/[.1] text-red"
-              } text-xs font-medium p-[4px] rounded-full xl:hidden`}
+              } text-xs font-medium p-[4px] rounded-full max-xl:hidden`}
             >
-              {percent > 0 ? ("+"+percent) : (percent)}%
+              {percent > 0 ? "+" + percent : percent}%
             </div>
-          </div>
-          <p className="text-xs text-black/[.6]">
-            Appointments have {percent > 0 ? "increased" : "dropped"}{" "}
-            <span
-              className={`font-medium ${
-                percent > 0 ? "text-green" : "text-red"
-              }`}
-            >
-              {percent > 0 ? ("+"+percent) : (percent)}%
-            </span>
-          </p>
+          )}
         </div>
+        <button className="flex justify-center items-center bg-white size-[24px] rounded-[100%]">
+          <FiArrowUpRight />
+        </button>
       </div>
+      {data.patients.appointment.length > 0 ? (
+        <div className="relative flex justify-between items-start gap-[38px] w-full xl:h-[120px] overflow-hidden">
+          <div className="w-full h-full pr-[120px] max-xl:hidden">
+            <Line
+              data={chartData}
+              options={options}
+              className="w-full max-w-[225px]"
+            />
+          </div>
+          <div className="xl:absolute right-0 flex flex-col gap-[10px] xl:max-w-[100px]">
+            <div className="flex items-center gap-2">
+              <h2 className="font-bold">
+                {data.patients.appointment.slice(-1)[0]}
+              </h2>
+              <div
+                className={`${
+                  percent > 0
+                    ? "bg-green/[.1] text-green"
+                    : "bg-red/[.1] text-red"
+                } text-xs font-medium p-[4px] rounded-full xl:hidden`}
+              >
+                {percent > 0 ? "+" + percent : percent}%
+              </div>
+            </div>
+            <p className="text-xs text-black/[.6]">
+              Appointments have {percent > 0 ? "increased" : "dropped"}{" "}
+              <span
+                className={`font-medium ${
+                  percent > 0 ? "text-green" : "text-red"
+                }`}
+              >
+                {percent > 0 ? "+" + percent : percent}%
+              </span>
+            </p>
+          </div>
+        </div>
+      ) : (
+        <div className="flex justify-center items-center w-full h-full">
+          <p className="font-bold">No Data</p>
+        </div>
+      )}
     </div>
   );
 };

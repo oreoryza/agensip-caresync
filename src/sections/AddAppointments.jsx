@@ -104,8 +104,8 @@ const AddAppointments = ({ isOpen, onClose }) => {
         <div className="bg-white xl:w-[393px] w-screen xl:rounded-[20px] max-xl:rounded-t-[20px]">
           <div className="flex justify-between items-center px-[24px] py-[20px] border-b-[1px] border-black/[.1] mb-[24px]">
             <p className="text-subtitle font-medium">Add appointments</p>
-            <button onClick={handleModal}>
-              <PiX />
+            <button onClick={handleModal} className="text-black/[.5]">
+              <PiX className="size-[20px]" />
             </button>
           </div>
           <div className="flex justify-between items-center gap-[16px] px-[24px]">

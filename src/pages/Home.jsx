@@ -16,6 +16,7 @@ import { PiSyringeBold } from "react-icons/pi";
 import { PiHeartbeatBold } from "react-icons/pi";
 import { FiUser } from "react-icons/fi";
 import { LiaUserNurseSolid } from "react-icons/lia";
+import { PiUsers } from "react-icons/pi";
 
 const Home = () => {
   const data = useSelector((state) => state.data);
@@ -69,50 +70,64 @@ const Home = () => {
               </button>
             ))}
           </div>
-          <div className="flex flex-col gap-[10px] pb-[20px] max-h-[980px] overflow-y-auto hide-scroll">
-            {filteredGender.map((app) => (
-              <div className="flex items-end bg-white rounded-[16px]">
-                <img
-                  src={app.img}
-                  alt={app.name}
-                  className="max-w-[136px] max-h-[147px] ml-[16px] max-[375px]:hidden"
-                />
-                <div className="flex flex-col gap-[20px] p-[16px] min-w-[131px]">
-                  <div className="flex max-xl:flex-wrap items-center gap-[4px] ">
-                    <div className="bg-black/[.06] text-xs text-black/[.5] px-[6px] py-[4px] rounded-full">
-                      {app.gender}
+          <div className="flex flex-col gap-[10px] pb-[20px] h-full max-h-[980px] overflow-y-auto hide-scroll">
+            {data.patients.appointments.length > 0 ? (
+              <>
+                {filteredGender.map((app) => (
+                  <div className="flex items-end bg-white rounded-[16px]">
+                    <img
+                      src={app.img}
+                      alt={app.name}
+                      className="max-w-[136px] max-h-[147px] ml-[16px] max-[375px]:hidden"
+                    />
+                    <div className="flex flex-col gap-[20px] p-[16px] min-w-[131px]">
+                      <div className="flex max-xl:flex-wrap items-center gap-[4px] ">
+                        <div className="bg-black/[.06] text-xs text-black/[.5] px-[6px] py-[4px] rounded-full">
+                          {app.gender}
+                        </div>
+                        <div className="bg-black/[.06] text-xs text-black/[.5] px-[6px] py-[4px] rounded-full">
+                          {app.start}
+                        </div>
+                      </div>
+                      <div>
+                        <p className="font-medium">{app.name}</p>
+                        <p className="text-xs text-black/[.5]">{app.disease}</p>
+                      </div>
+                      <div className="flex max-xl:flex-wrap items-center gap-[4px]">
+                        <a
+                          href="https://www.whatsapp.com/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex gap-2 items-center bg-green text-xs text-white px-[16px] py-[8px] rounded-full hover:opacity-80 duration-300"
+                        >
+                          <MdCall />
+                          Call
+                        </a>
+                        <a
+                          href="https://www.whatsapp.com/"
+                          rel="noopener noreferrer"
+                          target="_blank"
+                          className="flex gap-2 items-center bg-white text-xs px-[16px] py-[8px] rounded-full outline-1 outline-[#DDDDDD] hover:opacity-80 duration-300"
+                        >
+                          <RiSendPlaneFill />
+                          Chat
+                        </a>
+                      </div>
                     </div>
-                    <div className="bg-black/[.06] text-xs text-black/[.5] px-[6px] py-[4px] rounded-full">
-                      {app.start}
-                    </div>
                   </div>
-                  <div>
-                    <p className="font-medium">{app.name}</p>
-                    <p className="text-xs text-black/[.5]">{app.disease}</p>
-                  </div>
-                  <div className="flex max-xl:flex-wrap items-center gap-[4px]">
-                    <a
-                      href="https://www.whatsapp.com/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex gap-2 items-center bg-green text-xs text-white px-[16px] py-[8px] rounded-full hover:opacity-80 duration-300"
-                    >
-                      <MdCall />
-                      Call
-                    </a>
-                    <a
-                      href="https://www.whatsapp.com/"
-                      rel="noopener noreferrer"
-                      target="_blank"
-                      className="flex gap-2 items-center bg-white text-xs px-[16px] py-[8px] rounded-full outline-1 outline-[#DDDDDD] hover:opacity-80 duration-300"
-                    >
-                      <RiSendPlaneFill />
-                      Chat
-                    </a>
-                  </div>
+                ))}
+              </>
+            ) : (
+              <div className="flex flex-col gap-[10px] justify-center items-center w-full h-full py-[24px]">
+                <div className="flex items-center justify-center size-[40px] rounded-[100%] bg-light-green text-green">
+                  <PiUsers className="size-[20px]" />
                 </div>
+                <p className="font-bold">No Appointments</p>
+                <p className="text-small text-black/[.5] text-center">
+                  You don't have any appointments yet
+                </p>
               </div>
-            ))}
+            )}
           </div>
         </div>
         <div className="flex xl:flex-col flex-col-reverse gap-[16px] w-full">
@@ -144,29 +159,43 @@ const Home = () => {
                   </select>
                 </div>
                 <div className="flex max-xl:flex-col gap-2">
-                  <div className="flex xl:flex-col max-xl:flex-wrap justify-around gap-2">
-                    <div className="max-xl:flex gap-[10px] text-sm font-medium">
-                      <h2 className="font-bold">
-                        {data.patients.treatments.slice(-1)[0].under}
-                      </h2>
-                      <div className="flex items-center gap-1">
-                        <div className="size-[6px] rounded-full bg-grey"></div>
-                        <p className="text-black/[.5]">Under Treatment</p>
+                  {data.patients.treatments.length > 0 ? (
+                    <>
+                      <div className="flex xl:flex-col max-xl:flex-wrap justify-around gap-2">
+                        <div className="max-xl:flex gap-[10px] text-sm font-medium">
+                          <h2 className="font-bold">
+                            {data.patients.treatments.slice(-1)[0].under}
+                          </h2>
+                          <div className="flex items-center gap-1">
+                            <div className="size-[6px] rounded-full bg-grey"></div>
+                            <p className="text-black/[.5]">Under Treatment</p>
+                          </div>
+                        </div>
+                        <div className="max-xl:flex gap-[10px] text-sm font-medium">
+                          <h2 className="font-bold">
+                            {data.patients.treatments.slice(-1)[0].recovered}
+                          </h2>
+                          <div className="flex items-center gap-1">
+                            <div className="size-[6px] rounded-full bg-green"></div>
+                            <p className="text-black/[.5]">Recovered</p>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                    <div className="max-xl:flex gap-[10px] text-sm font-medium">
-                      <h2 className="font-bold">
-                        {data.patients.treatments.slice(-1)[0].recovered}
-                      </h2>
-                      <div className="flex items-center gap-1">
-                        <div className="size-[6px] rounded-full bg-green"></div>
-                        <p className="text-black/[.5]">Recovered</p>
+                      <div className="xl:max-w-[360px] max-xl:overflow-x-scroll">
+                        <PatientsChart />
                       </div>
+                    </>
+                  ) : (
+                    <div className="flex flex-col gap-[10px] justify-center items-center w-full h-full py-[24px]">
+                      <div className="flex items-center justify-center size-[40px] rounded-[100%] bg-light-green text-green">
+                        <PiUsers className="size-[20px]" />
+                      </div>
+                      <p className="font-bold">No Appointments</p>
+                      <p className="text-small text-black/[.5]">
+                        You don't have any appointments yet
+                      </p>
                     </div>
-                  </div>
-                  <div className="xl:max-w-[360px] max-xl:overflow-x-scroll">
-                    <PatientsChart />
-                  </div>
+                  )}
                 </div>
               </div>
               <div className="flex flex-col gap-[20px] bg-white/[.4] xl:p-[20px] p-[14px] rounded-[20px] h-full">
@@ -195,48 +224,64 @@ const Home = () => {
                     <option value="">Today</option>
                   </select>
                 </div>
-                <div>
-                  {data.polyclinics.map((poly, index) => (
-                    <div key={index} className="py-[16px]">
-                      <div className="flex justify-between">
-                        <div className="flex items-center gap-2">
-                          <p className="text-small font-medium">{poly.name}</p>
-                          <div
-                            className={`p-[4px] rounded-full text-xs ${
-                              poly.percentage === "increase"
-                                ? "bg-green/[.1] text-green"
-                                : "bg-red/[.1] text-red"
-                            }`}
-                          >
-                            {poly.percentage === "increase" ? "+" : "-"}
-                            {poly.value}
+                <div className="h-full">
+                  {data.polyclinics.length > 0 ? (
+                    <>
+                      {data.polyclinics.map((poly, index) => (
+                        <div key={index} className="py-[16px]">
+                          <div className="flex justify-between">
+                            <div className="flex items-center gap-2">
+                              <p className="text-small font-medium">
+                                {poly.name}
+                              </p>
+                              <div
+                                className={`p-[4px] rounded-full text-xs ${
+                                  poly.percentage === "increase"
+                                    ? "bg-green/[.1] text-green"
+                                    : "bg-red/[.1] text-red"
+                                }`}
+                              >
+                                {poly.percentage === "increase" ? "+" : "-"}
+                                {poly.value}
+                              </div>
+                            </div>
+                            <p className="text-xs text-black/[.5]">
+                              <span className="text-small text-black font-medium">
+                                {poly.visitors}
+                              </span>{" "}
+                              Visitors
+                            </p>
+                          </div>
+                          <div className="relative mt-[13px] bg-linear-to-r from-green to-yellow h-[24px] rounded-full overflow-hidden">
+                            <div
+                              className="absolute bottom-0 right-0 bg-grey h-full"
+                              style={{
+                                width: `${100 - (poly.visitors / 400) * 100}%`,
+                              }}
+                            ></div>
+                            <div className="absolute bottom-0 left-0 flex gap-[1px] justify-between px-[1px] w-full h-full">
+                              {Array.from({ length: i }, (_, index) => (
+                                <div
+                                  key={index}
+                                  className="bg-[#F4F5ED] h-full min-w-[1px] max-w-[1px]"
+                                ></div>
+                              ))}
+                            </div>
                           </div>
                         </div>
-                        <p className="text-xs text-black/[.5]">
-                          <span className="text-small text-black font-medium">
-                            {poly.visitors}
-                          </span>{" "}
-                          Visitors
-                        </p>
+                      ))}
+                    </>
+                  ) : (
+                    <div className="flex flex-col gap-[10px] justify-center items-center w-full h-full py-[24px]">
+                      <div className="flex items-center justify-center size-[40px] rounded-[100%] bg-light-green text-green">
+                        <PiUsers className="size-[20px]" />
                       </div>
-                      <div className="relative mt-[13px] bg-linear-to-r from-green to-yellow h-[24px] rounded-full overflow-hidden">
-                        <div
-                          className="absolute bottom-0 right-0 bg-grey h-full"
-                          style={{
-                            width: `${100 - (poly.visitors / 400) * 100}%`,
-                          }}
-                        ></div>
-                        <div className="absolute bottom-0 left-0 flex gap-[1px] justify-between px-[1px] w-full h-full">
-                          {Array.from({ length: i }, (_, index) => (
-                            <div
-                              key={index}
-                              className="bg-[#F4F5ED] h-full min-w-[1px] max-w-[1px]"
-                            ></div>
-                          ))}
-                        </div>
-                      </div>
+                      <p className="font-bold">No Polyclinics</p>
+                      <p className="text-small text-black/[.5]">
+                        You don't have any appointments yet
+                      </p>
                     </div>
-                  ))}
+                  )}
                 </div>
               </div>
             </div>
@@ -250,7 +295,7 @@ const Home = () => {
               <div className="bg-white/[.4] p-[20px] rounded-[20px] h-full">
                 <Room />
               </div>
-              <div className="bg-white/[.4] p-[20px] rounded-[20px] h-full">
+              <div className="bg-white/[.4] p-[20px] rounded-[20px] h-full xl:min-w-[300px]">
                 <TotalAmbulances />
               </div>
             </div>
@@ -273,7 +318,19 @@ const Home = () => {
                   <FiArrowUpRight />
                 </button>
               </div>
-              <PatientsGender />
+              {data.patients.genders.male + data.patients.genders.female > 0 ? (
+                <PatientsGender />
+              ) : (
+                <div className="flex flex-col gap-[10px] justify-center items-center w-full h-full py-[24px]">
+                  <div className="flex items-center justify-center size-[40px] rounded-[100%] bg-light-green text-green">
+                    <PiUsers className="size-[20px]" />
+                  </div>
+                  <p className="font-bold">No Data</p>
+                  <p className="text-small text-black/[.5] text-center">
+                    You don't have any data yet
+                  </p>
+                </div>
+              )}
             </div>
             <div className="flex flex-col justify-between gap-[24px] xl:bg-white/[.4] p-[20px] rounded-[20px] w-full h-full">
               <div className="flex max-[375px]:flex-wrap justify-between max-[375px]:justify-end items-center gap-2">
@@ -300,7 +357,19 @@ const Home = () => {
                   <option value="">Today</option>
                 </select>
               </div>
-              <DoctorNurses />
+              {data.doctors.total + data.nurses.total > 0 ? (
+                <DoctorNurses />
+              ) : (
+                <div className="flex flex-col gap-[10px] justify-center items-center w-full h-full py-[24px]">
+                  <div className="flex items-center justify-center size-[40px] rounded-[100%] bg-light-green text-green">
+                    <PiUsers className="size-[20px]" />
+                  </div>
+                  <p className="font-bold">No Data</p>
+                  <p className="text-small text-black/[.5] text-center">
+                    You don't have any data yet
+                  </p>
+                </div>
+              )}
             </div>
           </div>
         </div>

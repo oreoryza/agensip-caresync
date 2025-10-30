@@ -7,6 +7,9 @@ import { Link } from "react-router-dom";
 import AddPatients from "../sections/AddPatients";
 
 import map from "../assets/map.svg";
+import spain from "../assets/spain.svg"
+import norway from "../assets/norway.jpg"
+import sweden from "../assets/sweden.jpg"
 
 import { MdCall } from "react-icons/md";
 import { PiDotsThreeVertical } from "react-icons/pi";
@@ -14,6 +17,7 @@ import { LuChevronsUpDown } from "react-icons/lu";
 import { RiSearchLine } from "react-icons/ri";
 import { FaPlus } from "react-icons/fa";
 import { BsChevronDown } from "react-icons/bs";
+import { PiUsers } from "react-icons/pi";
 
 const Patients = () => {
   const patients = useSelector((state) => state.patients.patients);
@@ -49,9 +53,15 @@ const Patients = () => {
                   <div className="flex max-xl:flex-wrap xl:gap-2 gap-1 items-center">
                     <h2 className="font-bold">100</h2>
                     <div className="flex">
-                      <div className="bg-green xl:size-[20px] size-[14px] rounded-[100%] outline-2 outline-white/[.6] z-2"></div>
-                      <div className="bg-green xl:size-[20px] size-[14px] rounded-[100%] outline-2 outline-white/[.6] -ml-1 z-1"></div>
-                      <div className="bg-green xl:size-[20px] size-[14px] rounded-[100%] outline-2 outline-white/[.6] -ml-1"></div>
+                      <div className="bg-green xl:size-[20px] size-[14px] rounded-[100%] outline-2 outline-white/[.6] z-2 overflow-hidden">
+                        <img src={spain} alt="" className="h-full object-cover" />
+                      </div>
+                      <div className="bg-green xl:size-[20px] size-[14px] rounded-[100%] outline-2 outline-white/[.6] -ml-1 z-1 overflow-hidden">
+                        <img src={sweden} alt="" className="h-full object-cover" />
+                      </div>
+                      <div className="bg-green xl:size-[20px] size-[14px] rounded-[100%] outline-2 outline-white/[.6] -ml-1 overflow-hidden">
+                        <img src={norway} alt="" className="h-full object-cover" />
+                      </div>
                     </div>
                   </div>
                   <p className="text-small text-black/[.5]">
@@ -61,7 +71,7 @@ const Patients = () => {
               </div>
             </div>
             <div className="relative flex justify-end w-full">
-              <img src={map} alt="" className="max-xl:w-full"/>
+              <img src={map} alt="" className="max-xl:w-full" />
               <div className="absolute bottom-0 flex justify-end items-end h-[130px] w-full bg-linear-to-t from-[#F2F5F1] to-[#F2F5F1]/[.0]">
                 <div className="flex gap-[20px] max-xl:px-[16px] max-xl:flex-wrap mb-[20px] xl:mr-[20px]">
                   <div className="flex items-center gap-1 text-xs text-black/[.6]">
@@ -171,84 +181,108 @@ const Patients = () => {
                 Actions
               </div>
             </div>
-            <div className="flex flex-col gap-[6px] w-full">
-              {patients.map((patient) => (
-                <div
-                  key={patient.id}
-                  className="flex items-center bg-white/[.4] backdrop-blur xl:w-full w-fit rounded-full p-[12px] hover:bg-black/[.1] duration-300"
-                >
-                  <div className="flex gap-1 items-center w-[17%] max-xl:min-w-[200px]">
-                    <img
-                      src={patient.img}
-                      alt={patient.name}
-                      className="size-[36px] object-cover rounded-[100%]"
-                    />
-                    <div>
-                      <p className="text-small">{patient.name}</p>
-                      <p className="text-xs text-black/[.5]">{patient.idcode}</p>
+            {patients.length > 0 ? (
+              <div className="flex flex-col gap-[6px] w-full">
+                {patients.map((patient) => (
+                  <div
+                    key={patient.id}
+                    className="flex items-center bg-white/[.4] backdrop-blur xl:w-full w-fit rounded-full p-[12px] hover:bg-black/[.1] duration-300"
+                  >
+                    <div className="flex gap-1 items-center w-[17%] max-xl:min-w-[200px]">
+                      <img
+                        src={patient.img}
+                        alt={patient.name}
+                        className="size-[36px] object-cover rounded-[100%]"
+                      />
+                      <div>
+                        <p className="text-small">{patient.name}</p>
+                        <p className="text-xs text-black/[.5]">
+                          {patient.idcode}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                  <div className="w-[19%] min-w-[250px] text-small overflow-hidden">
-                    <div title={patient.address} className="w-[70%] truncate">
-                      {patient.address}
+                    <div className="w-[19%] min-w-[250px] text-small overflow-hidden">
+                      <div title={patient.address} className="w-[70%] truncate">
+                        {patient.address}
+                      </div>
                     </div>
-                  </div>
-                  <div className="w-[13%] max-xl:min-w-[130px] text-small">
-                    {patient.gender}
-                  </div>
-                  <div className="w-[13%] max-xl:min-w-[130px]">
-                    <div
-                      className={`w-fit text-xs px-[10px] py-[6px] rounded-full ${
-                        patient.ages >= 45
-                          ? "text-blue bg-light-blue"
-                          : patient.ages >= 16
-                          ? "text-green bg-light-green"
-                          : "text-yellow bg-light-yellow"
-                      }`}
-                    >
-                      {patient.ages >= 45
-                        ? "Elderly"
-                        : patient.ages >= 16
-                        ? "Adult"
-                        : "Children"}
+                    <div className="w-[13%] max-xl:min-w-[130px] text-small">
+                      {patient.gender}
                     </div>
-                  </div>
-                  <div className="w-[15%] max-xl:min-w-[150px] text-small">
-                    {patient.treatment}
-                  </div>
-                  <div className="w-[15%] max-xl:min-w-[150px]">
-                    <div
-                      className={`flex items-center gap-1 w-fit text-xs px-[10px] py-[6px] rounded-full ${
-                        patient.payment === "Pending"
-                          ? "text-red bg-red/[.12]"
-                          : patient.payment === "Paid"
-                          ? "text-green bg-light-green"
-                          : "text-yellow bg-light-yellow"
-                      }`}
-                    >
+                    <div className="w-[13%] max-xl:min-w-[130px]">
                       <div
-                        className={`size-[7px] max-w-[7px] max-h-[7px] rounded-[100%] ${
-                          patient.payment === "Pending"
-                            ? "bg-red"
-                            : patient.payment === "Paid"
-                            ? "bg-green"
-                            : "bg-yellow"
+                        className={`w-fit text-xs px-[10px] py-[6px] rounded-full ${
+                          patient.ages >= 45
+                            ? "text-blue bg-light-blue"
+                            : patient.ages >= 16
+                            ? "text-green bg-light-green"
+                            : "text-yellow bg-light-yellow"
                         }`}
-                      ></div>{" "}
-                      {patient.payment}
+                      >
+                        {patient.ages >= 45
+                          ? "Elderly"
+                          : patient.ages >= 16
+                          ? "Adult"
+                          : "Children"}
+                      </div>
+                    </div>
+                    <div className="w-[15%] max-xl:min-w-[150px] text-small">
+                      {patient.treatment}
+                    </div>
+                    <div className="w-[15%] max-xl:min-w-[150px]">
+                      <div
+                        className={`flex items-center gap-1 w-fit text-xs px-[10px] py-[6px] rounded-full ${
+                          patient.payment === "Pending"
+                            ? "text-red bg-red/[.12]"
+                            : patient.payment === "Paid"
+                            ? "text-green bg-light-green"
+                            : "text-yellow bg-light-yellow"
+                        }`}
+                      >
+                        <div
+                          className={`size-[7px] max-w-[7px] max-h-[7px] rounded-[100%] ${
+                            patient.payment === "Pending"
+                              ? "bg-red"
+                              : patient.payment === "Paid"
+                              ? "bg-green"
+                              : "bg-yellow"
+                          }`}
+                        ></div>{" "}
+                        {patient.payment}
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2 max-xl:min-w-[100px]">
+                      <a
+                        href="https://www.whatsapp.com/"
+                        target="_blank"
+                        className="flex items-center justify-center size-[36px] bg-white rounded-[100%]"
+                      >
+                        <MdCall />
+                      </a>
+                      <Link
+                        to={`/patients/${patient.id}`}
+                        className="flex items-center justify-center size-[36px] bg-white rounded-[100%]"
+                      >
+                        <PiDotsThreeVertical />
+                      </Link>
                     </div>
                   </div>
-                  <div className="flex items-center gap-2 max-xl:min-w-[100px]">
-                    <a href="https://www.whatsapp.com/" target="_blank" className="flex items-center justify-center size-[36px] bg-white rounded-[100%]">
-                      <MdCall />
-                    </a>
-                    <Link to={`/patients/${patient.id}`} className="flex items-center justify-center size-[36px] bg-white rounded-[100%]">
-                      <PiDotsThreeVertical />
-                    </Link>
-                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="flex flex-col gap-[10px] justify-center items-center w-full h-[400px] py-[24px]">
+                <div className="flex items-center justify-center size-[40px] rounded-[100%] bg-light-green text-green">
+                  <PiUsers className="size-[20px]" />
                 </div>
-              ))}
-            </div>
+                <p className="font-bold">No Patients</p>
+                <p className="text-small text-black/[.5]">
+                  You don't have any patients yet
+                </p>
+                <button className="text-small font-medium text-green">
+                  +add new
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>

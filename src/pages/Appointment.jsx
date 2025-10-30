@@ -13,6 +13,7 @@ import { FaPlus } from "react-icons/fa";
 import { PiX } from "react-icons/pi";
 import { PiCheck } from "react-icons/pi";
 import { BsChevronDown } from "react-icons/bs";
+import { PiUsers } from "react-icons/pi";
 
 const Appointment = () => {
   const data = useSelector((state) => state.data);
@@ -99,106 +100,125 @@ const Appointment = () => {
           </button>
         </div>
       </div>
-      <div className="grid xl:grid-cols-3 grid-cols-1 gap-[10px] mt-[20px]">
-        {filteredStatus.map((appointment, index) => (
-          <div key={index + 1} className="bg-white/[.4] rounded-[20px]">
-            <div className="xl:p-[20px] p-[16px]">
-              <div className="flex max-xl:flex-wrap-reverse max-xl:gap-2 justify-between items-center">
-                <div className="flex gap-[10px] items-center">
-                  <div className="flex justify-center items-center size-[32px] bg-white rounded-[100%]">
-                    <PiHash className="opacity-[60%]" />
+      {data.patients.appointments.length > 0 ? (
+        <div className="grid xl:grid-cols-3 grid-cols-1 gap-[10px] mt-[20px]">
+          {filteredStatus.map((appointment, index) => (
+            <div key={index + 1} className="bg-white/[.4] rounded-[20px]">
+              <div className="xl:p-[20px] p-[16px]">
+                <div className="flex max-xl:flex-wrap-reverse max-xl:gap-2 justify-between items-center">
+                  <div className="flex gap-[10px] items-center">
+                    <div className="flex justify-center items-center size-[32px] bg-white rounded-[100%]">
+                      <PiHash className="opacity-[60%]" />
+                    </div>
+                    <div>
+                      <p className="text-small font-medium">{appointment.id}</p>
+                      <p className="text-xs opacity-50">
+                        With doctor {appointment.doctor}
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="text-small font-medium">{appointment.id}</p>
-                    <p className="text-xs opacity-50">
-                      With doctor {appointment.doctor}
-                    </p>
+                  <div className="flex justify-end max-[375px]:w-full">
+                    <div
+                      className={`px-[10px] py-[6px] text-small rounded-full max-xl:justify-items-end ${
+                        appointment.status === "In Queue"
+                          ? "bg-red/[.1] text-red"
+                          : appointment.status === "Accepted"
+                          ? "bg-green/[.1] text-green"
+                          : appointment.status === "Urgent"
+                          ? "bg-red text-white"
+                          : appointment.status === "Archive"
+                          ? "bg-grey text-black"
+                          : ""
+                      }`}
+                    >
+                      {appointment.status}
+                    </div>
                   </div>
                 </div>
-                <div className="flex justify-end max-[375px]:w-full">
-                <div
-                  className={`px-[10px] py-[6px] text-small rounded-full max-xl:justify-items-end ${
-                    appointment.status === "In Queue"
-                      ? "bg-red/[.1] text-red"
-                      : appointment.status === "Accepted"
-                      ? "bg-green/[.1] text-green"
-                      : appointment.status === "Urgent"
-                      ? "bg-red text-white"
-                      : appointment.status === "Archive"
-                      ? "bg-grey text-black"
-                      : ""
-                  }`}
-                >
-                  {appointment.status}
-                </div>
-                </div>
-              </div>
-              <div className="h-[1px] w-full bg-black/[.06] mt-[12px]"></div>
-              <div className="flex justify-between my-[16px]">
-                <div className="flex items-center gap-[10px]">
-                  <img
-                    src={appointment.img}
-                    alt={appointment.name}
-                    className="size-[38px] object-cover rounded-[100%]"
-                  />
-                  <div>
-                    <p className="text-xs opacity-50">Patient name</p>
-                    <p className="text-small font-medium">{appointment.name}</p>
+                <div className="h-[1px] w-full bg-black/[.06] mt-[12px]"></div>
+                <div className="flex justify-between my-[16px]">
+                  <div className="flex items-center gap-[10px]">
+                    <img
+                      src={appointment.img}
+                      alt={appointment.name}
+                      className="size-[38px] object-cover rounded-[100%]"
+                    />
+                    <div>
+                      <p className="text-xs opacity-50">Patient name</p>
+                      <p className="text-small font-medium">
+                        {appointment.name}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-[10px]">
+                    <div className="flex justify-center items-center size-[38px] bg-white rounded-[100%]">
+                      <PiPhone />
+                    </div>
+                    <div>
+                      <p className="text-xs opacity-50">Phone number</p>
+                      <p className="text-small font-medium">
+                        {appointment.phone}
+                      </p>
+                    </div>
                   </div>
                 </div>
                 <div className="flex items-center gap-[10px]">
                   <div className="flex justify-center items-center size-[38px] bg-white rounded-[100%]">
-                    <PiPhone />
+                    <PiCalendarDots />
                   </div>
                   <div>
-                    <p className="text-xs opacity-50">Phone number</p>
-                    <p className="text-small font-medium">
-                      {appointment.phone}
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="flex items-center gap-[10px]">
-                <div className="flex justify-center items-center size-[38px] bg-white rounded-[100%]">
-                  <PiCalendarDots />
-                </div>
-                <div>
-                  <p className="text-xs opacity-50">Date and time</p>
-                  <div className="flex max-xl:flex-wrap items-center gap-2">
-                    <p className="text-small font-medium">{appointment.date}</p>
-                    <div className="bg-green/[.1] text-green text-xs px-[6px] py-[4px] rounded-full">
-                      {appointment.start} to {appointment.end}
+                    <p className="text-xs opacity-50">Date and time</p>
+                    <div className="flex max-xl:flex-wrap items-center gap-2">
+                      <p className="text-small font-medium">
+                        {appointment.date}
+                      </p>
+                      <div className="bg-green/[.1] text-green text-xs px-[6px] py-[4px] rounded-full">
+                        {appointment.start} to {appointment.end}
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
+              <div className="h-[1px] w-full bg-black/[.06] mt-[8px]"></div>
+              {appointment.status == "Accepted" ? (
+                <div className="flex gap-[10px] px-[20px] mb-[20px] mt-[16px]">
+                  <div className="flex items-center gap-[10px] w-full text-green bg-green/[.1] px-[10px] py-[8px] rounded-[8px]">
+                    <PiCheck /> Request has been accepted
+                  </div>
+                </div>
+              ) : appointment.status == "Archive" ? (
+                <div className="flex gap-[10px] px-[20px] mb-[20px] mt-[16px]">
+                  <div className="flex items-center gap-[10px] w-full text-black bg-black/[.1] px-[10px] py-[8px] rounded-[8px]">
+                    Request has been archived
+                  </div>
+                </div>
+              ) : (
+                <div className="flex gap-[10px] px-[20px] mb-[20px] mt-[16px]">
+                  <button className="flex justify-center items-center gap-[10px] w-full outline-1 outline-red text-red px-[10px] py-[8px] rounded-full text-center hover:opacity-80 duration-300">
+                    <PiX /> Decline
+                  </button>
+                  <button className="flex justify-center items-center gap-[10px] w-full bg-green text-white px-[10px] py-[8px] rounded-full text-center hover:opacity-80 duration-300">
+                    <PiCheck /> Accept
+                  </button>
+                </div>
+              )}
             </div>
-            <div className="h-[1px] w-full bg-black/[.06] mt-[8px]"></div>
-            {appointment.status == "Accepted" ? (
-              <div className="flex gap-[10px] px-[20px] mb-[20px] mt-[16px]">
-                <div className="flex items-center gap-[10px] w-full text-green bg-green/[.1] px-[10px] py-[8px] rounded-[8px]">
-                  <PiCheck /> Request has been accepted
-                </div>
-              </div>
-            ) : appointment.status == "Archive" ? (
-              <div className="flex gap-[10px] px-[20px] mb-[20px] mt-[16px]">
-                <div className="flex items-center gap-[10px] w-full text-black bg-black/[.1] px-[10px] py-[8px] rounded-[8px]">
-                  Request has been archived
-                </div>
-              </div>
-            ) : (
-              <div className="flex gap-[10px] px-[20px] mb-[20px] mt-[16px]">
-                <button className="flex justify-center items-center gap-[10px] w-full outline-1 outline-red text-red px-[10px] py-[8px] rounded-full text-center hover:opacity-80 duration-300">
-                  <PiX /> Decline
-                </button>
-                <button className="flex justify-center items-center gap-[10px] w-full bg-green text-white px-[10px] py-[8px] rounded-full text-center hover:opacity-80 duration-300">
-                  <PiCheck /> Accept
-                </button>
-              </div>
-            )}
+          ))}
+        </div>
+      ) : (
+        <div className="flex flex-col gap-[10px] justify-center items-center w-full h-[400px] py-[24px]">
+          <div className="flex items-center justify-center size-[40px] rounded-[100%] bg-light-green text-green">
+            <PiUsers className="size-[20px]" />
           </div>
-        ))}
-      </div>
+          <p className="font-bold">No Appointments</p>
+          <p className="text-small text-black/[.5]">
+            You don't have any appointments yet
+          </p>
+          <button className="text-small font-medium text-green">
+            +add new
+          </button>
+        </div>
+      )}
       <AddAppointments
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}

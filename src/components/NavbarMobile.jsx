@@ -117,7 +117,7 @@ const NavbarMobile = () => {
                 {isActive ? (
                   <>
                     <BiSolidHelpCircle className="min-w-[20px] min-h-[20px]" />
-                    <span className="truncate">Help Center</span>
+                    <span className="truncate">Help</span>
                   </>
                 ) : (
                   <BiHelpCircle className="min-w-[20px] min-h-[20px]" />
