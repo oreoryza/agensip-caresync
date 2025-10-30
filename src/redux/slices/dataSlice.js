@@ -14,7 +14,7 @@ const initialState = {
     appointment: [100, 250, 150, 170, 200, 125, 170, 300, 150, 200],
     appointments: [
         {
-            id: "ID84110-77851358",
+            id: "ID84110-77851358-1",
             name: "Adam Saddler",
             gender: "Male",
             img: "/patients/adam.png",
@@ -27,7 +27,7 @@ const initialState = {
             status: "In Queue"
         },
         {
-            id: "ID84110-77851358",
+            id: "ID84110-77851358-2",
             name: "Aiden Blake",
             gender: "Female",
             img: "/patients/aiden.png",
@@ -40,7 +40,7 @@ const initialState = {
             status: "Accepted"
         },
         {
-            id: "ID84110-77851358",
+            id: "ID84110-77851358-3",
             name: "Benjamin Lee",
             gender: "Male",
             img: "/patients/adam.png",
@@ -53,7 +53,7 @@ const initialState = {
             status: "In Queue"
         },
         {
-            id: "ID84110-77851358",
+            id: "ID84110-77851358-4",
             name: "Jerome Bellingham",
             gender: "Male",
             img: "/patients/adam.png",
@@ -66,7 +66,7 @@ const initialState = {
             status: "Urgent"
         },
         {
-            id: "ID84110-77851358",
+            id: "ID84110-77851358-5",
             name: "Jessicha",
             gender: "Female",
             img: "/patients/aiden.png",
@@ -79,7 +79,7 @@ const initialState = {
             status: "In Queue"
         },
         {
-            id: "ID84110-77851358",
+            id: "ID84110-77851358-6",
             name: "Tom Holland",
             gender: "Male",
             img: "/patients/adam.png",
@@ -217,6 +217,16 @@ const initialState = {
 const dataSlice = createSlice({
   name: "data",
   initialState,
+  reducers: {
+    updateAppointmentStatus: (state, action) => {
+      const { id, status } = action.payload;
+      const appointment = state.patients.appointments.find(app => app.id === id);
+      if (appointment) {
+        appointment.status = status;
+      }
+    },
+  },
 });
 
+export const { updateAppointmentStatus } = dataSlice.actions;
 export default dataSlice.reducer;

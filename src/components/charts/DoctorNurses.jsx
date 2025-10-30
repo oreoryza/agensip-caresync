@@ -20,7 +20,8 @@ const DoctorNurses = () => {
           <div className="flex gap-2 items-center">
             <p className="text-title font-bold">{data.nurses.total}</p>
             <div className="flex">
-              <div className="bg-green size-[14px] rounded-[100%] outline-2 outline-white/[.6] z-2"></div>
+              <div className="bg-green size-[14px] rounded-[100%] outline-2 outline-white/[.6] z-2">
+              </div>
               <div className="bg-green size-[14px] rounded-[100%] outline-2 outline-white/[.6] -ml-1 z-1"></div>
               <div className="bg-green size-[14px] rounded-[100%] outline-2 outline-white/[.6] -ml-1"></div>
             </div>

@@ -3,7 +3,8 @@ import TotalPatients from "../components/charts/TotalPatients";
 import AppointmentsChart from "../components/charts/AppointmentsChart";
 import AddAppointments from "../sections/AddAppointments";
 import Room from "../components/charts/Room";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { updateAppointmentStatus } from "../redux/slices/dataSlice";
 
 import { PiHash } from "react-icons/pi";
 import { PiPhone } from "react-icons/pi";
@@ -17,6 +18,7 @@ import { PiUsers } from "react-icons/pi";
 
 const Appointment = () => {
   const data = useSelector((state) => state.data);
+  const dispatch = useDispatch();
   const [selectedStatus, setSelectedStatus] = useState("All");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -128,6 +130,8 @@ const Appointment = () => {
                           ? "bg-red text-white"
                           : appointment.status === "Archive"
                           ? "bg-grey text-black"
+                          : appointment.status === "Declined"
+                          ? "bg-red/[.1] text-red"
                           : ""
                       }`}
                     >
@@ -183,21 +187,33 @@ const Appointment = () => {
               {appointment.status == "Accepted" ? (
                 <div className="flex gap-[10px] px-[20px] mb-[20px] mt-[16px]">
                   <div className="flex items-center gap-[10px] w-full text-green bg-green/[.1] px-[10px] py-[8px] rounded-[8px]">
-                    <PiCheck /> Request has been accepted
+                    <PiCheck /> Request has been archived
                   </div>
                 </div>
               ) : appointment.status == "Archive" ? (
                 <div className="flex gap-[10px] px-[20px] mb-[20px] mt-[16px]">
-                  <div className="flex items-center gap-[10px] w-full text-black bg-black/[.1] px-[10px] py-[8px] rounded-[8px]">
-                    Request has been archived
+                  <div className="flex items-center gap-[10px] w-full text-black/[.8] bg-grey px-[10px] py-[8px] rounded-[8px]">
+                    <PiCheck /> Request has been archived
+                  </div>
+                </div>
+              ) : appointment.status == "Declined" ? (
+                <div className="flex gap-[10px] px-[20px] mb-[20px] mt-[16px]">
+                  <div className="flex items-center gap-[10px] w-full text-red bg-red/[.1] px-[10px] py-[8px] rounded-[8px]">
+                    <PiX /> Request has been declined
                   </div>
                 </div>
               ) : (
                 <div className="flex gap-[10px] px-[20px] mb-[20px] mt-[16px]">
-                  <button className="flex justify-center items-center gap-[10px] w-full outline-1 outline-red text-red px-[10px] py-[8px] rounded-full text-center hover:opacity-80 duration-300">
+                  <button
+                    onClick={() => dispatch(updateAppointmentStatus({ id: appointment.id, status: "Declined" }))}
+                    className="flex justify-center items-center gap-[10px] w-full outline-1 outline-red text-red px-[10px] py-[8px] rounded-full text-center hover:opacity-80 duration-300"
+                  >
                     <PiX /> Decline
                   </button>
-                  <button className="flex justify-center items-center gap-[10px] w-full bg-green text-white px-[10px] py-[8px] rounded-full text-center hover:opacity-80 duration-300">
+                  <button
+                    onClick={() => dispatch(updateAppointmentStatus({ id: appointment.id, status: "Accepted" }))}
+                    className="flex justify-center items-center gap-[10px] w-full bg-green text-white px-[10px] py-[8px] rounded-full text-center hover:opacity-80 duration-300"
+                  >
                     <PiCheck /> Accept
                   </button>
                 </div>

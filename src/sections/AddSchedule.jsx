@@ -10,7 +10,10 @@ import { useSelector } from "react-redux";
 const AddSchedule = ({ isOpen, onClose }) => {
   const data = useSelector((state) => state.data);
   const [selectedOptions, setSelectedOptions] = useState([]);
-  const [selectedService, setSelectedService] = useState("Check Up")
+  const [selectedService, setSelectedService] = useState("Check Up");
+  const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
+  const [startTime, setStartTime] = useState(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
+  const [endTime, setEndTime] = useState(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
 
   const services = ["Check Up", "Monitoring", "Driver"]
 
@@ -103,6 +106,8 @@ const AddSchedule = ({ isOpen, onClose }) => {
                   name="date"
                   id="date"
                   type="date"
+                  value={date}
+                  onChange={(e) => setDate(e.target.value)}
                   placeholder="Choose date"
                   className="text-small focus:outline-0 w-full"
                 />
@@ -118,20 +123,24 @@ const AddSchedule = ({ isOpen, onClose }) => {
               <div className="flex items-center gap-[10px]">
                 <div className="w-full outline-1 outline-black/[.1] p-[12px] rounded-[10px]">
                   <input
-                    name="time"
-                    id="time"
+                    name="startTime"
+                    id="startTime"
                     type="time"
-                    placeholder="Choose date"
+                    value={startTime}
+                    onChange={(e) => setStartTime(e.target.value)}
+                    placeholder="Choose time"
                     className="text-small focus:outline-0 w-full"
                   />
                 </div>
                 <PiArrowRight className="min-w-[12px] min-h-[10px]" />
                 <div className="w-full outline-1 outline-black/[.1] p-[12px] rounded-[10px]">
                   <input
-                    name="time"
-                    id="time"
+                    name="endTime"
+                    id="endTime"
                     type="time"
-                    placeholder="Choose date"
+                    value={endTime}
+                    onChange={(e) => setEndTime(e.target.value)}
+                    placeholder="Choose time"
                     className="text-small focus:outline-0 w-full"
                   />
                 </div>

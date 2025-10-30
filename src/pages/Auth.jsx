@@ -5,6 +5,9 @@ import SignUp from "../sections/SignUp";
 import logo from "../assets/logo.svg";
 import loginImg from "../assets/login-img.jpg";
 import signupImg from "../assets/signup-img.jpg";
+import patient1 from "../assets/patient-1.jpg";
+import patient2 from "../assets/patient-2.jpg";
+import patient3 from "../assets/patient-3.jpg";
 
 import { RiShining2Fill } from "react-icons/ri";
 import { CgProfile } from "react-icons/cg";
@@ -71,9 +74,15 @@ const Auth = () => {
             delivering quality outcomes.
           </p>
           <div className="flex max-xl:hidden">
-            <div className="bg-green size-[52px] rounded-[100%] outline-2 outline-white/[.6] z-2"></div>
-            <div className="bg-green size-[52px] rounded-[100%] outline-2 outline-white/[.6] -ml-3 z-1"></div>
-            <div className="bg-green size-[52px] rounded-[100%] outline-2 outline-white/[.6] -ml-3"></div>
+            <div className="bg-green size-[52px] rounded-[100%] outline-2 outline-white/[.6] z-2 overflow-hidden">
+              <img src={patient1} alt="" className="h-full w-full object-cover" />
+            </div>
+            <div className="bg-green size-[52px] rounded-[100%] outline-2 outline-white/[.6] -ml-3 z-1 overflow-hidden">
+              <img src={patient2} alt="" className="h-full w-full object-cover" />
+            </div>
+            <div className="bg-green size-[52px] rounded-[100%] outline-2 outline-white/[.6] -ml-3 overflow-hidden">
+              <img src={patient3} alt="" className="h-full w-full object-cover" />
+            </div>
           </div>
         </div>
       </div>

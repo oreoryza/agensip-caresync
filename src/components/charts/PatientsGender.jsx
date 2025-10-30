@@ -14,7 +14,7 @@ const PatientsGender = () => {
   return (
     <div className="w-full">
       <div className="relative flex items-start gap-[38px] w-full">
-        <div className="relative w-full h-full pr-[120px] max-w-[350px]">
+        <div className="relative flex justify-center items-center w-full h-full pr-[120px] max-w-[350px]">
           <Doughnut
             data={{
               labels: ["Male", "Female"],
@@ -25,9 +25,7 @@ const PatientsGender = () => {
                     data.patients?.genders.female || 0,
                   ],
                   backgroundColor: ["#008C00", "#ffc700"],
-                  borderWidth: 12,
-                  borderColor: "#F6F6EC",
-                  hoverBorderColor: '#F6F6EC',
+                  cutout: "70%",
                   borderRadius: 100,
                 },
               ],
@@ -46,6 +44,12 @@ const PatientsGender = () => {
             }}
             height={200}
           />
+          <div className="absolute text-center">
+            <p className="text-[10px]">Total</p>
+            <p className="text-title font-bold">
+              {data.patients?.genders.male + data.patients?.genders.female}
+            </p>
+          </div>
         </div>
         <div className="absolute right-[20px] flex flex-col h-full justify-center gap-[10px] max-w-[120px]">
           <div>

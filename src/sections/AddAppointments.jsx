@@ -19,6 +19,7 @@ const AddAppointments = ({ isOpen, onClose }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedPatient, setSelectedPatient] = useState("");
   const [selectedDoctor, setSelectedDoctor] = useState("");
+  const [date, setDate] = useState(new Date().toISOString().split("T")[0]);
 
   const appointments = useSelector((state) => state.data.patients.appointments);
   const doctors = useSelector((state) => state.data.doctors.lists);
@@ -57,17 +58,14 @@ const AddAppointments = ({ isOpen, onClose }) => {
   );
 
   // Group doctors by first letter
-  const groupedDoctors = filteredDoctors.reduce(
-    (groups, doctor) => {
-      const firstLetter = doctor.name.charAt(0).toUpperCase();
-      if (!groups[firstLetter]) {
-        groups[firstLetter] = [];
-      }
-      groups[firstLetter].push(doctor);
-      return groups;
-    },
-    {}
-  );
+  const groupedDoctors = filteredDoctors.reduce((groups, doctor) => {
+    const firstLetter = doctor.name.charAt(0).toUpperCase();
+    if (!groups[firstLetter]) {
+      groups[firstLetter] = [];
+    }
+    groups[firstLetter].push(doctor);
+    return groups;
+  }, {});
 
   const handleStep1 = () => {
     setIsStep1(true);
@@ -313,6 +311,8 @@ const AddAppointments = ({ isOpen, onClose }) => {
                       name="date"
                       id="date"
                       type="date"
+                      value={date}
+                      onChange={(e) => setDate(e.target.value)}
                       placeholder="Choose date"
                       className="text-small focus:outline-0 w-full"
                     />

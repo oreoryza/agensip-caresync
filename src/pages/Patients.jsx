@@ -10,6 +10,9 @@ import map from "../assets/map.svg";
 import spain from "../assets/spain.svg"
 import norway from "../assets/norway.jpg"
 import sweden from "../assets/sweden.jpg"
+import patient1 from "../assets/patient-1.jpg"
+import patient2 from "../assets/patient-2.jpg"
+import patient3 from "../assets/patient-3.jpg"
 
 import { MdCall } from "react-icons/md";
 import { PiDotsThreeVertical } from "react-icons/pi";
@@ -42,9 +45,15 @@ const Patients = () => {
                   <div className="flex max-xl:flex-wrap xl:gap-2 gap-1 items-center">
                     <h2 className="font-bold">300</h2>
                     <div className="flex">
-                      <div className="bg-green xl:size-[20px] size-[14px] rounded-[100%] outline-2 outline-white/[.6] z-2"></div>
-                      <div className="bg-green xl:size-[20px] size-[14px] rounded-[100%] outline-2 outline-white/[.6] -ml-1 z-1"></div>
-                      <div className="bg-green xl:size-[20px] size-[14px] rounded-[100%] outline-2 outline-white/[.6] -ml-1"></div>
+                      <div className="bg-green xl:size-[20px] size-[14px] rounded-[100%] outline-2 outline-white/[.6] z-2 overflow-hidden">
+                        <img src={patient1} alt="" className="h-full w-full object-cover" />
+                      </div>
+                      <div className="bg-green xl:size-[20px] size-[14px] rounded-[100%] outline-2 outline-white/[.6] -ml-1 z-1 overflow-hidden">
+                        <img src={patient2} alt="" className="h-full w-full object-cover" />
+                      </div>
+                      <div className="bg-green xl:size-[20px] size-[14px] rounded-[100%] outline-2 outline-white/[.6] -ml-1 overflow-hidden">
+                        <img src={patient3} alt="" className="h-full w-full object-cover" />
+                      </div>
                     </div>
                   </div>
                   <p className="text-small text-black/[.5]">Local patients</p>

@@ -186,7 +186,7 @@ const EmployeeDetail = () => {
           </div>
         </div>
         <div className="flex flex-col items-end max-xl:gap-[20px] justify-between py-[32px] xl:max-w-[342px]">
-          <button className="flex items-center gap-2 bg-green/[.1] text-green text-small font-medium rounded-full px-[16px] py-[8px]">
+          <button className="flex items-center gap-2 bg-green text-white text-small font-medium rounded-full px-[16px] py-[8px]">
             <PiPencilSimple className="size-[16px]" />
             Edit Profile
           </button>
@@ -261,9 +261,7 @@ const EmployeeDetail = () => {
                               (employee.satisfaction?.happy || 0),
                           ],
                           backgroundColor: ["#008C00", "#e2e2e2ff"],
-                          borderWidth: 12,
-                          borderColor: "#F6F6EC",
-                          hoverBorderColor: "#F6F6EC",
+                          cutout: "70%",
                           borderRadius: 100,
                         },
                       ],
@@ -283,13 +281,16 @@ const EmployeeDetail = () => {
                     height={200}
                     className="my-[24px]"
                   />
-                  <div className="absolute text-subtitle font-bold">
+                  <div className="absolute text-center">
+                    <p className="text-[10px]">Impression</p>
+                    <p className="text-subtitle font-bold">
                     {(employee.satisfaction?.happy /
                       employee.satisfaction?.total) *
                       100 >
                     50
                       ? "Good"
                       : "Okay"}
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
@@ -383,9 +384,29 @@ const EmployeeDetail = () => {
                   09.00 AM
                 </div>
               </div>
-              <div className="group flex justify-center p-[6px] min-w-[92px] rounded-t-[20px] bg-white">
+              <div className="relative group flex justify-center p-[6px] min-w-[92px] rounded-t-[20px] bg-white">
                 <div className="text-xs h-fit px-[10px] py-[6px] rounded-full group-hover:bg-light-yellow duration-300">
                   10.00 AM
+                </div>
+                <div className="flex flex-col gap-[24px] absolute left-0 top-[100px] min-w-[500px]">
+                  <button className="flex items-center gap-[12px] p-[5px] pr-[20px] bg-light-yellow rounded-full overflow-hidden w-fit">
+                    <div className="min-w-[46px] min-h-[46px] bg-yellow rounded-[100%]"></div>
+                    <div className="flex flex-col items-start text-left gap-[10px]">
+                      <p className="text-small">Patient transfer to another hospital</p>
+                      <p className="text-xs text-black/[.6]">
+                        10:00 AM - 01:10 PM | {employee.name}
+                      </p>
+                    </div>
+                  </button>
+                  <button className="ml-[100px] flex items-center gap-[12px] p-[5px] pr-[20px] bg-light-green rounded-full overflow-hidden w-fit">
+                    <div className="min-w-[46px] min-h-[46px] bg-green rounded-[100%]"></div>
+                    <div className="flex flex-col items-start text-left gap-[10px]">
+                      <p className="text-small">Family Medicine Checkups</p>
+                      <p className="text-xs text-black/[.6]">
+                        11:30 PM - 02:00 PM | {employee.name}
+                      </p>
+                    </div>
+                  </button>
                 </div>
               </div>
               <div className="group flex justify-center p-[6px] min-w-[92px] rounded-t-[20px] ">
@@ -401,26 +422,6 @@ const EmployeeDetail = () => {
               <div className="relative group flex justify-center p-[6px] min-w-[92px] rounded-t-[20px] ">
                 <div className="text-xs h-fit px-[10px] py-[6px] rounded-full group-hover:bg-light-yellow duration-300">
                   01.00 PM
-                </div>
-                <div className="flex flex-col gap-[24px] absolute left-0 top-[100px] min-w-[500px]">
-                  <button className="flex items-center gap-[12px] p-[5px] bg-light-yellow rounded-full overflow-hidden">
-                    <div className="min-w-[70px] min-h-[70px] bg-yellow rounded-[100%]"></div>
-                    <div className="flex flex-col items-start text-left gap-[10px]">
-                      <p>Patient transfer to another hospital</p>
-                      <p className="text-xs text-black/[.6]">
-                        12:00 AM - 01:10 PM | Driver : Jonathan
-                      </p>
-                    </div>
-                  </button>
-                  <button className="ml-[100px] flex items-center gap-[12px] p-[5px] bg-light-green rounded-full overflow-hidden">
-                    <div className="min-w-[70px] min-h-[70px] bg-green rounded-[100%]"></div>
-                    <div className="flex flex-col items-start text-left gap-[10px]">
-                      <p>Family Medicine Checkups</p>
-                      <p className="text-xs text-black/[.6]">
-                        01:30 PM - 02:45 PM | Driver : Jonathan
-                      </p>
-                    </div>
-                  </button>
                 </div>
               </div>
               <div className="group flex justify-center p-[6px] min-w-[92px] rounded-t-[20px] bg-white">

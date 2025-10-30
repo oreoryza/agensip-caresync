@@ -203,7 +203,9 @@ const PatientsDetail = () => {
                   <p className="text-small text-black/[.5]">{card.note}</p>
                   <div className="flex items-center justify-between text-xs">
                     <p className="text-black/[.8]">{card.date}</p>
-                    <div className="bg-light-green text-green py-[6px] px-[10px] rounded-full">{card.status}</div>
+                    <div className="bg-light-green text-green py-[6px] px-[10px] rounded-full">
+                      {card.status}
+                    </div>
                   </div>
                 </div>
               ))}
@@ -273,9 +275,31 @@ const PatientsDetail = () => {
                   09.00 AM
                 </div>
               </div>
-              <div className="group flex justify-center p-[6px] min-w-[92px] rounded-t-[20px] bg-white">
+              <div className="relative group flex justify-center p-[6px] min-w-[92px] rounded-t-[20px] bg-white">
                 <div className="text-xs h-fit px-[10px] py-[6px] rounded-full group-hover:bg-light-yellow duration-300">
                   10.00 AM
+                </div>
+                <div className="flex flex-col gap-[24px] absolute left-0 top-[100px] min-w-[500px]">
+                  <button className="flex items-center gap-[12px] p-[5px] pr-[20px] bg-light-yellow rounded-full overflow-hidden w-fit">
+                    <div className="min-w-[46px] min-h-[46px] bg-yellow rounded-[100%]"></div>
+                    <div className="flex flex-col items-start text-left gap-[10px]">
+                      <p className="text-small">
+                        Patient transfer to another hospital
+                      </p>
+                      <p className="text-xs text-black/[.6]">
+                        10:00 AM - 01:10 PM | {patient.name}
+                      </p>
+                    </div>
+                  </button>
+                  <button className="ml-[100px] flex items-center gap-[12px] p-[5px] pr-[20px] bg-light-green rounded-full overflow-hidden w-fit">
+                    <div className="min-w-[46px] min-h-[46px] bg-green rounded-[100%]"></div>
+                    <div className="flex flex-col items-start text-left gap-[10px]">
+                      <p className="text-small">Family Medicine Checkups</p>
+                      <p className="text-xs text-black/[.6]">
+                        11:30 PM - 02:00 PM | {patient.name}
+                      </p>
+                    </div>
+                  </button>
                 </div>
               </div>
               <div className="group flex justify-center p-[6px] min-w-[92px] rounded-t-[20px] ">
@@ -291,26 +315,6 @@ const PatientsDetail = () => {
               <div className="relative group flex justify-center p-[6px] min-w-[92px] rounded-t-[20px] ">
                 <div className="text-xs h-fit px-[10px] py-[6px] rounded-full group-hover:bg-light-yellow duration-300">
                   01.00 PM
-                </div>
-                <div className="flex flex-col gap-[24px] absolute left-0 top-[100px] min-w-[500px]">
-                  <button className="flex items-center gap-[12px] p-[5px] bg-light-yellow rounded-full overflow-hidden">
-                    <div className="min-w-[70px] min-h-[70px] bg-yellow rounded-[100%]"></div>
-                    <div className="flex flex-col items-start text-left gap-[10px]">
-                      <p>Patient transfer to another hospital</p>
-                      <p className="text-xs text-black/[.6]">
-                        12:00 AM - 01:10 PM | Driver : Jonathan
-                      </p>
-                    </div>
-                  </button>
-                  <button className="ml-[100px] flex items-center gap-[12px] p-[5px] bg-light-green rounded-full overflow-hidden">
-                    <div className="min-w-[70px] min-h-[70px] bg-green rounded-[100%]"></div>
-                    <div className="flex flex-col items-start text-left gap-[10px]">
-                      <p>Family Medicine Checkups</p>
-                      <p className="text-xs text-black/[.6]">
-                        01:30 PM - 02:45 PM | Driver : Jonathan
-                      </p>
-                    </div>
-                  </button>
                 </div>
               </div>
               <div className="group flex justify-center p-[6px] min-w-[92px] rounded-t-[20px] bg-white">

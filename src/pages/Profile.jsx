@@ -139,7 +139,7 @@ const Profile = () => {
           </div>
         </div>
         <div className="flex flex-col items-end max-xl:gap-[20px] justify-between py-[32px] xl:max-w-[342px]">
-          <button className="flex items-center gap-2 bg-green/[.1] text-green text-small font-medium rounded-full px-[16px] py-[8px]">
+          <button className="flex items-center gap-2 bg-green text-white text-small font-medium rounded-full px-[16px] py-[8px]">
             <PiPencilSimple className="size-[16px]" />
             Edit Profile
           </button>
@@ -205,10 +205,8 @@ const Profile = () => {
                               (profile.satisfaction?.happy || 0),
                           ],
                           backgroundColor: ["#008C00", "#e2e2e2ff"],
-                          borderWidth: 12,
-                          borderColor: "#F6F6EC",
+                          cutout: "70%",
                           borderRadius: 100,
-                          hoverBorderColor: "#F6F6EC",
                         },
                       ],
                     }}
@@ -227,13 +225,16 @@ const Profile = () => {
                     height={200}
                     className="my-[24px]"
                   />
-                  <div className="absolute text-subtitle font-bold">
-                    {(profile.satisfaction?.happy /
-                      profile.satisfaction?.total) *
-                      100 >
-                    50
-                      ? "Good"
-                      : "Okay"}
+                  <div className="absolute text-center">
+                    <p className="text-[10px]">Impression</p>
+                    <p className="text-subtitle font-bold">
+                      {(profile.satisfaction?.happy /
+                        profile.satisfaction?.total) *
+                        100 >
+                      50
+                        ? "Good"
+                        : "Okay"}
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
