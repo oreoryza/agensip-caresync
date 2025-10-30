@@ -1,5 +1,0 @@
-- [x] Add "Declined" status handling in Appointment.jsx render logic
-- [x] Add updateAppointmentStatus reducer in dataSlice.js
-- [x] Update Appointment.jsx to dispatch status updates on Accept/Decline clicks
-- [x] Remove messages state from Appointment.jsx
-- [x] Test the functionality to ensure buttons are replaced by messages per card
