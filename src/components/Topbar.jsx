@@ -251,7 +251,7 @@ const Topbar = () => {
       <div
         className={`${
           isModal ? "fadeIn" : "hidden"
-        } fixed top-0 flex justify-center xl:items-center items-end h-screen w-screen bg-black/[.2] z-9`}
+        } fixed xl:top-0 bottom-0 flex justify-center xl:items-center items-end h-screen w-screen bg-black/[.2] z-9`}
       >
         <div className="flex flex-col gap-[33px] bg-white px-[24px] py-[28px] xl:rounded-[24px] max-xl:rounded-t-[20px] xl:w-[374px] w-screen">
           <div className="flex flex-col items-center text-center">
