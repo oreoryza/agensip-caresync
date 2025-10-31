@@ -19,7 +19,7 @@ const Auth = () => {
   const toggleLogin = () => setIsLogin(!isLogin);
 
   return (
-    <div className="flex max-xl:flex-col-reverse xl:justify-between xl:p-[20px] w-screen h-screen">
+    <div className="flex max-xl:flex-col-reverse xl:justify-between xl:p-[20px] w-screen h-screen fadeIn">
       <div className="max-xl:fixed max-xl:flex flex-col justify-between top-0 z-1 w-full h-full">
         <div className="flex flex-col justify-between h-full px-[24px] py-[34px] max-md:py-[12px] xl:hidden">
           <img

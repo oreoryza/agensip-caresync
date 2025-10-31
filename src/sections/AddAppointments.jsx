@@ -99,7 +99,7 @@ const AddAppointments = ({ isOpen, onClose }) => {
           isOpen ? "fadeIn" : "hidden"
         } fixed top-0 left-0 flex justify-center xl:items-center items-end w-screen h-screen bg-black/[.2] z-9`}
       >
-        <div className="bg-white xl:w-[393px] w-screen xl:rounded-[20px] max-xl:rounded-t-[20px]">
+        <div className="bg-white xl:w-[393px] w-screen xl:rounded-[20px] max-xl:rounded-t-[20px] overflow-hidden">
           <div className="flex justify-between items-center px-[24px] py-[20px] border-b-[1px] border-black/[.1] mb-[24px]">
             <p className="text-subtitle font-medium">Add appointments</p>
             <button onClick={handleModal} className="text-black/[.5]">
@@ -153,7 +153,7 @@ const AddAppointments = ({ isOpen, onClose }) => {
           </div>
 
           {isStep1 ? (
-            <div className="px-[24px]">
+            <div className="px-[24px] max-xl:mb-20">
               <form className="my-[12px] py-[14px] px-[12px] outline-1 outline-black/[.1] rounded-[10px]">
                 <input
                   type="text"
@@ -212,7 +212,7 @@ const AddAppointments = ({ isOpen, onClose }) => {
               </div>
             </div>
           ) : isStep2 ? (
-            <div className="px-[24px]">
+            <div className="px-[24px] max-xl:mb-20">
               <form className="my-[12px] py-[14px] px-[12px] outline-1 outline-black/[.1] rounded-[10px]">
                 <input
                   type="text"
@@ -271,7 +271,7 @@ const AddAppointments = ({ isOpen, onClose }) => {
               </div>
             </div>
           ) : (
-            <div className="py-[24px] px-[24px] max-h-[300px] xl:hide-scroll overflow-y-auto">
+            <div className="py-[24px] px-[24px] max-h-[300px] xl:hide-scroll overflow-y-auto max-xl:mb-20">
               <form className="flex flex-col gap-[10px]">
                 <div className="flex flex-col gap-2">
                   <label
@@ -368,7 +368,7 @@ const AddAppointments = ({ isOpen, onClose }) => {
             </div>
           )}
 
-          <div className="py-[18px] px-[16px]">
+          <div className="py-[18px] px-[16px] max-xl:fixed z-1 bottom-0 w-full bg-white border-t border-black/[.1]">
             {isStep1 ? (
               <div>
                 <ButtonPrimary onClick={handleStep2} text="Next ->" />

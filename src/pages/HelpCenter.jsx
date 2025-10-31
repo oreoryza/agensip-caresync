@@ -13,7 +13,7 @@ import { PiPersonSimpleCircle } from 'react-icons/pi';
 
 const HelpCenter = () => {
   return (
-    <div className="container">
+    <div className="container slideIn">
       <h2 className="font-bold">Help Center</h2>
       <div className="flex max-xl:flex-col justify-between max-xl:gap-[20px] xl:items-center w-full bg-white p-[24px] rounded-[20px] mb-[10px] mt-[24px]">
         <div className="flex flex-col gap-[8px]">

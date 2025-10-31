@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import ButtonPrimary from "../components/ButtonPrimary";
-import DOMPurify from "dompurify"
+import DOMPurify from "dompurify";
+import { Notify } from "notiflix/build/notiflix-notify-aio";
 
 import { useDispatch } from "react-redux";
 import { toggleToken } from "../redux/slices/tokenSlice";
 
 import { CgProfile } from "react-icons/cg";
 import { LuEye } from "react-icons/lu";
-import { LuEyeClosed } from 'react-icons/lu';
+import { LuEyeClosed } from "react-icons/lu";
 
 const Login = ({ toggleLogin }) => {
   const dispatch = useDispatch();
@@ -17,10 +18,10 @@ const Login = ({ toggleLogin }) => {
   const [password, setPassword] = useState("");
 
   const handleChange = (setter) => (e) => {
-        // Membersihkan input menggunakan dompurify
-        const sanitizedValue = DOMPurify.sanitize(e.target.value);
-        setter(sanitizedValue);
-    };
+    // Membersihkan input menggunakan dompurify
+    const sanitizedValue = DOMPurify.sanitize(e.target.value);
+    setter(sanitizedValue);
+  };
 
   const handlePeek = () => {
     setIsPeek(!isPeek);
@@ -28,8 +29,9 @@ const Login = ({ toggleLogin }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    Notify.success('Welcome Back!');
     dispatch(toggleToken());
-  }
+  };
 
   const disabled = !employeeId.trim() || !password.trim();
 
@@ -46,7 +48,10 @@ const Login = ({ toggleLogin }) => {
           </p>
         </div>
       </div>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-[16px] w-full text-left">
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col gap-[16px] w-full text-left"
+      >
         <div className="flex flex-col gap-[7px]">
           <label htmlFor="employeeId">Employee ID</label>
           <input
@@ -62,7 +67,7 @@ const Login = ({ toggleLogin }) => {
         <div className="relative flex flex-col gap-[7px]">
           <label htmlFor="password">Password</label>
           <input
-            type={isPeek ? "text":"password"}
+            type={isPeek ? "text" : "password"}
             id="password"
             name="password"
             value={password}
@@ -71,8 +76,15 @@ const Login = ({ toggleLogin }) => {
             placeholder="Your password"
             className="bg-white w-full py-[16px] pl-[16px] pr-[12px] max-xl:outline-1 max-xl:outline-black/[.2] rounded-full"
           />
-          <div onClick={handlePeek} className="absolute bottom-4 right-4 cursor-pointer">
-            {isPeek ? (<LuEye className="size-[20px]" />):(<LuEyeClosed className="size-[20px]" />)}
+          <div
+            onClick={handlePeek}
+            className="absolute bottom-4 right-4 cursor-pointer"
+          >
+            {isPeek ? (
+              <LuEye className="size-[20px]" />
+            ) : (
+              <LuEyeClosed className="size-[20px]" />
+            )}
           </div>
         </div>
         <div className="flex flex-col gap-[20px] mt-[20px] text-center">

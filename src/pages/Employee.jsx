@@ -24,7 +24,7 @@ const Employee = () => {
       : employees.filter((emp) => emp.jobCategory === selectedJobCategory);
 
   return (
-    <div className="container">
+    <div className="container slideIn">
       <h2 className="font-bold">Employee</h2>
       <div className="flex justify-between my-[24px]">
         <div className="flex gap-2 ml-0.5 max-xl:hidden">
@@ -81,9 +81,9 @@ const Employee = () => {
                 <img
                   src={employee.img}
                   alt={employee.name}
-                  className="min-w-[50%] h-[230px] object-top group-hover:scale-[1.1] duration-300"
+                  className="w-[50%] h-[230px] object-top group-hover:scale-[1.1] duration-300"
                 />
-                <div className="flex flex-col gap-[33px] max-[375px]:gap-[14px] ml-[1rem] max-w-[220px]">
+                <div className="flex flex-col gap-[33px] max-[375px]:gap-[14px] ml-[1rem] w-[50%]">
                   <div className="flex max-[375px]:flex-wrap gap-1">
                     <div
                       className={`px-[8px] py-[6px] rounded-full text-small ${

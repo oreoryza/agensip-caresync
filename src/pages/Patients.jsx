@@ -29,7 +29,7 @@ const Patients = () => {
 
   const categories = ["Day", "Week", "Month"];
   return (
-    <div className="container">
+    <div className="container slideIn">
       <h2 className="font-bold">Patients</h2>
       <div className="flex flex-col gap-[16px] mt-[24px]">
         <div className="flex max-xl:flex-col-reverse gap-[16px]">

@@ -23,7 +23,7 @@ const AddPatients = ({ isOpen, onClose }) => {
         isOpen ? "fadeIn" : "hidden"
       } fixed top-0 left-0 flex justify-center xl:items-center items-end w-screen h-screen bg-black/[.2] z-9`}
     >
-      <div className="bg-white xl:w-[393px] w-screen xl:rounded-[20px] max-xl:rounded-t-[20px]">
+      <div className="bg-white xl:w-[393px] w-screen xl:rounded-[20px] max-xl:rounded-t-[20px] overflow-hidden">
         <div className="flex justify-between items-center px-[24px] py-[20px] border-b-[1px] border-black/[.1] mb-[24px]">
           <p className="text-subtitle font-medium">Add patients</p>
           <button onClick={onClose} className="text-black/[.5]">
@@ -31,7 +31,7 @@ const AddPatients = ({ isOpen, onClose }) => {
           </button>
         </div>
         <form onSubmit={handleSubmit} className="flex flex-col gap-[10px]">
-          <div className="flex flex-col gap-[10px] px-[24px]">
+          <div className="flex flex-col gap-[10px] px-[24px] max-xl:mb-24">
             <div className="flex items-center gap-[10px]">
               <div className="size-[62px] rounded-[100%] bg-grey"></div>
               <div>
@@ -150,7 +150,7 @@ const AddPatients = ({ isOpen, onClose }) => {
               </div>
             </div>
           </div>
-          <div className="py-[18px] px-[16px] mt-[14px] border-t border-black/[.1]">
+          <div className="py-[18px] px-[16px] mt-[14px] border-t border-black/[.1] max-xl:fixed z-1 bottom-0 w-full bg-white">
             <ButtonPrimary text="Save" style="bg-green" />
           </div>
         </form>

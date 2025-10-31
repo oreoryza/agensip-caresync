@@ -204,6 +204,21 @@ abbr[title] {
   display: none;
 }
 
+.slideIn {
+  animation: slideIn 700ms ease;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
 @media only screen and (max-width: 1280px) {
   :root {
     --text-h1: 2.25rem;

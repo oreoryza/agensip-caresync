@@ -54,7 +54,7 @@ const Schedule = () => {
   };
 
   return (
-    <div className="container overflow-hidden">
+    <div className="container overflow-hidden slideIn">
       <div className="flex justify-between items-center">
         <h2 className="font-bold">Schedule</h2>
         <div className="flex items-center gap-[20px] py-[8px] pl-[24px] pr-[8px] outline-1 outline-black/[.1] rounded-full">

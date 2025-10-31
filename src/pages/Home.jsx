@@ -38,8 +38,9 @@ const Home = () => {
         );
 
   return (
-    <div className="container h-full">
+    <div className="container h-full slideIn">
       <div className="flex max-xl:flex-col-reverse gap-[16px] h-full">
+        {/* Appointment lists card */}
         <div className="flex flex-col gap-[24px] bg-white/[.4] backdrop-blur xl:px-[20px] px-[14px] pt-[20px] rounded-[20px]">
           <div className="flex justify-between items-center">
             <p className="text-subtitle font-bold">Appointments</p>
@@ -70,49 +71,81 @@ const Home = () => {
               </button>
             ))}
           </div>
-          <div className="flex flex-col gap-[10px] pb-[20px] h-full max-h-[980px] overflow-y-auto hide-scroll">
+          <div className="flex flex-col gap-[10px] pb-[20px] h-full max-h-[980px] overflow-y-auto overflow-x-hidden hide-scroll">
             {data.patients.appointments.length > 0 ? (
               <>
-                {filteredGender.map((app) => (
-                  <div className="flex items-end bg-white rounded-[16px]">
-                    <img
-                      src={app.img}
-                      alt={app.name}
-                      className="max-w-[136px] max-h-[147px] ml-[16px] max-[375px]:hidden"
-                    />
-                    <div className="flex flex-col gap-[20px] p-[16px] min-w-[131px]">
-                      <div className="flex max-xl:flex-wrap items-center gap-[4px] ">
-                        <div className="bg-black/[.06] text-xs text-black/[.5] px-[6px] py-[4px] rounded-full">
-                          {app.gender}
+                {filteredGender.map((app, index) => (
+                  <div key={index} className="bg-white rounded-[16px]">
+                    <div className="flex items-center gap-[4px] p-[14px] sm:hidden">
+                      <div className="bg-black/[.06] text-xs text-black/[.5] px-[6px] py-[4px] rounded-full">
+                        {app.gender}
+                      </div>
+                      <div className="bg-black/[.06] text-xs text-black/[.5] px-[6px] py-[4px] rounded-full">
+                        {app.start}
+                      </div>
+                    </div>
+                    <div className="flex items-end">
+                      <img
+                        src={app.img}
+                        alt={app.name}
+                        className="max-w-[136px] max-sm:max-w-[90px] max-h-[147px]  ml-[16px]"
+                      />
+                      <div className="flex flex-col gap-[20px] p-[16px] xl:min-w-[131px]">
+                        <div className="flex max-xl:flex-wrap items-center gap-[4px] max-sm:hidden">
+                          <div className="bg-black/[.06] text-xs text-black/[.5] px-[6px] py-[4px] rounded-full">
+                            {app.gender}
+                          </div>
+                          <div className="bg-black/[.06] text-xs text-black/[.5] px-[6px] py-[4px] rounded-full">
+                            {app.start}
+                          </div>
                         </div>
-                        <div className="bg-black/[.06] text-xs text-black/[.5] px-[6px] py-[4px] rounded-full">
-                          {app.start}
+                        <div>
+                          <p className="font-medium max-sm:text-small">{app.name}</p>
+                          <p className="text-xs text-black/[.5]">
+                            {app.disease}
+                          </p>
+                        </div>
+                        <div className="flex max-sm:hidden items-center gap-[4px]">
+                          <a
+                            href="https://www.whatsapp.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex gap-2 items-center bg-green text-xs text-white px-[16px] py-[8px] rounded-full hover:opacity-80 duration-300"
+                          >
+                            <MdCall />
+                            Call
+                          </a>
+                          <a
+                            href="https://www.whatsapp.com/"
+                            rel="noopener noreferrer"
+                            target="_blank"
+                            className="flex gap-2 items-center bg-white text-xs px-[16px] py-[8px] rounded-full outline-1 outline-[#DDDDDD] hover:opacity-80 duration-300"
+                          >
+                            <RiSendPlaneFill />
+                            Chat
+                          </a>
                         </div>
                       </div>
-                      <div>
-                        <p className="font-medium">{app.name}</p>
-                        <p className="text-xs text-black/[.5]">{app.disease}</p>
-                      </div>
-                      <div className="flex max-xl:flex-wrap items-center gap-[4px]">
-                        <a
-                          href="https://www.whatsapp.com/"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex gap-2 items-center bg-green text-xs text-white px-[16px] py-[8px] rounded-full hover:opacity-80 duration-300"
-                        >
-                          <MdCall />
-                          Call
-                        </a>
-                        <a
-                          href="https://www.whatsapp.com/"
-                          rel="noopener noreferrer"
-                          target="_blank"
-                          className="flex gap-2 items-center bg-white text-xs px-[16px] py-[8px] rounded-full outline-1 outline-[#DDDDDD] hover:opacity-80 duration-300"
-                        >
-                          <RiSendPlaneFill />
-                          Chat
-                        </a>
-                      </div>
+                    </div>
+                    <div className="flex items-center w-full gap-[4px] p-[14px] sm:hidden">
+                      <a
+                        href="https://www.whatsapp.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex gap-2 items-center justify-center bg-green text-xs text-white px-[16px] py-[8px] w-full rounded-full hover:opacity-80 duration-300"
+                      >
+                        <MdCall />
+                        Call
+                      </a>
+                      <a
+                        href="https://www.whatsapp.com/"
+                        rel="noopener noreferrer"
+                        target="_blank"
+                        className="flex gap-2 items-center justify-center bg-white text-xs px-[16px] py-[8px] w-full rounded-full outline-1 outline-[#DDDDDD] hover:opacity-80 duration-300"
+                      >
+                        <RiSendPlaneFill />
+                        Chat
+                      </a>
                     </div>
                   </div>
                 ))}
@@ -133,6 +166,7 @@ const Home = () => {
         <div className="flex xl:flex-col flex-col-reverse gap-[16px] w-full">
           <div className="flex max-xl:flex-col-reverse gap-[16px]">
             <div className="flex flex-col gap-[16px] w-full">
+              {/* Patients card */}
               <div className="flex flex-col gap-[24px] bg-white/[.4] p-[20px] rounded-[20px]">
                 <div className="flex max-[375px]:flex-wrap justify-between max-[375px]:justify-end items-center gap-2">
                   <div className="flex gap-[16px]">
@@ -198,6 +232,7 @@ const Home = () => {
                   )}
                 </div>
               </div>
+              {/* Polyclinics card */}
               <div className="flex flex-col gap-[20px] bg-white/[.4] xl:p-[20px] p-[14px] rounded-[20px] h-full">
                 <div className="flex max-[375px]:flex-wrap justify-between max-[375px]:justify-end items-center gap-2">
                   <div className="flex gap-[16px]">
@@ -286,21 +321,26 @@ const Home = () => {
               </div>
             </div>
             <div className="xl:flex flex-col gap-[16px] grid grid-cols-2 max-[375px]:grid-cols-1">
+              {/* Total patients card */}
               <div className="bg-white/[.4] p-[20px] rounded-[20px] h-full">
                 <TotalPatients />
               </div>
+              {/* Appointments chart card */}
               <div className="bg-white/[.4] p-[20px] rounded-[20px] h-full">
                 <AppointmentsChart />
               </div>
+              {/* Room card */}
               <div className="bg-white/[.4] p-[20px] rounded-[20px] h-full">
                 <Room />
               </div>
+              {/* Total Ambulances card */}
               <div className="bg-white/[.4] p-[20px] rounded-[20px] h-full xl:min-w-[300px]">
                 <TotalAmbulances />
               </div>
             </div>
           </div>
           <div className="flex max-xl:flex-col-reverse gap-[16px] w-full">
+            {/* Patients gender card */}
             <div className="flex flex-col gap-[24px] bg-white/[.4] p-[20px] rounded-[20px] w-full">
               <div className="flex justify-between items-center gap-2">
                 <div className="flex gap-[16px]">
@@ -332,6 +372,7 @@ const Home = () => {
                 </div>
               )}
             </div>
+            {/* doctor & nurses card */}
             <div className="flex flex-col justify-between gap-[24px] xl:bg-white/[.4] p-[20px] rounded-[20px] w-full h-full">
               <div className="flex max-[375px]:flex-wrap justify-between max-[375px]:justify-end items-center gap-2">
                 <div className="flex gap-[16px]">

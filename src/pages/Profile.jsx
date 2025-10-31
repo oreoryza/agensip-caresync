@@ -57,7 +57,7 @@ const Profile = () => {
   };
 
   return (
-    <div className="container">
+    <div className="container slideIn">
       <h2 className="font-bold">Profile</h2>
       <div className="flex max-xl:flex-col justify-between pt-[17px] xl:pl-[17px] w-full h-full">
         <div className="flex max-sm:flex-col w-full">

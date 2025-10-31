@@ -29,8 +29,8 @@ const PatientsDetail = () => {
   }, [id, dispatch]);
 
   return (
-    <div className="container">
-      <div className="flex items-center gap-[7px] pl-[17px]">
+    <div className="container slideIn">
+      <div className="flex items-center gap-[7px] xl:pl-[17px]">
         <Link
           to={"/patients"}
           className="opacity-50 hover:text-green duration-300"

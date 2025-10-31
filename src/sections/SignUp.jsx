@@ -24,7 +24,7 @@ const SignUp = ({ toggleLogin }) => {
   };
 
   const handleSubmit = () => {
-    Notify.success('Sol lucet omnibus');
+    Notify.success('Sign Up Success!');
     toggleLogin();
   }
 

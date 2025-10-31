@@ -33,7 +33,7 @@ const Settings = () => {
   );
 
   return (
-    <div className="container">
+    <div className="container slideIn">
       <h2 className="font-bold">Settings</h2>
       <div className="mt-[52px]">
         <div className="flex max-xl:flex-col max-xl:gap-[20px]">

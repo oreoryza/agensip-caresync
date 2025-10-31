@@ -37,7 +37,7 @@ const Appointment = () => {
         );
 
   return (
-    <div className="container">
+    <div className="container slideIn">
       <h2 className="font-bold">Appointments</h2>
       <div className="overflow-x-auto">
         <div className="flex xl:grid grid-cols-3 gap-[16px] mt-[25px]">

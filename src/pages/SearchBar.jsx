@@ -17,7 +17,7 @@ const SearchBar = () => {
   };
   return (
     <div
-      className={`fixed top-0 bg-mobile w-screen h-screen p-[24px] z-4 xl:hidden`}
+      className={`fixed top-0 bg-mobile w-screen h-screen p-[24px] z-4 xl:hidden slideIn`}
     >
       <div
         className={`flex flex-col gap-[16px] h-fit py-[10px] z-4 overflow-hidden`}

@@ -7,8 +7,8 @@ import { BsChevronRight } from "react-icons/bs";
 
 const GetStarted = () => {
   return (
-    <div className="w-full xl:pb-[34px] pb-[100px] max-xl:pt-[24px]">
-      <div className="flex items-center gap-[7px] pl-[17px]">
+    <div className="w-full xl:pb-[34px] pb-[100px] max-xl:pt-[24px] slideIn">
+      <div className="flex items-center gap-[7px] xl:pl-[17px]">
         <Link
           to={"/help-center"}
           className="opacity-50 hover:text-green duration-300"
