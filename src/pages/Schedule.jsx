@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import AddSchedule from "../sections/AddSchedule";
 
 import { PiCalendarDots } from "react-icons/pi";
@@ -10,6 +10,9 @@ import { PiX } from "react-icons/pi";
 import Calendar from "react-calendar";
 
 import "react-calendar/dist/Calendar.css";
+
+import ScrollContainer from 'react-indiana-drag-scroll';
+import 'react-indiana-drag-scroll/dist/style.css'
 
 const Schedule = () => {
   const [showCalendar, setShowCalendar] = useState(false);
@@ -137,7 +140,9 @@ const Schedule = () => {
             </button>
           </div>
         </div>
-        <div className="flex w-full px-[24px] overflow-scroll hide-scroll">
+        <ScrollContainer
+          className="flex w-full px-[24px] overflow-scroll hide-scroll"
+        >
           <div className="group flex flex-col items-center gap-[24px] py-[24px] h-screen min-w-[282px] rounded-t-[20px] ">
             <div className="h-fit px-[10px] py-[6px] rounded-full group-hover:bg-light-yellow duration-300">
               09.00 AM
@@ -443,7 +448,7 @@ const Schedule = () => {
               07.00 AM
             </div>
           </div>
-        </div>
+        </ScrollContainer>
       </div>
       <div
         className={`${

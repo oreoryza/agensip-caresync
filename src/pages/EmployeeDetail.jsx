@@ -12,7 +12,9 @@ import { PiPhone } from "react-icons/pi";
 import { PiCalendarDots } from "react-icons/pi";
 import { PiPencilSimple } from "react-icons/pi";
 import { FaStar } from "react-icons/fa";
-import { FiArrowUpRight } from "react-icons/fi";
+
+import ScrollContainer from 'react-indiana-drag-scroll';
+import 'react-indiana-drag-scroll/dist/style.css'
 
 import { Doughnut } from "react-chartjs-2";
 import { Line } from "react-chartjs-2";
@@ -378,7 +380,7 @@ const EmployeeDetail = () => {
           </div>
           <div className="bg-white/[.4] h-full rounded-[20px] overflow-hidden">
             <p className="ml-[20px] mt-[20px] mb-[24px] text-subtitle font-bold">Schedule</p>
-            <div className="flex w-full px-[24px] overflow-scroll hide-scroll h-full max-xl:min-h-[336px] xl:max-w-[432px]">
+            <ScrollContainer className="flex w-full px-[24px] overflow-scroll hide-scroll h-full max-xl:min-h-[336px] xl:max-w-[432px]">
               <div className="group flex justify-center p-[6px] min-w-[92px] rounded-t-[20px] ">
                 <div className="text-xs h-fit px-[10px] py-[6px] rounded-full group-hover:bg-light-yellow duration-300">
                   09.00 AM
@@ -454,7 +456,7 @@ const EmployeeDetail = () => {
                   07.00 AM
                 </div>
               </div>
-            </div>
+            </ScrollContainer>
           </div>
         </div>
       </div>
