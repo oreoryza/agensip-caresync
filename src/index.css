@@ -118,6 +118,12 @@ option {
   display: none;
 }
 
+.card {
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 20px;
+  backdrop-filter: blur(16px);
+}
+
 .bg-mobile {
   background-image: url(../public/bg-desktop.svg);
   background-size: cover;

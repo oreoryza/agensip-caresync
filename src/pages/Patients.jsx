@@ -33,7 +33,7 @@ const Patients = () => {
       <h2 className="font-bold">Patients</h2>
       <div className="flex flex-col gap-[16px] mt-[24px]">
         <div className="flex max-xl:flex-col-reverse gap-[16px]">
-          <div className="flex max-xl:flex-col w-full bg-white/[.4] rounded-[20px] overflow-hidden">
+          <div className="flex max-xl:flex-col w-full card overflow-hidden">
             <div className="flex flex-col justify-between p-[20px]">
               <p className="text-small font-bold">Patient locations</p>
               <div className="max-xl:flex gap-2 justify-around">
@@ -108,24 +108,24 @@ const Patients = () => {
             </div>
           </div>
           <div className="flex max-[375px]:flex-wrap xl:flex-col xl:gap-[16px] gap-[10px]">
-            <div className="bg-white/[.4] p-[20px] rounded-[20px] w-full">
+            <div className="card p-[20px] w-full">
               <TotalPatients />
             </div>
-            <div className="bg-white/[.4] p-[20px] rounded-[20px] w-full">
+            <div className="card p-[20px] w-full">
               <AppointmentsChart />
             </div>
           </div>
         </div>
-        <div className="flex flex-col gap-[10px] w-full bg-white/[.4] xl:p-[40px] p-[14px] rounded-[20px]">
+        <div className="flex flex-col gap-[10px] w-full card xl:p-[40px] p-[14px]">
           <div className="flex justify-between items-center mb-[20px]">
             <div className="flex gap-2 max-xl:hidden">
               {categories.map((category) => (
                 <button
                   onClick={() => setSelectedCategory(category)}
-                  className={`text-small outline-1 outline-black/[.1] px-[20px] py-[10px] rounded-full ${
+                  className={`text-small outline-black/[.1] px-[20px] py-[10px] rounded-full ${
                     selectedCategory === category
-                      ? "bg-white outline-o text-black font-medium"
-                      : "text-black/[.5]"
+                      ? "bg-white outline-0 text-black font-medium"
+                      : "text-black/[.5] outline-1"
                   }`}
                 >
                   {category}

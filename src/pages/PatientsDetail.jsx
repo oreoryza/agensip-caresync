@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setPatient } from "../redux/slices/patientSlice";
-import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 
 import { BsChevronRight } from "react-icons/bs";
@@ -32,7 +31,8 @@ const PatientsDetail = () => {
   }, [id, dispatch]);
 
   return (
-    <div className="container slideIn">
+    <main className="container slideIn">
+      {/* Page navigation */}
       <div className="flex items-center gap-[7px] xl:pl-[17px]">
         <Link
           to={"/patients"}
@@ -43,7 +43,8 @@ const PatientsDetail = () => {
         <BsChevronRight className="opacity-50" />
         <p className="text-green">Patients Detail</p>
       </div>
-      <div className="flex max-xl:flex-col justify-between pt-[17px] xl:pl-[17px] w-full h-full">
+      {/* Top section */}
+      <section className="flex max-xl:flex-col justify-between pt-[17px] xl:pl-[17px] w-full h-full">
         <div className="flex max-sm:flex-col w-full">
           <div className="relative w-full xl:max-w-[294px]">
             <img
@@ -127,15 +128,16 @@ const PatientsDetail = () => {
             <PiPencilSimple className="size-[16px]" />
             Edit Profile
           </button>
-          <div className="flex flex-col gap-[16px] bg-white/[.4] p-[20px] rounded-[20px]">
+          <div className="flex flex-col gap-[16px] card p-[20px]">
             <p className="font-bold text-subtitle">About</p>
             <p className="text-small opacity-50">{patient.about}</p>
           </div>
         </div>
-      </div>
-      <div className="flex max-xl:flex-col gap-[16px] w-full">
+      </section>
+      {/* Bottom section */}
+      <section className="flex max-xl:flex-col gap-[16px] w-full">
         <div className="grid grid-cols-2 gap-[16px] w-full">
-          <div className="bg-white/[.4] rounded-[20px] p-[16px]">
+          <div className="card p-[16px]">
             <p className="text-small font-medium">Experience</p>
             <div className="flex xl:flex-wrap items-center gap-2">
               <h1 className="font-bold">{patient.ages}</h1>
@@ -152,7 +154,7 @@ const PatientsDetail = () => {
               </p>
             </div>
           </div>
-          <div className="bg-white/[.4] rounded-[20px] p-[16px]">
+          <div className="card p-[16px]">
             <p className="text-small font-medium">Rating</p>
             <div className="flex xl:flex-wrap items-center gap-2">
               <h1 className="font-bold">{patient.rating}</h1>
@@ -169,8 +171,8 @@ const PatientsDetail = () => {
               </p>
             </div>
           </div>
-          <div className="col-span-2 bg-white/[.4] rounded-[20px] overflow-hidden">
-            <div className="flex flex-col gap-2 p-[16px] backdrop-blur-sm">
+          <div className="col-span-2 card overflow-hidden">
+            <div className="flex flex-col gap-2 p-[16px]">
               <p className="text-small font-medium">Education</p>
               <div className="flex items-center gap-4">
                 <img
@@ -191,9 +193,9 @@ const PatientsDetail = () => {
           </div>
           <div className="col-span-2 xl:max-w-[381px]">
             <p className="text-subtitle font-bold">Hospital sheet</p>
-            <div className="flex gap-[10px] mt-[20px] overflow-x-scroll hide-scroll">
+            <ScrollContainer className="flex gap-[10px] mt-[20px] overflow-x-scroll hide-scroll">
               {patient.sheet?.map((card) => (
-                <div className="flex flex-col gap-[16px] bg-white/[.4] p-[16px] rounded-[20px] min-w-[321px]">
+                <div className="flex flex-col gap-[16px] card p-[16px] min-w-[321px]">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-[6px]">
                       <div className="size-[36px] bg-light-green rounded-[100%]"></div>
@@ -212,10 +214,10 @@ const PatientsDetail = () => {
                   </div>
                 </div>
               ))}
-            </div>
+            </ScrollContainer>
           </div>
         </div>
-        <div className="flex flex-col gap-[30px] bg-white/[.4] rounded-[20px] w-full p-[16px] max-h-[550px] overflow-hidden">
+        <div className="flex flex-col gap-[30px] card w-full p-[16px] max-h-[550px] overflow-hidden">
           <div className="flex justify-between items-center">
             <p className="text-subtitle font-bold">Doctor lists</p>
             <select
@@ -255,7 +257,7 @@ const PatientsDetail = () => {
           </div>
         </div>
         <div className="flex flex-col gap-[16px] w-full">
-          <div className="bg-white/[.4] rounded-[20px]">
+          <div className="card">
             <div className="w-full">
               <div className="flex flex-col gap-[14px] p-[16px]">
                 <div className="flex items-center justify-between">
@@ -268,7 +270,7 @@ const PatientsDetail = () => {
               </div>
             </div>
           </div>
-          <div className="bg-white/[.4] h-full rounded-[20px] overflow-hidden">
+          <div className="card h-full overflow-hidden">
             <p className="ml-[20px] mt-[20px] mb-[24px] text-subtitle font-bold">
               Schedule
             </p>
@@ -353,8 +355,8 @@ const PatientsDetail = () => {
             </ScrollContainer>
           </div>
         </div>
-      </div>
-    </div>
+      </section>
+    </main>
   );
 };
 

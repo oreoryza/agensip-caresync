@@ -57,7 +57,7 @@ const Schedule = () => {
   };
 
   return (
-    <div className="container overflow-hidden slideIn">
+    <main className="container overflow-hidden slideIn">
       <div className="flex justify-between items-center">
         <h2 className="font-bold">Schedule</h2>
         <div className="flex items-center gap-[20px] py-[8px] pl-[24px] pr-[8px] outline-1 outline-black/[.1] rounded-full">
@@ -75,16 +75,17 @@ const Schedule = () => {
           <Calendar onChange={handleDateChange} value={selectedDate} />
         </div>
       )}
-      <div className="flex flex-col bg-white/[.4] mt-[40px] rounded-[20px] overflow-hidden">
+      <div className="flex flex-col card mt-[40px] overflow-hidden">
+        {/* Toolbar */}
         <div className="flex justify-between items-center xl:my-[50px] xl:mx-[40px] max-xl:p-[14px] max-xl:mb-[10px]">
           <div className="flex gap-2 max-xl:hidden">
             {categories.map((category) => (
               <button
                 onClick={() => setSelectedCategory(category)}
-                className={`flex items-center gap-[4px] text-small outline-1 outline-black/[.1] px-[20px] py-[10px] rounded-full ${
+                className={`flex items-center gap-[4px] text-small outline-black/[.1] px-[20px] py-[10px] rounded-full ${
                   selectedCategory === category
-                    ? "bg-white outline-o text-black font-medium"
-                    : "text-black/[.5]"
+                    ? "bg-white outline-0 text-black font-medium"
+                    : "text-black/[.5] outline-1"
                 }`}
               >
                 <div
@@ -450,6 +451,7 @@ const Schedule = () => {
           </div>
         </ScrollContainer>
       </div>
+      {/* Schedule detail modal */}
       <div
         className={`${
           isModalOpen && selectedSchedule ? "fadeIn" : "hidden"
@@ -500,7 +502,7 @@ const Schedule = () => {
         </div>
       </div>
       <AddSchedule isOpen={isAdd} onClose={() => setIsAdd(false)} />
-    </div>
+    </main>
   );
 };
 

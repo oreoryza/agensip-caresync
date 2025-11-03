@@ -19,8 +19,9 @@ const Auth = () => {
   const toggleLogin = () => setIsLogin(!isLogin);
 
   return (
-    <div className="flex max-xl:flex-col-reverse xl:justify-between xl:p-[20px] w-screen h-screen fadeIn">
-      <div className="max-xl:fixed max-xl:flex flex-col justify-between top-0 z-1 w-full h-full">
+    <main className="flex max-xl:flex-col-reverse xl:justify-between xl:p-[20px] w-screen h-screen fadeIn">
+      {/* Left section */}
+      <section className="max-xl:fixed max-xl:flex flex-col justify-between top-0 z-1 w-full h-full">
         <div className="flex flex-col justify-between h-full px-[24px] py-[34px] max-md:py-[12px] xl:hidden">
           <img
             src={logo}
@@ -55,8 +56,9 @@ const Auth = () => {
             <SignUp toggleLogin={toggleLogin} />
           )}
         </div>
-      </div>
-      <div className="relative w-full xl:h-full max-xl:h-screen bg-cover xl:rounded-[20px] overflow-hidden">
+      </section>
+      {/* Right section */}
+      <section className="relative w-full xl:h-full max-xl:h-screen bg-cover xl:rounded-[20px] overflow-hidden">
         <img
           src={isLogin ? loginImg : signupImg}
           alt="Doctors"
@@ -85,8 +87,8 @@ const Auth = () => {
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      </section>
+    </main>
   );
 };
 

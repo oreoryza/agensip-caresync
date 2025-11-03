@@ -6,7 +6,7 @@ import adam from "/patients/adam.png"
 
 const Notifications = ({ onClose }) => {
   return (
-    <div>
+    <div className="flex flex-col">
       <div className="flex justify-between items-center px-[16px]">
         <div className="flex items-center gap-2">
           <p className="font-medium">Notifications</p>

@@ -97,7 +97,8 @@ const EmployeeDetail = () => {
   };
 
   return (
-    <div className="container slideIn">
+    <main className="container slideIn">
+      {/* Page navigation */}
       <div className="flex items-center gap-[7px] xl:pl-[17px]">
         <Link
           to={"/employee"}
@@ -108,7 +109,8 @@ const EmployeeDetail = () => {
         <BsChevronRight className="opacity-50" />
         <p className="text-green">Employee Detail</p>
       </div>
-      <div className="flex max-xl:flex-col justify-between pt-[17px] xl:pl-[17px] w-full h-full">
+      {/* Top section */}
+      <section className="flex max-xl:flex-col justify-between pt-[17px] xl:pl-[17px] w-full h-full">
         <div className="flex max-sm:flex-col w-full">
           <div className="relative w-full xl:max-w-[294px]">
             <img
@@ -192,15 +194,16 @@ const EmployeeDetail = () => {
             <PiPencilSimple className="size-[16px]" />
             Edit Profile
           </button>
-          <div className="flex flex-col gap-[16px] bg-white/[.4] p-[20px] rounded-[20px]">
+          <div className="card flex flex-col gap-[16px] p-[20px]">
             <p className="font-bold text-subtitle">About</p>
             <p className="text-small opacity-50">{employee.about}</p>
           </div>
         </div>
-      </div>
-      <div className="flex max-xl:flex-col gap-[16px] w-full">
+      </section>
+      {/* Bottom section */}
+      <section className="flex max-xl:flex-col gap-[16px] w-full">
         <div className="grid grid-cols-2 gap-[16px] w-full">
-          <div className="bg-white/[.4] rounded-[20px] p-[16px]">
+          <div className="card p-[16px]">
             <p className="text-small font-medium">Experience</p>
             <div className="flex xl:flex-wrap items-center gap-2">
               <h1 className="font-bold">{employee.experience}</h1>
@@ -210,7 +213,7 @@ const EmployeeDetail = () => {
               </p>
             </div>
           </div>
-          <div className="bg-white/[.4] rounded-[20px] p-[16px]">
+          <div className="card p-[16px]">
             <p className="text-small font-medium">Rating</p>
             <div className="flex xl:flex-wrap items-center gap-2">
               <h1 className="font-bold">{employee.rating}</h1>
@@ -227,8 +230,8 @@ const EmployeeDetail = () => {
               </p>
             </div>
           </div>
-          <div className="col-span-2 bg-white/[.4] rounded-[20px] overflow-hidden">
-            <div className="flex flex-col gap-2 p-[16px] backdrop-blur-sm">
+          <div className="col-span-2 card overflow-hidden">
+            <div className="flex flex-col gap-2 p-[16px]">
               <p className="text-small font-medium">Education</p>
               <div className="flex items-center gap-4">
                 <img
@@ -247,8 +250,8 @@ const EmployeeDetail = () => {
               </div>
             </div>
           </div>
-          <div className="col-span-2 bg-white/[.4] rounded-[20px] overflow-hidden">
-            <div className="p-[16px] backdrop-blur-sm">
+          <div className="col-span-2 card overflow-hidden">
+            <div className="p-[16px]">
               <p className="text-small font-bold">Satisfaction</p>
               <div className="flex flex-col items-center overflow-hidden">
                 <div className="relative flex justify-center items-center">
@@ -305,7 +308,7 @@ const EmployeeDetail = () => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col gap-[30px] bg-white/[.4] rounded-[20px] w-full p-[16px] max-h-[635px] overflow-hidden">
+        <div className="flex flex-col gap-[30px] card w-full p-[16px] max-h-[635px] overflow-hidden">
           <div className="flex justify-between items-center">
             <p className="text-subtitle font-bold">Patient lists</p>
             <select
@@ -345,7 +348,7 @@ const EmployeeDetail = () => {
           </div>
         </div>
         <div className="flex flex-col gap-[16px] w-full">
-          <div className="bg-white/[.4] rounded-[20px]">
+          <div className="card">
             <div className="w-full">
               <div className="p-[16px]">
                 <p className="text-small font-medium">
@@ -378,7 +381,7 @@ const EmployeeDetail = () => {
               </div>
             </div>
           </div>
-          <div className="bg-white/[.4] h-full rounded-[20px] overflow-hidden">
+          <div className="card h-full overflow-hidden">
             <p className="ml-[20px] mt-[20px] mb-[24px] text-subtitle font-bold">Schedule</p>
             <ScrollContainer className="flex w-full px-[24px] overflow-scroll hide-scroll h-full max-xl:min-h-[336px] xl:max-w-[432px]">
               <div className="group flex justify-center p-[6px] min-w-[92px] rounded-t-[20px] ">
@@ -459,8 +462,8 @@ const EmployeeDetail = () => {
             </ScrollContainer>
           </div>
         </div>
-      </div>
-    </div>
+      </section>
+    </main>
   );
 };
 

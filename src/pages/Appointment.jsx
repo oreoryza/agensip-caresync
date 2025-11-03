@@ -37,22 +37,24 @@ const Appointment = () => {
         );
 
   return (
-    <div className="container slideIn">
+    <main className="container slideIn">
       <h2 className="font-bold">Appointments</h2>
+      {/* Charts */}
       <div className="overflow-x-auto">
         <div className="flex xl:grid grid-cols-3 gap-[16px] mt-[25px]">
-          <div className="bg-white/[.4] min-w-[172px] w-full p-[20px] rounded-[20px]">
+          <section className="card min-w-[172px] w-full p-[20px]">
             <TotalPatients />
-          </div>
-          <div className="bg-white/[.4] min-w-[172px] w-full p-[20px] rounded-[20px]">
+          </section>
+          <section className="card min-w-[172px] w-full p-[20px]">
             <AppointmentsChart />
-          </div>
-          <div className="bg-white/[.4] min-w-[172px] w-full p-[20px] rounded-[20px]">
+          </section>
+          <section className="card min-w-[172px] w-full p-[20px]">
             <Room />
-          </div>
+          </section>
         </div>
       </div>
-      <div className="flex justify-between mt-[24px] ml-0.5">
+      {/* Toolbar */}
+      <section className="flex justify-between mt-[24px] ml-0.5">
         <div className="flex gap-2 max-xl:hidden">
           {status.map((stat) => (
             <button
@@ -61,7 +63,7 @@ const Appointment = () => {
               className={`px-4 py-2 rounded-full text-sm ${
                 selectedStatus === stat
                   ? "bg-white text-black"
-                  : "outline-1 outline-black/[.6] text-black/[.6]"
+                  : "outline-1 outline-black/[.1] text-black/[.5]"
               }`}
             >
               {stat}
@@ -101,11 +103,12 @@ const Appointment = () => {
             <FaPlus className="text-white group-hover:rotate-90 duration-300" />
           </button>
         </div>
-      </div>
+      </section>
+      {/* Appointments lists */}
       {data.patients.appointments.length > 0 ? (
-        <div className="grid xl:grid-cols-3 grid-cols-1 gap-[10px] mt-[20px]">
+        <section className="grid xl:grid-cols-3 grid-cols-1 gap-[10px] mt-[20px]">
           {filteredStatus.map((appointment, index) => (
-            <div key={index + 1} className="bg-white/[.4] rounded-[20px]">
+            <div key={index + 1} className="card">
               <div className="xl:p-[20px] p-[16px]">
                 <div className="flex max-xl:flex-wrap-reverse max-xl:gap-2 justify-between items-center">
                   <div className="flex gap-[10px] items-center">
@@ -220,7 +223,7 @@ const Appointment = () => {
               )}
             </div>
           ))}
-        </div>
+        </section>
       ) : (
         <div className="flex flex-col gap-[10px] justify-center items-center w-full h-[400px] py-[24px]">
           <div className="flex items-center justify-center size-[40px] rounded-[100%] bg-light-green text-green">
@@ -239,7 +242,7 @@ const Appointment = () => {
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
       />
-    </div>
+    </main>
   );
 };
 

@@ -57,9 +57,10 @@ const Profile = () => {
   };
 
   return (
-    <div className="container slideIn">
+    <main className="container slideIn">
       <h2 className="font-bold">Profile</h2>
-      <div className="flex max-xl:flex-col justify-between pt-[17px] xl:pl-[17px] w-full h-full">
+      {/* Top section */}
+      <section className="flex max-xl:flex-col justify-between pt-[17px] xl:pl-[17px] w-full h-full">
         <div className="flex max-sm:flex-col w-full">
           <div className="relative w-full xl:max-w-[294px]">
             <img
@@ -143,15 +144,16 @@ const Profile = () => {
             <PiPencilSimple className="size-[16px]" />
             Edit Profile
           </button>
-          <div className="flex flex-col gap-[16px] bg-white/[.4] p-[20px] rounded-[20px]">
+          <div className="flex flex-col gap-[16px] card p-[20px]">
             <p className="font-bold text-subtitle">About</p>
             <p className="text-small opacity-50">{profile.about}</p>
           </div>
         </div>
-      </div>
-      <div className="flex max-xl:flex-col gap-[16px] w-full">
+      </section>
+      {/* Bottom section */}
+      <section className="flex max-xl:flex-col gap-[16px] w-full">
         <div className="grid grid-cols-2 gap-[16px] w-full">
-          <div className="bg-white/[.4] rounded-[20px] p-[16px]">
+          <div className="card p-[16px]">
             <p className="text-small font-medium">Employment</p>
             <div className="flex xl:flex-wrap items-center gap-2">
               <h1 className="font-bold">{profile.experience}</h1>
@@ -161,7 +163,7 @@ const Profile = () => {
               </p>
             </div>
           </div>
-          <div className="bg-white/[.4] rounded-[20px] p-[16px]">
+          <div className="card p-[16px]">
             <p className="text-small font-medium">Salary</p>
             <div className="flex xl:flex-wrap items-center gap-2">
               <h1 className="font-bold">{profile.salary}</h1>
@@ -171,7 +173,7 @@ const Profile = () => {
               </p>
             </div>
           </div>
-          <div className="col-span-2 flex flex-col gap-2 bg-white/[.4] rounded-[20px] p-[16px]">
+          <div className="col-span-2 flex flex-col gap-2 card p-[16px]">
             <p className="text-small font-medium">Education</p>
             <div className="flex items-center gap-4">
               <img
@@ -189,8 +191,8 @@ const Profile = () => {
               </div>
             </div>
           </div>
-          <div className="col-span-2 bg-white/[.4] rounded-[20px] overflow-hidden">
-            <div className="p-[16px] backdrop-blur-sm">
+          <div className="col-span-2 card overflow-hidden">
+            <div className="p-[16px]">
               <p className="text-small font-bold">Satisfaction</p>
               <div className="flex flex-col items-center overflow-hidden">
                 <div className="relative flex justify-center items-center">
@@ -247,7 +249,7 @@ const Profile = () => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col gap-[30px] bg-white/[.4] rounded-[20px] w-full p-[16px] max-h-[635px] overflow-hidden">
+        <div className="flex flex-col gap-[30px] card w-full p-[16px] max-h-[635px] overflow-hidden">
           <p className="text-subtitle font-bold">Today tasks</p>
           <div className="overflow-auto hide-scroll">
             {profile.tasks?.map((task, index) => (
@@ -259,7 +261,7 @@ const Profile = () => {
                   <p className="text-small font-medium">{task.name}</p>
                   <p className="text-xs text-black/[.6]">{task.description}</p>
                 </div>
-                <div className="flex justify-between items-center">
+                <div className="flex max-xl:flex-wrap justify-between items-center">
                   <p className="text-small">{task.date}</p>
                   <div className="bg-green/[.1] text-xs text-green px-[6px] py-[4px] rounded-full">
                     {task.start} to {task.end}
@@ -270,7 +272,7 @@ const Profile = () => {
           </div>
         </div>
         <div className="flex flex-col gap-[16px] w-full xl:min-w-[410px]">
-          <div className="bg-white/[.4] rounded-[20px] p-[20px]">
+          <div className="card p-[20px]">
             <p className="text-small font-medium">Working duration</p>
             <div className="flex flex-col justify-between items-start gap-2">
               <Timer
@@ -285,7 +287,7 @@ const Profile = () => {
               />
             </div>
           </div>
-          <div className="flex flex-col gap-[20px] bg-white/[.4] rounded-[20px] p-[20px]">
+          <div className="flex flex-col gap-[20px] card p-[20px]">
             <div className="flex flex-wrap justify-between items-center">
               <div>
                 <p className="text-subtitle font-bold">Attendance report</p>
@@ -333,8 +335,8 @@ const Profile = () => {
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      </section>
+    </main>
   );
 };
 

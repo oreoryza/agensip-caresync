@@ -7,7 +7,8 @@ import { BsChevronRight } from "react-icons/bs";
 
 const GetStarted = () => {
   return (
-    <div className="w-full xl:pb-[34px] pb-[100px] max-xl:pt-[24px] slideIn">
+    <main className="w-full xl:pb-[34px] pb-[100px] max-xl:pt-[24px] slideIn">
+      {/* Page navigation */}
       <div className="flex items-center gap-[7px] xl:pl-[17px]">
         <Link
           to={"/help-center"}
@@ -18,7 +19,8 @@ const GetStarted = () => {
         <BsChevronRight className="opacity-50" />
         <p className="text-green">Getting Started</p>
       </div>
-      <div className="relative mt-[24px] mb-[40px]">
+      {/* Top section */}
+      <section className="relative mt-[24px] mb-[40px]">
         <img
           src={surgery}
           alt="Surgery"
@@ -31,17 +33,19 @@ const GetStarted = () => {
             features.
           </p>
         </div>
-      </div>
+      </section>
       <div className="relative flex gap-[40px]">
-        <div className="sticky top-[120px] flex flex-col gap-[16px] max-w-[180px] h-fit max-xl:hidden">
+        {/* Bottom section contents list */}
+        <section className="sticky top-[120px] flex flex-col gap-[16px] max-w-[180px] h-fit max-xl:hidden">
           <a href="#login">Logging in</a>
           <a href="#dashboard-preview">Dashboard Overview</a>
           <a href="#">Updating Profile</a>
           <a href="#">Managing Patient</a>
           <a href="#">Managing Appointments</a>
           <a href="#">Billing Payements</a>
-        </div>
-        <div className="flex flex-col w-full gap-[24px]">
+        </section>
+        {/* Bottom section contents */}
+        <section className="flex flex-col w-full gap-[24px]">
           <div id="dashboard-preview" className="flex flex-col gap-[16px]">
             <div className="flex flex-col gap-[10px]">
               <h4 className="font-bold">Logging In</h4>
@@ -111,9 +115,9 @@ const GetStarted = () => {
               </li>
             </ol>
           </div>
-        </div>
+        </section>
       </div>
-    </div>
+    </main>
   );
 };
 

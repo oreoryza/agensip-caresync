@@ -24,8 +24,9 @@ const Employee = () => {
       : employees.filter((emp) => emp.jobCategory === selectedJobCategory);
 
   return (
-    <div className="container slideIn">
+    <main className="container slideIn">
       <h2 className="font-bold">Employee</h2>
+      {/* Toolbar */}
       <div className="flex justify-between my-[24px]">
         <div className="flex gap-2 ml-0.5 max-xl:hidden">
           {jobCategories.map((category) => (
@@ -35,7 +36,7 @@ const Employee = () => {
               className={`px-4 py-2 rounded-full text-sm ${
                 selectedJobCategory === category
                   ? "bg-white text-black"
-                  : "outline-1 outline-black/[.6] text-black/[.6]"
+                  : "outline-1 outline-black/[.1] text-black/[.5]"
               }`}
             >
               {category}
@@ -73,11 +74,12 @@ const Employee = () => {
           </button>
         </div>
       </div>
+      {/* Employees lists */}
       {employees.length > 0 ? (
         <div className="grid xl:grid-cols-3 lg:grid-cols-2 gap-[10px]">
           {filteredEmployees.map((employee) => (
             <Link to={`/employee/${employee.id}`} key={employee.id}>
-              <div className="group flex bg-white rounded-[20px] sm:pt-[24px] pt-[14px] sm:pr-[28px] pr-[16px] h-full overflow-hidden">
+              <div className="group flex card sm:pt-[24px] pt-[14px] sm:pr-[28px] pr-[16px] h-full overflow-hidden">
                 <img
                   src={employee.img}
                   alt={employee.name}
@@ -119,7 +121,7 @@ const Employee = () => {
           <button className="text-small font-medium text-green">+add new</button>
         </div>
       )}
-    </div>
+    </main>
   );
 };
 

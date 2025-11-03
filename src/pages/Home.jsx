@@ -38,10 +38,10 @@ const Home = () => {
         );
 
   return (
-    <div className="container h-full slideIn">
+    <main className="container h-full slideIn">
       <div className="flex max-xl:flex-col-reverse gap-[16px] h-full">
         {/* Appointment lists card */}
-        <div className="flex flex-col gap-[24px] bg-white/[.4] backdrop-blur xl:px-[20px] px-[14px] pt-[20px] rounded-[20px]">
+        <section className="flex flex-col gap-[24px] card xl:px-[20px] px-[14px] pt-[20px]">
           <div className="flex justify-between items-center">
             <p className="text-subtitle font-bold">Appointments</p>
             <select className="text-xs">
@@ -162,12 +162,12 @@ const Home = () => {
               </div>
             )}
           </div>
-        </div>
+        </section>
         <div className="flex xl:flex-col flex-col-reverse gap-[16px] w-full">
           <div className="flex max-xl:flex-col-reverse gap-[16px]">
             <div className="flex flex-col gap-[16px] w-full">
               {/* Patients card */}
-              <div className="flex flex-col gap-[24px] bg-white/[.4] p-[20px] rounded-[20px]">
+              <section className="flex flex-col gap-[24px] card p-[20px]">
                 <div className="flex max-[375px]:flex-wrap justify-between max-[375px]:justify-end items-center gap-2">
                   <div className="flex gap-[16px]">
                     <div className="flex items-center justify-center min-w-[42px] max-w-[42px] min-h-[42px] max-h-[42px] bg-white rounded-[100%]">
@@ -231,9 +231,9 @@ const Home = () => {
                     </div>
                   )}
                 </div>
-              </div>
+              </section>
               {/* Polyclinics card */}
-              <div className="flex flex-col gap-[20px] bg-white/[.4] xl:p-[20px] p-[14px] rounded-[20px] h-full">
+              <section className="flex flex-col gap-[20px] card xl:p-[20px] p-[14px] h-full">
                 <div className="flex max-[375px]:flex-wrap justify-between max-[375px]:justify-end items-center gap-2">
                   <div className="flex gap-[16px]">
                     <div className="flex items-center justify-center min-w-[42px] max-w-[42px] min-h-[42px] max-h-[42px] bg-white rounded-[100%]">
@@ -318,30 +318,30 @@ const Home = () => {
                     </div>
                   )}
                 </div>
-              </div>
+              </section>
             </div>
             <div className="xl:flex flex-col gap-[16px] grid grid-cols-2 max-[375px]:grid-cols-1">
               {/* Total patients card */}
-              <div className="bg-white/[.4] p-[20px] rounded-[20px] h-full">
+              <section className="card p-[20px] h-full">
                 <TotalPatients />
-              </div>
+              </section>
               {/* Appointments chart card */}
-              <div className="bg-white/[.4] p-[20px] rounded-[20px] h-full">
+              <section className="card p-[20px] h-full">
                 <AppointmentsChart />
-              </div>
+              </section>
               {/* Room card */}
-              <div className="bg-white/[.4] p-[20px] rounded-[20px] h-full">
+              <section className="card p-[20px] h-full">
                 <Room />
-              </div>
+              </section>
               {/* Total Ambulances card */}
-              <div className="bg-white/[.4] p-[20px] rounded-[20px] h-full xl:min-w-[300px]">
+              <section className="card p-[20px] h-full xl:min-w-[300px]">
                 <TotalAmbulances />
-              </div>
+              </section>
             </div>
           </div>
           <div className="flex max-xl:flex-col-reverse gap-[16px] w-full">
             {/* Patients gender card */}
-            <div className="flex flex-col gap-[24px] bg-white/[.4] p-[20px] rounded-[20px] w-full">
+            <section className="flex flex-col gap-[24px] card p-[20px] w-full">
               <div className="flex justify-between items-center gap-2">
                 <div className="flex gap-[16px]">
                   <div className="flex items-center justify-center min-w-[42px] max-w-[42px] min-h-[42px] max-h-[42px] bg-white rounded-[100%]">
@@ -371,9 +371,9 @@ const Home = () => {
                   </p>
                 </div>
               )}
-            </div>
+            </section>
             {/* doctor & nurses card */}
-            <div className="flex flex-col justify-between gap-[24px] xl:bg-white/[.4] p-[20px] rounded-[20px] w-full h-full">
+            <section className="flex flex-col justify-between gap-[24px] xl:bg-white/[.4] xl:backdrop-blur p-[20px] rounded-[20px] w-full h-full">
               <div className="flex max-[375px]:flex-wrap justify-between max-[375px]:justify-end items-center gap-2">
                 <div className="flex gap-[16px]">
                   <div className="flex items-center justify-center min-w-[42px] max-w-[42px] min-h-[42px] max-h-[42px] bg-white rounded-[100%]">
@@ -411,11 +411,11 @@ const Home = () => {
                   </p>
                 </div>
               )}
-            </div>
+            </section>
           </div>
         </div>
       </div>
-    </div>
+    </main>
   );
 };
 

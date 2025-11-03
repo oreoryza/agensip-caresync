@@ -271,7 +271,7 @@ const AddAppointments = ({ isOpen, onClose }) => {
               </div>
             </div>
           ) : (
-            <div className="py-[24px] px-[24px] max-h-[300px] xl:hide-scroll overflow-y-auto">
+            <div className="py-[24px] px-[24px] max-h-[300px] hide-scroll overflow-y-auto">
               <form className="flex flex-col gap-[10px]">
                 <div className="flex flex-col gap-2">
                   <label

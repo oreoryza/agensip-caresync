@@ -18,7 +18,7 @@ const Login = ({ toggleLogin }) => {
   const [password, setPassword] = useState("");
 
   const handleChange = (setter) => (e) => {
-    // Membersihkan input menggunakan dompurify
+    // secure input with dompurify
     const sanitizedValue = DOMPurify.sanitize(e.target.value);
     setter(sanitizedValue);
   };

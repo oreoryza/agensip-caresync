@@ -66,7 +66,7 @@ const Room = () => {
               className="max-w-[200px]"
             />
           </div>
-          <div className="xl:absolute right-0 flex flex-col gap-[10px] max-w-[120px]">
+          <div className="xl:absolute right-0 flex flex-col gap-[10px] max-w-[105px]">
             <h2 className="font-bold">{data.patients.total.slice(-1)[0]}</h2>
             <p className="text-xs text-black/[.6]">
               <span className="text-green font-medium">

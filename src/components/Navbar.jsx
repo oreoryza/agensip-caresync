@@ -19,7 +19,7 @@ const Navbar = () => {
   return (
     <div
       className={`sticky top-[98px] pl-[30px] pr-[40px] max-w-full max-xl:hidden ${
-        isCollapse ? "w-[120px]" : "min-w-[240px]"
+        isCollapse ? "w-[121px]" : "min-w-[240px]"
       }`}
     >
       <div
@@ -165,7 +165,7 @@ const Navbar = () => {
         } flex text-small truncate`}
       >
         <p>v1.0</p>
-        <p>, Copyright Agensip</p>
+        <p>, Copyright <a href="https://start.agensip.com/" className="hover:underline" target="_blank">Agensip</a></p>
       </div>
     </div>
   );

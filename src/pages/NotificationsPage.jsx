@@ -1,6 +1,4 @@
-import React, { useState } from "react";
-
-import { PiX } from "react-icons/pi";
+import React, { useState } from "react"
 
 import adam from "/patients/adam.png";
 
@@ -26,10 +24,10 @@ const NotificationsPage = () => {
             {categories.map((category) => (
               <button
                 onClick={() => setSelectedCategory(category)}
-                className={`text-small w-full outline-1 outline-black/[.1] px-[20px] py-[10px] rounded-full ${
+                className={`text-small w-full outline-black/[.1] px-[20px] py-[10px] rounded-full ${
                   selectedCategory === category
                     ? "bg-white outline-o text-black font-medium"
-                    : "text-black/[.5]"
+                    : "text-black/[.5] outline-1"
                 }`}
               >
                 {category}

@@ -1,8 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-import { FiArrowUpRight } from "react-icons/fi";
-
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 

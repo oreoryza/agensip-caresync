@@ -174,7 +174,7 @@ const Topbar = () => {
             title="Settings"
             className="group h-[42px] w-[42px] flex justify-center items-center bg-white z-1 rounded-[100%] max-xl:hidden"
           >
-            <RiSettings3Line className="size-[20px] group-hover:rotate-180 duration-500" />
+            <RiSettings3Line className="size-[20px] group-hover:rotate-90 duration-500" />
           </Link>
           <div className="relative">
             <Link
