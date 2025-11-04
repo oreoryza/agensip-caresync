@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import TotalPatients from "../components/charts/TotalPatients";
 import AppointmentsChart from "../components/charts/AppointmentsChart";
+import MapChart from "../components/charts/MapChart";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
@@ -80,8 +81,10 @@ const Patients = () => {
               </div>
             </div>
             <div className="relative flex justify-end w-full">
-              <img src={map} alt="" className="max-xl:w-full" />
-              <div className="absolute bottom-0 flex justify-end items-end h-[130px] w-full bg-linear-to-t from-[#F2F5F1] to-[#F2F5F1]/[.0]">
+              <div>
+                <MapChart />
+              </div>
+              <div className="absolute bottom-0 flex justify-end items-end h-[130px] w-full bg-linear-to-t from-[#F2F5F1] to-[#F2F5F1]/[.0] pointer-events-none">
                 <div className="flex gap-[20px] max-xl:px-[16px] max-xl:flex-wrap mb-[20px] xl:mr-[20px]">
                   <div className="flex items-center gap-1 text-xs text-black/[.6]">
                     <div className="size-[10px] rounded-[100%] bg-grey"></div>

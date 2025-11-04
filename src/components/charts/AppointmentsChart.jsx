@@ -46,6 +46,8 @@ const AppointmentsChart = () => {
         pointRadius: 0,
         pointHoverRadius: 4,
         hitRadius: 10,
+        fill: true,
+        backroundColor: "green"
       },
     ],
   };
