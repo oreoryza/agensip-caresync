@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import TotalPatients from "../components/charts/TotalPatients";
 import AppointmentsChart from "../components/charts/AppointmentsChart";
 import MapChart from "../components/charts/MapChart";
@@ -17,7 +17,7 @@ import patient3 from "../assets/patient-3.jpg"
 
 import { MdCall } from "react-icons/md";
 import { PiDotsThreeVertical } from "react-icons/pi";
-import { LuChevronsUpDown } from "react-icons/lu";
+import { LuChevronsUpDown, LuChevronUp, LuChevronDown } from "react-icons/lu";
 import { RiSearchLine } from "react-icons/ri";
 import { FaPlus } from "react-icons/fa";
 import { BsChevronDown } from "react-icons/bs";
@@ -27,8 +27,43 @@ const Patients = () => {
   const patients = useSelector((state) => state.patients.patients);
   const [selectedCategory, setSelectedCategory] = useState("Day");
   const [isAdd, setIsAdd] = useState(false);
+  const [sortBy, setSortBy] = useState(null);
+  const [sortOrder, setSortOrder] = useState("asc");
 
   const categories = ["Day", "Week", "Month"];
+
+  const sortedPatients = useMemo(() => {
+    if (!sortBy) return patients;
+    return [...patients].sort((a, b) => {
+      let aValue = a[sortBy];
+      let bValue = b[sortBy];
+
+      if (sortBy === "name") {
+        aValue = aValue.toLowerCase();
+        bValue = bValue.toLowerCase();
+      }
+
+      if (sortOrder === "asc") {
+        return aValue > bValue ? 1 : -1;
+      } else {
+        return aValue < bValue ? 1 : -1;
+      }
+    });
+  }, [patients, sortBy, sortOrder]);
+
+  const handleSort = (field) => {
+    if (sortBy === field) {
+      setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+    } else {
+      setSortBy(field);
+      setSortOrder("asc");
+    }
+  };
+
+  const getSortIcon = (field) => {
+    if (sortBy !== field) return <LuChevronsUpDown />;
+    return sortOrder === "asc" ? <LuChevronUp /> : <LuChevronDown />;
+  };
   return (
     <div className="container slideIn">
       <h2 className="font-bold">Patients</h2>
@@ -81,7 +116,7 @@ const Patients = () => {
               </div>
             </div>
             <div className="relative flex justify-end w-full">
-              <div>
+              <div className="overflow-x-auto">
                 <MapChart />
               </div>
               <div className="absolute bottom-0 flex justify-end items-end h-[130px] w-full bg-linear-to-t from-[#F2F5F1] to-[#F2F5F1]/[.0] pointer-events-none">
@@ -171,31 +206,31 @@ const Patients = () => {
           </div>
           <div className="flex flex-col gap-[10px] overflow-x-scroll hide-scroll w-full">
             <div className="flex text-small text-black/[.8]">
-              <div className="flex gap-2 items-center w-[17%] max-xl:min-w-[200px]">
-                Patient name <LuChevronsUpDown />
-              </div>
-              <div className="flex gap-2 items-center w-[19%] max-xl:min-w-[250px]">
-                Address <LuChevronsUpDown />
-              </div>
-              <div className="flex gap-2 items-center w-[13%] max-xl:min-w-[130px]">
-                Gender <LuChevronsUpDown />
-              </div>
-              <div className="flex gap-2 items-center w-[13%] max-xl:min-w-[130px]">
-                Category <LuChevronsUpDown />
-              </div>
-              <div className="flex gap-2 items-center w-[15%] max-xl:min-w-[150px]">
-                Treatment <LuChevronsUpDown />
-              </div>
-              <div className="flex gap-2 items-center w-[15%] max-xl:min-w-[150px]">
-                Payment <LuChevronsUpDown />
-              </div>
+              <button onClick={() => handleSort("name")} className="flex gap-2 items-center w-[17%] max-xl:min-w-[200px]">
+                Patient name {getSortIcon("name")}
+              </button>
+              <button onClick={() => handleSort("address")} className="flex gap-2 items-center w-[19%] max-xl:min-w-[250px]">
+                Address {getSortIcon("address")}
+              </button>
+              <button onClick={() => handleSort("gender")} className="flex gap-2 items-center w-[13%] max-xl:min-w-[130px]">
+                Gender {getSortIcon("gender")}
+              </button>
+              <button onClick={() => handleSort("ages")} className="flex gap-2 items-center w-[13%] max-xl:min-w-[130px]">
+                Category {getSortIcon("ages")}
+              </button>
+              <button onClick={() => handleSort("treatment")} className="flex gap-2 items-center w-[15%] max-xl:min-w-[150px]">
+                Treatment {getSortIcon("treatment")}
+              </button>
+              <button onClick={() => handleSort("payment")} className="flex gap-2 items-center w-[15%] max-xl:min-w-[150px]">
+                Payment {getSortIcon("payment")}
+              </button>
               <div className="flex gap-2 items-center max-xl:min-w-[100px]">
                 Actions
               </div>
             </div>
             {patients.length > 0 ? (
               <div className="flex flex-col gap-[6px] w-full">
-                {patients.map((patient) => (
+                {sortedPatients.map((patient) => (
                   <div
                     key={patient.id}
                     className="flex items-center bg-white/[.4] backdrop-blur xl:w-full w-fit rounded-full p-[12px] hover:bg-black/[.1] duration-300"
