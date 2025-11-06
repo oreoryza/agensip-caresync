@@ -17,7 +17,7 @@ export default defineConfig({
         display: "standalone",
         description:
           "In a world where fragmented healthcare systems often lead to confusion and inefficiencies, CareSync emerges as a game-changing solution. This cutting-edge SAAS (Software as a Service) application is specifically designed to bridge the gaps between patients, healthcare providers, and caregivers, fostering a more cohesive and patient-centric approach to healthcare.",
-        theme_color: "transparent",
+        theme_color: "#faf9f3",
         icons: [
           {
             src: "windows11/SmallTile.scale-100.png",
