@@ -11,10 +11,10 @@ export default defineConfig({
     VitePWA({
       registerType: "autoUpdate",
       includeAssets: ["icon.ico"],
-      display: "standalone",
       manifest: {
         name: "CareSync",
         short_name: "CareSync",
+        display: "standalone",
         description:
           "In a world where fragmented healthcare systems often lead to confusion and inefficiencies, CareSync emerges as a game-changing solution. This cutting-edge SAAS (Software as a Service) application is specifically designed to bridge the gaps between patients, healthcare providers, and caregivers, fostering a more cohesive and patient-centric approach to healthcare.",
         theme_color: "#ffffff",
