@@ -11,6 +11,7 @@ export default defineConfig({
     VitePWA({
       registerType: "autoUpdate",
       includeAssets: ["icon.ico"],
+      display: "standalone",
       manifest: {
         name: "CareSync",
         short_name: "CareSync",
