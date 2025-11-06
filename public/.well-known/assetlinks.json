@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "app.vercel.agensip_caresync.twa",
+      "sha256_cert_fingerprints": [
+        "BF:65:BE:7D:FA:BB:8C:D3:43:13:2B:CB:AA:8B:98:53:E6:21:FB:85:36:D6:E3:23:1F:59:E8:B9:1E:64:70:D0"
+      ]
+    }
+  }
+]
