@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 
 import AddPatients from "../sections/AddPatients";
 
-import map from "../assets/map.svg";
 import spain from "../assets/spain.svg"
 import norway from "../assets/norway.jpg"
 import sweden from "../assets/sweden.jpg"
@@ -146,10 +145,10 @@ const Patients = () => {
             </div>
           </div>
           <div className="flex max-[375px]:flex-wrap xl:flex-col xl:gap-[16px] gap-[10px]">
-            <div className="card p-[20px] w-full">
+            <div className="card p-[20px] w-full h-full">
               <TotalPatients />
             </div>
-            <div className="card p-[20px] w-full">
+            <div className="card p-[20px] w-full h-full">
               <AppointmentsChart />
             </div>
           </div>

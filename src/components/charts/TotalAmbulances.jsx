@@ -35,19 +35,21 @@ const TotalAmbulances = () => {
       </div>
       {data.ambulances.length > 0 ? (
         <div className="flex justify-between items-start gap-[38px] w-full xl:h-[120px]">
-          <div className="flex items-end gap-2 w-full h-full max-xl:hidden">
-            {data?.ambulances?.map((total, index) => (
-              <div
-                key={index}
-                title={total}
-                className={`flex w-full rounded-full ${
-                  index === data?.ambulances?.length - 1
-                    ? "bg-linear-to-b from-yellow to-green"
-                    : "bg-grey"
-                }`}
-                style={{ height: `${(total / 120) * 100}%` }}
-              ></div>
-            ))}
+          <div className="flex items-end w-full h-full max-xl:hidden">
+            <div className="flex items-end gap-2 w-full h-full growIn">
+              {data?.ambulances?.map((total, index) => (
+                <div
+                  key={index}
+                  title={total}
+                  className={`flex w-full rounded-full ${
+                    index === data?.ambulances?.length - 1
+                      ? "bg-linear-to-b from-yellow to-green"
+                      : "bg-grey"
+                  }`}
+                  style={{ height: `${(total / 120) * 100}%` }}
+                ></div>
+              ))}
+            </div>
           </div>
           <div className="flex flex-col gap-[10px]">
             <div className="flex items-center gap-2">

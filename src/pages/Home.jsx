@@ -287,7 +287,7 @@ const Home = () => {
                               Visitors
                             </p>
                           </div>
-                          <div className="relative mt-[13px] bg-linear-to-r from-green to-yellow h-[24px] rounded-full overflow-hidden">
+                          <div className="relative mt-[13px] bg-linear-to-r from-green to-yellow h-[24px] rounded-full overflow-hidden leftIn">
                             <div
                               className="absolute bottom-0 right-0 bg-grey h-full"
                               style={{

@@ -35,6 +35,12 @@ const AppointmentsChart = () => {
     100;
   const percent = percentage.toFixed(1);
 
+  const pointRadiusArray = data?.patients?.appointment?.length > 0
+    ? new Array(data.patients.appointment.length).fill(0).map((_, index) =>
+        index === data.patients.appointment.length - 1 ? 4 : 0
+      )
+    : [];
+
   const chartData = {
     labels: data?.patients?.appointment?.map((_, index) => index.toString()),
     datasets: [
@@ -43,11 +49,12 @@ const AppointmentsChart = () => {
         data: data?.patients?.appointment,
         borderColor: "green",
         tension: 0.3,
-        pointRadius: 0,
+        pointRadius: pointRadiusArray,
+        pointBackgroundColor: "green",
         pointHoverRadius: 4,
-        hitRadius: 10,
+        hitRadius: 15,
+        backgroundColor: "rgba(0, 128, 0, 0.1)",
         fill: true,
-        backroundColor: "green"
       },
     ],
   };
@@ -97,7 +104,7 @@ const AppointmentsChart = () => {
       </div>
       {data.patients.appointment.length > 0 ? (
         <div className="relative flex justify-between items-start gap-[38px] w-full xl:h-[120px] overflow-hidden">
-          <div className="w-full h-full pr-[120px] max-xl:hidden">
+          <div className="w-full h-full pr-[120px] max-xl:hidden px-2">
             <Line
               data={chartData}
               options={options}

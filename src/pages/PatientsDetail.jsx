@@ -193,7 +193,7 @@ const PatientsDetail = () => {
           </div>
           <div className="col-span-2 xl:max-w-[381px]">
             <p className="text-subtitle font-bold">Hospital sheet</p>
-            <ScrollContainer className="flex gap-[10px] mt-[20px] overflow-x-scroll hide-scroll">
+            <ScrollContainer className="flex gap-[10px] mt-[20px] overflow-x-scroll hide-scroll" style={{ overflowX: 'auto' }}>
               {patient.sheet?.map((card) => (
                 <div className="flex flex-col gap-[16px] card p-[16px] min-w-[321px]">
                   <div className="flex items-center justify-between">
@@ -274,7 +274,7 @@ const PatientsDetail = () => {
             <p className="ml-[20px] mt-[20px] mb-[24px] text-subtitle font-bold">
               Schedule
             </p>
-            <ScrollContainer className="flex w-full px-[24px] overflow-scroll hide-scroll h-full max-xl:min-h-[336px] xl:max-w-[432px]">
+            <ScrollContainer className="flex w-full px-[24px] overflow-scroll hide-scroll h-full max-xl:min-h-[336px] xl:max-w-[432px]" style={{ overflowX: 'auto' }}>
               <div className="group flex justify-center p-[6px] min-w-[92px] rounded-t-[20px] ">
                 <div className="text-xs h-fit px-[10px] py-[6px] rounded-full group-hover:bg-light-yellow duration-300">
                   09.00 AM

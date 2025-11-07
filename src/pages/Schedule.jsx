@@ -142,7 +142,8 @@ const Schedule = () => {
           </div>
         </div>
         <ScrollContainer
-          className="flex w-full px-[24px] overflow-scroll hide-scroll"
+          className="flex w-full px-[24px] hide-scroll"
+          style={{ overflowX: 'auto' }}
         >
           <div className="group flex flex-col items-center gap-[24px] py-[24px] h-screen min-w-[282px] rounded-t-[20px] ">
             <div className="h-fit px-[10px] py-[6px] rounded-full group-hover:bg-light-yellow duration-300">

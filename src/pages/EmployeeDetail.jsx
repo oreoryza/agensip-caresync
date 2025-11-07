@@ -67,6 +67,7 @@ const EmployeeDetail = () => {
         borderColor: "green",
         backgroundColor: "rgba(0, 128, 0, 0.1)",
         fill: true,
+        pointBackgroundColor: "green",
         tension: 0.3,
         pointRadius: 0,
         pointHoverRadius: 4,
@@ -279,7 +280,7 @@ const EmployeeDetail = () => {
                           display: false,
                         },
                         tooltip: {
-                          enabled: false,
+                          enabled: true,
                         },
                       },
                     }}
@@ -356,12 +357,12 @@ const EmployeeDetail = () => {
                 </p>
               </div>
               <div className="relative flex justify-between items-start gap-[38px] w-full h-[120px] overflow-hidden">
-                <div className="w-full h-full pr-[120px]">
-                  <Line
-                    data={chartData}
-                    options={options}
-                    className="w-full max-w-[225px]"
-                  />
+                <div className="pr-[120px]"> 
+                    <Line
+                      data={chartData}
+                      options={options}
+                      className="w-full max-w-[225px]"
+                    />
                 </div>
                 <div className="absolute right-[16px] flex flex-col gap-[10px] max-w-[100px]">
                   <h2 className="font-bold">
@@ -383,7 +384,7 @@ const EmployeeDetail = () => {
           </div>
           <div className="card h-full overflow-hidden">
             <p className="ml-[20px] mt-[20px] mb-[24px] text-subtitle font-bold">Schedule</p>
-            <ScrollContainer className="flex w-full px-[24px] overflow-scroll hide-scroll h-full max-xl:min-h-[336px] xl:max-w-[432px]">
+            <ScrollContainer className="flex w-full px-[24px] overflow-scroll hide-scroll h-full max-xl:min-h-[336px] xl:max-w-[432px]" style={{ overflowX: 'auto' }}>
               <div className="group flex justify-center p-[6px] min-w-[92px] rounded-t-[20px] ">
                 <div className="text-xs h-fit px-[10px] py-[6px] rounded-full group-hover:bg-light-yellow duration-300">
                   09.00 AM

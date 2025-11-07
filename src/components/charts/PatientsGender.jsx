@@ -36,7 +36,7 @@ const PatientsGender = () => {
                   display: false,
                 },
                 tooltip: {
-                  enabled: false,
+                  enabled: true,
                 },
               },
             }}

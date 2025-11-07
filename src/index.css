@@ -226,6 +226,32 @@ abbr[title] {
   }
 }
 
+.growIn {
+  animation: growIn 700ms ease;
+}
+
+@keyframes growIn {
+  from {
+    height: 0%;
+  }
+  to {
+    height: 100%;
+  }
+}
+
+.leftIn {
+  animation: leftIn 700ms ease;
+}
+
+@keyframes leftIn {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
 @media only screen and (max-width: 1280px) {
   :root {
     --text-h1: 2.25rem;
