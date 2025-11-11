@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { RiSearchLine } from "react-icons/ri";
+import { BsChevronLeft } from "react-icons/bs";
+import { PiX } from "react-icons/pi";
 
 const SearchBar = () => {
   const patients = useSelector((state) => state.patients.patients);
@@ -15,6 +16,15 @@ const SearchBar = () => {
     setSearchValue("");
     navigate("/");
   };
+
+  const handleDelete = () => {
+    setSearchValue("");
+  }
+
+  const handleBack = () => {
+    navigate(-1);
+  };
+
   return (
     <div
       className={`fixed top-0 bg-mobile w-screen h-screen p-[24px] z-4 xl:hidden slideIn`}
@@ -24,9 +34,9 @@ const SearchBar = () => {
       >
         <form
           onSubmit={handleSubmit}
-          className="flex gap-[10px] bg-white border border-black/[.5] rounded-full px-[16px] py-[14px]"
+          className="flex gap-[10px] items-center bg-white border border-black/[.5] rounded-full px-[16px] py-[14px]"
         >
-          <RiSearchLine className="size-[23px] text-black/[.5]" />
+          <BsChevronLeft onClick={() => handleBack()} className="size-[23px] text-black/[.5]" />
           <input
             type="text"
             placeholder="Search"
@@ -34,6 +44,7 @@ const SearchBar = () => {
             value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}
           />
+          <PiX onClick={() => handleDelete()} className="size-[23px] text-black/[.5]"/>
         </form>
         <>
           <div className="px-[12px] py-[8px]">
@@ -85,7 +96,7 @@ const SearchBar = () => {
           <div className="px-[12px] py-[8px]">
             <p className="text-small font-semibold mb-[8px]">Recent Searches</p>
             <div className="flex flex-col gap-[4px]">
-              {patients.map((patient, index) => (
+              {patients.slice(0, 4).map((patient, index) => (
                 <button
                   key={index}
                   onClick={() => setSearchValue(patient.name)}

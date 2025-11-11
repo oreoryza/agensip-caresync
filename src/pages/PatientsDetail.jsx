@@ -15,8 +15,11 @@ import { PiPencilSimple } from "react-icons/pi";
 import { FaStar } from "react-icons/fa";
 import { FiArrowUpRight } from "react-icons/fi";
 
-import ScrollContainer from 'react-indiana-drag-scroll';
-import 'react-indiana-drag-scroll/dist/style.css'
+import john from "../assets/john.jpg";
+import robert from "../assets/robert.jpg";
+
+import ScrollContainer from "react-indiana-drag-scroll";
+import "react-indiana-drag-scroll/dist/style.css";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -88,9 +91,12 @@ const PatientsDetail = () => {
                 Full-time
               </div>
             </div>
-            <div className="flex flex-col gap-[6px]">
+            <div className="flex justify-between items-center gap-2">
               <h5 className="font-medium">{patient.name}</h5>
-              <p className="text-small opacity-50">{patient.jobTitle}</p>
+              <button className="flex items-center gap-2 bg-green text-white text-small font-medium rounded-full px-[16px] py-[8px] xl:hidden">
+            <PiPencilSimple className="size-[16px]" />
+            Edit Profile
+          </button>
             </div>
             <div className="grid xl:grid-cols-2 gap-[16px]">
               <div className="flex items-center gap-[10px]">
@@ -124,7 +130,7 @@ const PatientsDetail = () => {
           </div>
         </div>
         <div className="flex flex-col items-end max-xl:gap-[20px] justify-between py-[32px] xl:max-w-[342px]">
-          <button className="flex items-center gap-2 bg-green/[.1] text-green text-small font-medium rounded-full px-[16px] py-[8px]">
+          <button className="flex items-center gap-2 bg-green text-white text-small font-medium rounded-full px-[16px] py-[8px] max-xl:hidden">
             <PiPencilSimple className="size-[16px]" />
             Edit Profile
           </button>
@@ -193,12 +199,17 @@ const PatientsDetail = () => {
           </div>
           <div className="col-span-2 xl:max-w-[381px]">
             <p className="text-subtitle font-bold">Hospital sheet</p>
-            <ScrollContainer className="flex gap-[10px] mt-[20px] overflow-x-scroll hide-scroll" style={{ overflowX: 'auto' }}>
+            <ScrollContainer
+              className="flex gap-[10px] mt-[20px] overflow-x-scroll hide-scroll"
+              style={{ overflowX: "auto" }}
+            >
               {patient.sheet?.map((card) => (
                 <div className="flex flex-col gap-[16px] card p-[16px] min-w-[321px]">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-[6px]">
-                      <div className="size-[36px] bg-light-green rounded-[100%]"></div>
+                      <div className="flex items-center justify-center size-[36px] bg-light-green rounded-[100%]">
+                        <img src={card.icon} alt="" />
+                      </div>
                       <p className="font-medium">{card.disease}</p>
                     </div>
                     <button className="flex justify-center items-center bg-white size-[24px] rounded-[100%]">
@@ -274,7 +285,10 @@ const PatientsDetail = () => {
             <p className="ml-[20px] mt-[20px] mb-[24px] text-subtitle font-bold">
               Schedule
             </p>
-            <ScrollContainer className="flex w-full px-[24px] overflow-scroll hide-scroll h-full max-xl:min-h-[336px] xl:max-w-[432px]" style={{ overflowX: 'auto' }}>
+            <ScrollContainer
+              className="flex w-full px-[24px] overflow-scroll hide-scroll h-full max-xl:min-h-[336px] xl:max-w-[432px]"
+              style={{ overflowX: "auto" }}
+            >
               <div className="group flex justify-center p-[6px] min-w-[92px] rounded-t-[20px] ">
                 <div className="text-xs h-fit px-[10px] py-[6px] rounded-full group-hover:bg-light-yellow duration-300">
                   09.00 AM
@@ -286,7 +300,9 @@ const PatientsDetail = () => {
                 </div>
                 <div className="flex flex-col gap-[24px] absolute left-0 top-[100px] min-w-[500px]">
                   <button className="flex items-center gap-[12px] p-[5px] pr-[20px] bg-light-yellow rounded-full overflow-hidden w-fit">
-                    <div className="min-w-[46px] min-h-[46px] bg-yellow rounded-[100%]"></div>
+                    <div className="flex items-center justify-center max-w-[46px] max-h-[46px] min-w-[46px] min-h-[46px] bg-yellow rounded-[100%] overflow-hidden">
+                      <img src={john} alt="" className="scale-150" />
+                    </div>
                     <div className="flex flex-col items-start text-left gap-[10px]">
                       <p className="text-small">
                         Patient transfer to another hospital
@@ -297,7 +313,13 @@ const PatientsDetail = () => {
                     </div>
                   </button>
                   <button className="ml-[100px] flex items-center gap-[12px] p-[5px] pr-[20px] bg-light-green rounded-full overflow-hidden w-fit">
-                    <div className="min-w-[46px] min-h-[46px] bg-green rounded-[100%]"></div>
+                    <div className="flex items-center justify-center max-w-[46px] max-h-[46px] min-w-[46px] min-h-[46px] bg-green rounded-[100%] overflow-hidden">
+                      <img
+                        src={robert}
+                        alt=""
+                        className="scale-150 mt-10 ml-4"
+                      />
+                    </div>
                     <div className="flex flex-col items-start text-left gap-[10px]">
                       <p className="text-small">Family Medicine Checkups</p>
                       <p className="text-xs text-black/[.6]">

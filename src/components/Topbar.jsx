@@ -131,7 +131,7 @@ const Topbar = () => {
                     Recent Searches
                   </p>
                   <div className="flex flex-col gap-[4px]">
-                    {patients.map((patient, index) => (
+                    {patients.slice(0, 4).map((patient, index) => (
                       <button
                         key={index}
                         onClick={() => setSearchValue(patient.name)}

@@ -7,12 +7,12 @@ import { Link } from "react-router-dom";
 
 import AddPatients from "../sections/AddPatients";
 
-import spain from "../assets/spain.svg"
-import norway from "../assets/norway.jpg"
-import sweden from "../assets/sweden.jpg"
-import patient1 from "../assets/patient-1.jpg"
-import patient2 from "../assets/patient-2.jpg"
-import patient3 from "../assets/patient-3.jpg"
+import spain from "../assets/spain.svg";
+import norway from "../assets/norway.jpg";
+import sweden from "../assets/sweden.jpg";
+import patient1 from "../assets/patient-1.jpg";
+import patient2 from "../assets/patient-2.jpg";
+import patient3 from "../assets/patient-3.jpg";
 
 import { MdCall } from "react-icons/md";
 import { PiDotsThreeVertical } from "react-icons/pi";
@@ -28,6 +28,9 @@ const Patients = () => {
   const [isAdd, setIsAdd] = useState(false);
   const [sortBy, setSortBy] = useState(null);
   const [sortOrder, setSortOrder] = useState("asc");
+  const categoryLimits = { Day: 3, Week: 5, Month: 12 };
+
+  const [visiblePatients, setVisiblePatients] = useState(categoryLimits["Day"]);
 
   const categories = ["Day", "Week", "Month"];
 
@@ -63,6 +66,7 @@ const Patients = () => {
     if (sortBy !== field) return <LuChevronsUpDown />;
     return sortOrder === "asc" ? <LuChevronUp /> : <LuChevronDown />;
   };
+
   return (
     <div className="container slideIn">
       <h2 className="font-bold">Patients</h2>
@@ -81,13 +85,25 @@ const Patients = () => {
                     <h2 className="font-bold">300</h2>
                     <div className="flex">
                       <div className="bg-green xl:size-[20px] size-[14px] rounded-[100%] outline-2 outline-white/[.6] z-2 overflow-hidden">
-                        <img src={patient1} alt="" className="h-full w-full object-cover" />
+                        <img
+                          src={patient1}
+                          alt=""
+                          className="h-full w-full object-cover"
+                        />
                       </div>
                       <div className="bg-green xl:size-[20px] size-[14px] rounded-[100%] outline-2 outline-white/[.6] -ml-1 z-1 overflow-hidden">
-                        <img src={patient2} alt="" className="h-full w-full object-cover" />
+                        <img
+                          src={patient2}
+                          alt=""
+                          className="h-full w-full object-cover"
+                        />
                       </div>
                       <div className="bg-green xl:size-[20px] size-[14px] rounded-[100%] outline-2 outline-white/[.6] -ml-1 overflow-hidden">
-                        <img src={patient3} alt="" className="h-full w-full object-cover" />
+                        <img
+                          src={patient3}
+                          alt=""
+                          className="h-full w-full object-cover"
+                        />
                       </div>
                     </div>
                   </div>
@@ -98,13 +114,25 @@ const Patients = () => {
                     <h2 className="font-bold">100</h2>
                     <div className="flex">
                       <div className="bg-green xl:size-[20px] size-[14px] rounded-[100%] outline-2 outline-white/[.6] z-2 overflow-hidden">
-                        <img src={spain} alt="" className="h-full object-cover" />
+                        <img
+                          src={spain}
+                          alt=""
+                          className="h-full object-cover"
+                        />
                       </div>
                       <div className="bg-green xl:size-[20px] size-[14px] rounded-[100%] outline-2 outline-white/[.6] -ml-1 z-1 overflow-hidden">
-                        <img src={sweden} alt="" className="h-full object-cover" />
+                        <img
+                          src={sweden}
+                          alt=""
+                          className="h-full object-cover"
+                        />
                       </div>
                       <div className="bg-green xl:size-[20px] size-[14px] rounded-[100%] outline-2 outline-white/[.6] -ml-1 overflow-hidden">
-                        <img src={norway} alt="" className="h-full object-cover" />
+                        <img
+                          src={norway}
+                          alt=""
+                          className="h-full object-cover"
+                        />
                       </div>
                     </div>
                   </div>
@@ -153,12 +181,15 @@ const Patients = () => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col gap-[10px] w-full card xl:p-[40px] p-[14px]">
+        <div className="flex flex-col gap-[10px] w-full card xl:p-[40px] p-[14px] max-h-[90vh] overflow-hidden">
           <div className="flex justify-between items-center mb-[20px]">
             <div className="flex gap-2 max-xl:hidden">
               {categories.map((category) => (
                 <button
-                  onClick={() => setSelectedCategory(category)}
+                  onClick={() => {
+                    setSelectedCategory(category);
+                    setVisiblePatients(categoryLimits[category]);
+                  }}
                   className={`text-small outline-black/[.1] px-[20px] py-[10px] rounded-full ${
                     selectedCategory === category
                       ? "bg-white outline-0 text-black font-medium"
@@ -169,7 +200,14 @@ const Patients = () => {
                 </button>
               ))}
             </div>
-            <select className="text-xs xl:hidden">
+            <select
+              value={selectedCategory}
+              onChange={(e) => {
+                setSelectedCategory(e.target.value);
+                setVisiblePatients(categoryLimits[e.target.value]);
+              }}
+              className="text-xs xl:hidden px-[10px] py-[8px] rounded-full border border-black/[.1] bg-white"
+            >
               <button>
                 <selectedcontent></selectedcontent>
                 <span className="picker">
@@ -177,24 +215,26 @@ const Patients = () => {
                 </span>
               </button>
               {categories.map((category) => (
-                <option
-                  key={category}
-                  onClick={() => setSelectedCategory(category)}
-                  className={`rounded-full text-sm`}
-                >
+                <option key={category} value={category}>
                   {category}
                 </option>
               ))}
             </select>
             <div className="flex gap-2">
-              <div className="flex items-center gap-[10px] bg-white py-[10px] max-xl:px-[10px] xl:pl-[12px] xl:pr-[16px] rounded-full overflow-hidden">
+              <div className="flex items-center gap-[10px] bg-white py-[10px] max-xl:px-[10px] xl:pl-[12px] xl:pr-[16px] rounded-full overflow-hidden max-xl:hidden">
                 <RiSearchLine className="size-[23px] text-black/[.5]" />
                 <input
                   type="text"
                   placeholder="Search"
-                  className="focus:outline-0 max-xl:hidden"
+                  className="focus:outline-0"
                 />
               </div>
+              <Link
+                to="/search"
+                className="flex items-center gap-[10px] bg-white py-[10px] px-[10px] rounded-[100%] overflow-hidden xl:hidden"
+              >
+                <RiSearchLine className="size-[23px] text-black/[.5]" />
+              </Link>
               <button
                 onClick={() => setIsAdd(true)}
                 className="group size-[42px] flex items-center justify-center bg-green rounded-[100%]"
@@ -203,24 +243,42 @@ const Patients = () => {
               </button>
             </div>
           </div>
-          <div className="flex flex-col gap-[10px] overflow-x-scroll hide-scroll w-full">
+          <div className="flex flex-col gap-[10px] overflow-x-auto hide-scroll w-full">
             <div className="flex text-small text-black/[.8]">
-              <button onClick={() => handleSort("name")} className="flex gap-2 items-center w-[17%] max-xl:min-w-[200px]">
+              <button
+                onClick={() => handleSort("name")}
+                className="flex gap-2 items-center w-[17%] max-xl:min-w-[200px]"
+              >
                 Patient name {getSortIcon("name")}
               </button>
-              <button onClick={() => handleSort("address")} className="flex gap-2 items-center w-[19%] max-xl:min-w-[250px]">
+              <button
+                onClick={() => handleSort("address")}
+                className="flex gap-2 items-center w-[19%] max-xl:min-w-[250px]"
+              >
                 Address {getSortIcon("address")}
               </button>
-              <button onClick={() => handleSort("gender")} className="flex gap-2 items-center w-[13%] max-xl:min-w-[130px]">
+              <button
+                onClick={() => handleSort("gender")}
+                className="flex gap-2 items-center w-[13%] max-xl:min-w-[130px]"
+              >
                 Gender {getSortIcon("gender")}
               </button>
-              <button onClick={() => handleSort("ages")} className="flex gap-2 items-center w-[13%] max-xl:min-w-[130px]">
+              <button
+                onClick={() => handleSort("ages")}
+                className="flex gap-2 items-center w-[13%] max-xl:min-w-[130px]"
+              >
                 Category {getSortIcon("ages")}
               </button>
-              <button onClick={() => handleSort("treatment")} className="flex gap-2 items-center w-[15%] max-xl:min-w-[150px]">
+              <button
+                onClick={() => handleSort("treatment")}
+                className="flex gap-2 items-center w-[15%] max-xl:min-w-[150px]"
+              >
                 Treatment {getSortIcon("treatment")}
               </button>
-              <button onClick={() => handleSort("payment")} className="flex gap-2 items-center w-[15%] max-xl:min-w-[150px]">
+              <button
+                onClick={() => handleSort("payment")}
+                className="flex gap-2 items-center w-[15%] max-xl:min-w-[150px]"
+              >
                 Payment {getSortIcon("payment")}
               </button>
               <div className="flex gap-2 items-center max-xl:min-w-[100px]">
@@ -228,8 +286,8 @@ const Patients = () => {
               </div>
             </div>
             {patients.length > 0 ? (
-              <div className="flex flex-col gap-[6px] w-full">
-                {sortedPatients.map((patient) => (
+              <div className="flex flex-col gap-[6px] w-full overflow-y-auto">
+                {sortedPatients.slice(0, visiblePatients).map((patient) => (
                   <div
                     key={patient.id}
                     className="flex items-center bg-white/[.4] backdrop-blur xl:w-full w-fit rounded-full p-[12px] hover:bg-black/[.1] duration-300"
@@ -330,6 +388,22 @@ const Patients = () => {
               </div>
             )}
           </div>
+          {visiblePatients < categoryLimits[selectedCategory] &&
+            visiblePatients < sortedPatients.length && (
+              <button
+                onClick={() =>
+                  setVisiblePatients(
+                    Math.min(
+                      visiblePatients + 6,
+                      categoryLimits[selectedCategory]
+                    )
+                  )
+                }
+                className="mt-[20px] px-[20px] py-[10px] text-black/[.5] border-1 border-black/[.1] rounded-full hover:text-green hover:border-green duration-300"
+              >
+                Load More
+              </button>
+            )}
         </div>
       </div>
       <AddPatients isOpen={isAdd} onClose={() => setIsAdd(false)} />

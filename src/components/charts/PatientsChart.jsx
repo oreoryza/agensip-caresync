@@ -20,15 +20,19 @@ ChartJS.register(
   Legend
 );
 
-const PatientsChart = () => {
+const PatientsChart = ({ period = "month" }) => {
   const data = useSelector((state) => state.data);
 
   const chartData = {
-    labels: data?.patients?.treatments?.map((treatment) => treatment.name),
+    labels: data?.patients?.treatments?.[period]?.map(
+      (treatment) => treatment.name
+    ),
     datasets: [
       {
         label: "Recovered",
-        data: data?.patients?.treatments?.map((treatment) => treatment.recovered),
+        data: data?.patients?.treatments?.[period]?.map(
+          (treatment) => treatment.recovered
+        ),
         backgroundColor: "rgba(0, 128, 0, 0.8)",
         stack: "Stack 0",
         borderRadius: {
@@ -39,7 +43,9 @@ const PatientsChart = () => {
       },
       {
         label: "Under Treatment",
-        data: data?.patients?.treatments?.map((treatment) => treatment.under),
+        data: data?.patients?.treatments?.[period]?.map(
+          (treatment) => treatment.under
+        ),
         backgroundColor: "#e7e7e7",
         stack: "Stack 0",
         borderRadius: {
@@ -67,12 +73,11 @@ const PatientsChart = () => {
       x: {
         stacked: true,
         grid: {
-          display: false
-        }
+          display: false,
+        },
       },
       y: {
         stacked: true,
-        min: 50
       },
     },
     elements: {

@@ -4,26 +4,9 @@ import { useSelector } from "react-redux";
 import { FiArrowUpRight } from "react-icons/fi";
 
 import { Line } from "react-chartjs-2";
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-} from "chart.js";
+import { Chart, registerables } from "chart.js";
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend
-);
+Chart.register(...registerables);
 
 const AppointmentsChart = () => {
   const data = useSelector((state) => state.data);
@@ -53,7 +36,17 @@ const AppointmentsChart = () => {
         pointBackgroundColor: "green",
         pointHoverRadius: 4,
         hitRadius: 15,
-        backgroundColor: "rgba(0, 128, 0, 0.1)",
+        backgroundColor: (context) => {
+          const chart = context.chart;
+          const { ctx, chartArea } = chart;
+          if (!chartArea) {
+            return null;
+          }
+          const gradient = ctx.createLinearGradient(0, chartArea.top, 0, chartArea.bottom);
+          gradient.addColorStop(0, 'rgba(0, 128, 0, 0.15)');
+          gradient.addColorStop(1, 'rgba(0, 128, 0, 0)');
+          return gradient;
+        },
         fill: true,
       },
     ],

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import TotalPatients from "../components/charts/TotalPatients";
 import AppointmentsChart from "../components/charts/AppointmentsChart";
 import AddAppointments from "../sections/AddAppointments";
@@ -21,6 +22,7 @@ const Appointment = () => {
   const dispatch = useDispatch();
   const [selectedStatus, setSelectedStatus] = useState("All");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(6);
 
   // Get unique status
   const status = [
@@ -35,6 +37,11 @@ const Appointment = () => {
       : data.patients.appointments.filter(
           (emp) => emp.status === selectedStatus
         );
+
+  // Reset visibleCount when selectedStatus changes
+  useEffect(() => {
+    setVisibleCount(6);
+  }, [selectedStatus]);
 
   return (
     <main className="container slideIn">
@@ -88,14 +95,20 @@ const Appointment = () => {
           ))}
         </select>
         <div className="flex gap-2">
-          <div className="flex items-center gap-[10px] bg-white py-[10px] xl:pl-[12px] xl:pr-[16px] max-xl:px-[10px] rounded-full overflow-hidden">
+          <div className="flex items-center gap-[10px] bg-white py-[10px] xl:pl-[12px] xl:pr-[16px] max-xl:px-[10px] rounded-full overflow-hidden max-xl:hidden">
             <RiSearchLine className="size-[23px] text-black/[.5]" />
             <input
               type="text"
               placeholder="Search"
-              className="focus:outline-0 max-xl:hidden"
+              className="focus:outline-0"
             />
           </div>
+          <Link
+            to="/search"
+            className="flex items-center gap-[10px] bg-white py-[10px] px-[10px] rounded-[100%] overflow-hidden xl:hidden"
+          >
+            <RiSearchLine className="size-[23px] text-black/[.5]" />
+          </Link>
           <button
             onClick={() => setIsModalOpen(true)}
             className="group size-[42px] flex items-center justify-center bg-green rounded-[100%]"
@@ -106,8 +119,9 @@ const Appointment = () => {
       </section>
       {/* Appointments lists */}
       {data.patients.appointments.length > 0 ? (
-        <section className="grid xl:grid-cols-3 grid-cols-1 gap-[10px] mt-[20px]">
-          {filteredStatus.map((appointment, index) => (
+        <>
+          <section className="grid xl:grid-cols-3 grid-cols-1 gap-[10px] mt-[20px]">
+            {filteredStatus.slice(0, visibleCount).map((appointment, index) => (
             <div key={index + 1} className="card">
               <div className="xl:p-[20px] p-[16px]">
                 <div className="flex max-xl:flex-wrap-reverse max-xl:gap-2 justify-between items-center">
@@ -208,13 +222,27 @@ const Appointment = () => {
               ) : (
                 <div className="flex gap-[10px] px-[20px] mb-[20px] mt-[16px]">
                   <button
-                    onClick={() => dispatch(updateAppointmentStatus({ id: appointment.id, status: "Declined" }))}
+                    onClick={() =>
+                      dispatch(
+                        updateAppointmentStatus({
+                          id: appointment.id,
+                          status: "Declined",
+                        })
+                      )
+                    }
                     className="flex justify-center items-center gap-[10px] w-full outline-1 outline-red text-red px-[10px] py-[8px] rounded-full text-center hover:opacity-80 duration-300"
                   >
                     <PiX /> Decline
                   </button>
                   <button
-                    onClick={() => dispatch(updateAppointmentStatus({ id: appointment.id, status: "Accepted" }))}
+                    onClick={() =>
+                      dispatch(
+                        updateAppointmentStatus({
+                          id: appointment.id,
+                          status: "Accepted",
+                        })
+                      )
+                    }
                     className="flex justify-center items-center gap-[10px] w-full bg-green text-white px-[10px] py-[8px] rounded-full text-center hover:opacity-80 duration-300"
                   >
                     <PiCheck /> Accept
@@ -223,7 +251,18 @@ const Appointment = () => {
               )}
             </div>
           ))}
-        </section>
+          </section>
+          {visibleCount < filteredStatus.length && (
+            <div className="flex justify-center mt-[20px]">
+              <button
+                onClick={() => setVisibleCount(visibleCount + 6)}
+                className="w-full mt-[20px] px-[20px] py-[10px] text-black/[.5] border-1 border-black/[.1] rounded-full hover:text-green hover:border-green duration-300"
+              >
+                Load More
+              </button>
+            </div>
+          )}
+        </>
       ) : (
         <div className="flex flex-col gap-[10px] justify-center items-center w-full h-[400px] py-[24px]">
           <div className="flex items-center justify-center size-[40px] rounded-[100%] bg-light-green text-green">

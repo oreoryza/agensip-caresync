@@ -56,35 +56,69 @@ const initialState = {
         },
       ],
       attendance: {
-        mon: {
-          twoAm: 2,
-          eightAm: 1,
-          twoPm: 3,
-          eightPm: 4,
+        month: {
+          mon: {
+            twoAm: 2,
+            eightAm: 1,
+            twoPm: 3,
+            eightPm: 4,
+          },
+          tue: {
+            twoAm: 1,
+            eightAm: 1,
+            twoPm: 3,
+            eightPm: 0,
+          },
+          wed: {
+            twoAm: 2,
+            eightAm: 3,
+            twoPm: 2,
+            eightPm: 4,
+          },
+          thu: {
+            twoAm: 0,
+            eightAm: 1,
+            twoPm: 3,
+            eightPm: 1,
+          },
+          fri: {
+            twoAm: 2,
+            eightAm: 2,
+            twoPm: 0,
+            eightPm: 4,
+          },
         },
-        tue: {
-          twoAm: 1,
-          eightAm: 1,
-          twoPm: 3,
-          eightPm: 0,
-        },
-        wed: {
-          twoAm: 2,
-          eightAm: 3,
-          twoPm: 2,
-          eightPm: 4,
-        },
-        thu: {
-          twoAm: 0,
-          eightAm: 1,
-          twoPm: 3,
-          eightPm: 1,
-        },
-        fri: {
-          twoAm: 2,
-          eightAm: 2,
-          twoPm: 0,
-          eightPm: 4,
+        week: {
+          mon: {
+            twoAm: 1,
+            eightAm: 2,
+            twoPm: 4,
+            eightPm: 3,
+          },
+          tue: {
+            twoAm: 0,
+            eightAm: 3,
+            twoPm: 1,
+            eightPm: 2,
+          },
+          wed: {
+            twoAm: 3,
+            eightAm: 4,
+            twoPm: 2,
+            eightPm: 1,
+          },
+          thu: {
+            twoAm: 2,
+            eightAm: 0,
+            twoPm: 4,
+            eightPm: 3,
+          },
+          fri: {
+            twoAm: 4,
+            eightAm: 1,
+            twoPm: 3,
+            eightPm: 2,
+          },
         },
       },
       img: "/employee/richaud-beringer.svg",

@@ -10,16 +10,16 @@ const MapChart = ({ data = null }) => {
   // Default data for all US states with values matching the color ranges
   const defaultData = {
     // Light gray (0-1): 10 states
-    'Alabama': 0,
-    'Alaska': 0,
-    'Arizona': 105,
-    'Arkansas': 0,
-    'California': 0,
-    'Colorado': 0,
-    'Connecticut': 110,
-    'Delaware': 0,
-    'Florida': 0,
-    'Georgia': 0,
+    // 'Alabama': 0,
+    // 'Alaska': 0,
+    // 'Arizona': 105,
+    // 'Arkansas': 0,
+    // 'California': 0,
+    // 'Colorado': 0,
+    // 'Connecticut': 110,
+    // 'Delaware': 0,
+    // 'Florida': 0,
+    // 'Georgia': 0,
 
     // Yellow (1-20): 10 states
     'Hawaii': 5,

@@ -6,10 +6,13 @@ import { RiSearchLine } from "react-icons/ri";
 import { FaPlus } from "react-icons/fa";
 import { BsChevronDown } from "react-icons/bs";
 import { PiUsers } from "react-icons/pi";
+import AddEmployee from "../sections/AddEmployee";
 
 const Employee = () => {
   const { employees } = useSelector((state) => state.employee);
   const [selectedJobCategory, setSelectedJobCategory] = useState("All");
+  const [visibleEmployees, setVisibleEmployees] = useState(6);
+  const [isAdd, setIsAdd] = useState(false);
 
   // Get unique job categories
   const jobCategories = [
@@ -61,54 +64,75 @@ const Employee = () => {
           ))}
         </select>
         <div className="flex gap-2">
-          <div className="flex items-center gap-[10px] bg-white py-[10px] xl:pl-[12px] xl:pr-[16px] max-xl:px-[10px] rounded-full overflow-hidden">
+          <div className="flex items-center gap-[10px] bg-white py-[10px] xl:pl-[12px] xl:pr-[16px] max-xl:px-[10px] rounded-full overflow-hidden max-xl:hidden">
             <RiSearchLine className="size-[23px] text-black/[.5]" />
             <input
               type="text"
               placeholder="Search"
-              className="focus:outline-0 max-xl:hidden"
+              className="focus:outline-0"
             />
           </div>
-          <button className="group size-[42px] flex items-center justify-center bg-green rounded-[100%]">
+          <Link
+            to="/search"
+            className="flex items-center gap-[10px] bg-white py-[10px] px-[10px] rounded-[100%] overflow-hidden xl:hidden"
+          >
+            <RiSearchLine className="size-[23px] text-black/[.5]" />
+          </Link>
+          <button
+            onClick={() => setIsAdd(true)}
+            className="group size-[42px] flex items-center justify-center bg-green rounded-[100%]"
+          >
             <FaPlus className="text-white group-hover:rotate-90 duration-300" />
           </button>
         </div>
       </div>
       {/* Employees lists */}
       {employees.length > 0 ? (
-        <div className="grid xl:grid-cols-3 lg:grid-cols-2 gap-[10px]">
-          {filteredEmployees.map((employee) => (
-            <Link to={`/employee/${employee.id}`} key={employee.id}>
-              <div className="group flex card sm:pt-[24px] pt-[14px] sm:pr-[28px] pr-[16px] h-full overflow-hidden">
-                <img
-                  src={employee.img}
-                  alt={employee.name}
-                  className="w-[50%] h-[230px] object-top group-hover:scale-[1.1] duration-300"
-                />
-                <div className="flex flex-col gap-[33px] max-[375px]:gap-[14px] ml-[1rem] w-[50%]">
-                  <div className="flex max-[375px]:flex-wrap gap-1">
-                    <div
-                      className={`px-[8px] py-[6px] rounded-full text-small ${
-                        employee.status === "Active"
-                          ? "text-green bg-green/[.1]"
-                          : "text-red bg-red/[.1]"
-                      }`}
-                    >
-                      {employee.status}
+        <>
+          <div className="grid xl:grid-cols-3 lg:grid-cols-2 gap-[10px]">
+            {filteredEmployees.slice(0, visibleEmployees).map((employee) => (
+              <Link to={`/employee/${employee.id}`} key={employee.id}>
+                <div className="group flex card sm:pt-[24px] pt-[14px] sm:pr-[28px] pr-[16px] h-full overflow-hidden">
+                  <img
+                    src={employee.img}
+                    alt={employee.name}
+                    className="w-[50%] h-[230px] object-top group-hover:scale-[1.1] duration-300"
+                  />
+                  <div className="flex flex-col gap-[33px] max-[375px]:gap-[14px] ml-[1rem] w-[50%]">
+                    <div className="flex max-[375px]:flex-wrap gap-1">
+                      <div
+                        className={`px-[8px] py-[6px] rounded-full text-small ${
+                          employee.status === "Active"
+                            ? "text-green bg-green/[.1]"
+                            : "text-red bg-red/[.1]"
+                        }`}
+                      >
+                        {employee.status}
+                      </div>
+                      <div className="px-[8px] py-[6px] rounded-full text-small bg-black/[.06] text-black/[.5]">
+                        {employee.category}
+                      </div>
                     </div>
-                    <div className="px-[8px] py-[6px] rounded-full text-small bg-black/[.06] text-black/[.5]">
-                      {employee.category}
+                    <div className="flex flex-col gap-[6px]">
+                      <h5 className="font-medium">{employee.name}</h5>
+                      <p className="text-small opacity-50">
+                        {employee.jobTitle}
+                      </p>
                     </div>
-                  </div>
-                  <div className="flex flex-col gap-[6px]">
-                    <h5 className="font-medium">{employee.name}</h5>
-                    <p className="text-small opacity-50">{employee.jobTitle}</p>
                   </div>
                 </div>
-              </div>
-            </Link>
-          ))}
-        </div>
+              </Link>
+            ))}
+          </div>
+          {visibleEmployees < filteredEmployees.length && (
+            <button
+              onClick={() => setVisibleEmployees(visibleEmployees + 6)}
+              className="w-full mt-[20px] px-[20px] py-[10px] text-black/[.5] border-1 border-black/[.1] rounded-full hover:text-green hover:border-green duration-300"
+            >
+              Load More
+            </button>
+          )}
+        </>
       ) : (
         <div className="flex flex-col gap-[10px] justify-center items-center w-full h-[400px] py-[24px]">
           <div className="flex items-center justify-center size-[40px] rounded-[100%] bg-light-green text-green">
@@ -118,9 +142,12 @@ const Employee = () => {
           <p className="text-small text-black/[.5]">
             You don't have any employees yet
           </p>
-          <button className="text-small font-medium text-green">+add new</button>
+          <button className="text-small font-medium text-green">
+            +add new
+          </button>
         </div>
       )}
+      <AddEmployee isOpen={isAdd} onClose={() => setIsAdd(false)} />
     </main>
   );
 };

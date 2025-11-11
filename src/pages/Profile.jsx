@@ -22,6 +22,7 @@ const Profile = () => {
 
   const [timerTime, setTimerTime] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
+  const [selectedPeriod, setSelectedPeriod] = useState("month");
 
   const getAttendanceColor = (value) => {
     switch (value) {
@@ -89,7 +90,7 @@ const Profile = () => {
               </a>
             </div>
           </div>
-          <div className="flex flex-col max-xl:gap-[16px] justify-between py-[32px] ml-[1rem] w-full">
+          <div className="flex flex-col max-xl:gap-[16px] justify-between py-[32px] w-full">
             <div className="flex gap-1">
               <div
                 className={`px-[8px] py-[6px] rounded-full text-small ${
@@ -104,9 +105,15 @@ const Profile = () => {
                 {profile.category}
               </div>
             </div>
-            <div className="flex flex-col gap-[6px]">
-              <h5 className="font-medium">{profile.name}</h5>
-              <p className="text-small opacity-50">{profile.jobTitle}</p>
+            <div className="max-xl:flex justify-between items-center gap-2">
+              <div className="flex flex-col gap-[6px]">
+                <h5 className="font-medium">{profile.name}</h5>
+                <p className="text-small opacity-50">{profile.jobTitle}</p>
+              </div>
+              <button className="flex items-center gap-2 bg-green text-white text-small font-medium rounded-full px-[16px] py-[8px] xl:hidden">
+                <PiPencilSimple className="size-[16px]" />
+                Edit Profile
+              </button>
             </div>
             <div className="grid xl:grid-cols-2 gap-[16px]">
               <div className="flex items-center gap-[10px]">
@@ -140,7 +147,7 @@ const Profile = () => {
           </div>
         </div>
         <div className="flex flex-col items-end max-xl:gap-[20px] justify-between py-[32px] xl:max-w-[342px]">
-          <button className="flex items-center gap-2 bg-green text-white text-small font-medium rounded-full px-[16px] py-[8px]">
+          <button className="flex items-center gap-2 bg-green text-white text-small font-medium rounded-full px-[16px] py-[8px] max-xl:hidden">
             <PiPencilSimple className="size-[16px]" />
             Edit Profile
           </button>
@@ -296,7 +303,10 @@ const Profile = () => {
                 </p>
               </div>
               <div className="max-xl:flex justify-end text-xs max-[375px]:w-full">
-                <select>
+                <select
+                  value={selectedPeriod}
+                  onChange={(e) => setSelectedPeriod(e.target.value)}
+                >
                   <button>
                     <selectedcontent></selectedcontent>
                     <span className="picker">
@@ -318,7 +328,7 @@ const Profile = () => {
                     <div
                       key={`${day}-${timeSlot}`}
                       className={`${getAttendanceColor(
-                        profile.attendance?.[day]?.[timeSlot]
+                        profile.attendance?.[selectedPeriod]?.[day]?.[timeSlot]
                       )} h-[48px]  rounded-[10px]`}
                     ></div>
                   ))}

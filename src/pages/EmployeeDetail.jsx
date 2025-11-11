@@ -13,8 +13,11 @@ import { PiCalendarDots } from "react-icons/pi";
 import { PiPencilSimple } from "react-icons/pi";
 import { FaStar } from "react-icons/fa";
 
-import ScrollContainer from 'react-indiana-drag-scroll';
-import 'react-indiana-drag-scroll/dist/style.css'
+import john from "../assets/john.jpg";
+import robert from "../assets/robert.jpg";
+
+import ScrollContainer from "react-indiana-drag-scroll";
+import "react-indiana-drag-scroll/dist/style.css";
 
 import { Doughnut } from "react-chartjs-2";
 import { Line } from "react-chartjs-2";
@@ -65,7 +68,22 @@ const EmployeeDetail = () => {
         label: "Appointments",
         data: employee?.patients?.total,
         borderColor: "green",
-        backgroundColor: "rgba(0, 128, 0, 0.1)",
+        backgroundColor: (context) => {
+          const chart = context.chart;
+          const { ctx, chartArea } = chart;
+          if (!chartArea) {
+            return null;
+          }
+          const gradient = ctx.createLinearGradient(
+            0,
+            chartArea.top,
+            0,
+            chartArea.bottom
+          );
+          gradient.addColorStop(0, "rgba(0, 128, 0, 0.15)");
+          gradient.addColorStop(1, "rgba(0, 128, 0, 0)");
+          return gradient;
+        },
         fill: true,
         pointBackgroundColor: "green",
         tension: 0.3,
@@ -140,7 +158,7 @@ const EmployeeDetail = () => {
               </a>
             </div>
           </div>
-          <div className="flex flex-col max-xl:gap-[16px] justify-between py-[32px] ml-[1rem] w-full">
+          <div className="flex flex-col max-xl:gap-[16px] justify-between py-[32px] w-full">
             <div className="flex gap-1">
               <div
                 className={`px-[8px] py-[6px] rounded-full text-small ${
@@ -155,9 +173,15 @@ const EmployeeDetail = () => {
                 {employee.category}
               </div>
             </div>
-            <div className="flex flex-col gap-[6px]">
-              <h5 className="font-medium">{employee.name}</h5>
-              <p className="text-small opacity-50">{employee.jobTitle}</p>
+            <div className="max-xl:flex justify-between items-center gap-2">
+              <div className="flex flex-col gap-[6px]">
+                <h5 className="font-medium">{employee.name}</h5>
+                <p className="text-small opacity-50">{employee.jobTitle}</p>
+              </div>
+              <button className="flex items-center gap-2 bg-green text-white text-small font-medium rounded-full px-[16px] py-[8px] xl:hidden">
+                <PiPencilSimple className="size-[16px]" />
+                Edit Profile
+              </button>
             </div>
             <div className="grid xl:grid-cols-2 gap-[16px]">
               <div className="flex items-center gap-[10px]">
@@ -191,7 +215,7 @@ const EmployeeDetail = () => {
           </div>
         </div>
         <div className="flex flex-col items-end max-xl:gap-[20px] justify-between py-[32px] xl:max-w-[342px]">
-          <button className="flex items-center gap-2 bg-green text-white text-small font-medium rounded-full px-[16px] py-[8px]">
+          <button className="flex items-center gap-2 bg-green text-white text-small font-medium rounded-full px-[16px] py-[8px] max-xl:hidden">
             <PiPencilSimple className="size-[16px]" />
             Edit Profile
           </button>
@@ -290,12 +314,12 @@ const EmployeeDetail = () => {
                   <div className="absolute text-center">
                     <p className="text-[10px]">Impression</p>
                     <p className="text-subtitle font-bold">
-                    {(employee.satisfaction?.happy /
-                      employee.satisfaction?.total) *
-                      100 >
-                    50
-                      ? "Good"
-                      : "Okay"}
+                      {(employee.satisfaction?.happy /
+                        employee.satisfaction?.total) *
+                        100 >
+                      50
+                        ? "Good"
+                        : "Okay"}
                     </p>
                   </div>
                 </div>
@@ -357,12 +381,12 @@ const EmployeeDetail = () => {
                 </p>
               </div>
               <div className="relative flex justify-between items-start gap-[38px] w-full h-[120px] overflow-hidden">
-                <div className="pr-[120px]"> 
-                    <Line
-                      data={chartData}
-                      options={options}
-                      className="w-full max-w-[225px]"
-                    />
+                <div className="pr-[120px]">
+                  <Line
+                    data={chartData}
+                    options={options}
+                    className="w-full max-w-[225px]"
+                  />
                 </div>
                 <div className="absolute right-[16px] flex flex-col gap-[10px] max-w-[100px]">
                   <h2 className="font-bold">
@@ -383,8 +407,13 @@ const EmployeeDetail = () => {
             </div>
           </div>
           <div className="card h-full overflow-hidden">
-            <p className="ml-[20px] mt-[20px] mb-[24px] text-subtitle font-bold">Schedule</p>
-            <ScrollContainer className="flex w-full px-[24px] overflow-scroll hide-scroll h-full max-xl:min-h-[336px] xl:max-w-[432px]" style={{ overflowX: 'auto' }}>
+            <p className="ml-[20px] mt-[20px] mb-[24px] text-subtitle font-bold">
+              Schedule
+            </p>
+            <ScrollContainer
+              className="flex w-full px-[24px] overflow-scroll hide-scroll h-full max-xl:min-h-[336px] xl:max-w-[432px]"
+              style={{ overflowX: "auto" }}
+            >
               <div className="group flex justify-center p-[6px] min-w-[92px] rounded-t-[20px] ">
                 <div className="text-xs h-fit px-[10px] py-[6px] rounded-full group-hover:bg-light-yellow duration-300">
                   09.00 AM
@@ -396,16 +425,26 @@ const EmployeeDetail = () => {
                 </div>
                 <div className="flex flex-col gap-[24px] absolute left-0 top-[100px] min-w-[500px]">
                   <button className="flex items-center gap-[12px] p-[5px] pr-[20px] bg-light-yellow rounded-full overflow-hidden w-fit">
-                    <div className="min-w-[46px] min-h-[46px] bg-yellow rounded-[100%]"></div>
+                    <div className="flex items-center justify-center max-w-[46px] max-h-[46px] min-w-[46px] min-h-[46px] bg-yellow rounded-[100%] overflow-hidden">
+                      <img src={john} alt="" className="scale-150" />
+                    </div>
                     <div className="flex flex-col items-start text-left gap-[10px]">
-                      <p className="text-small">Patient transfer to another hospital</p>
+                      <p className="text-small">
+                        Patient transfer to another hospital
+                      </p>
                       <p className="text-xs text-black/[.6]">
                         10:00 AM - 01:10 PM | {employee.name}
                       </p>
                     </div>
                   </button>
                   <button className="ml-[100px] flex items-center gap-[12px] p-[5px] pr-[20px] bg-light-green rounded-full overflow-hidden w-fit">
-                    <div className="min-w-[46px] min-h-[46px] bg-green rounded-[100%]"></div>
+                    <div className="flex items-center justify-center max-w-[46px] max-h-[46px] min-w-[46px] min-h-[46px] bg-green rounded-[100%] overflow-hidden">
+                      <img
+                        src={robert}
+                        alt=""
+                        className="scale-150 mt-10 ml-4"
+                      />
+                    </div>
                     <div className="flex flex-col items-start text-left gap-[10px]">
                       <p className="text-small">Family Medicine Checkups</p>
                       <p className="text-xs text-black/[.6]">

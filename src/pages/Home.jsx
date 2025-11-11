@@ -21,6 +21,9 @@ import { PiUsers } from "react-icons/pi";
 const Home = () => {
   const data = useSelector((state) => state.data);
   const [selectedGender, setSelectedGender] = useState("All");
+  const [appointmentLimit, setAppointmentLimit] = useState("3");
+  const [selectedPeriod, setSelectedPeriod] = useState("month");
+  const [selectedPolyPeriod, setSelectedPolyPeriod] = useState("month");
   const i = 250; // Number of bars to display
 
   // Get gender
@@ -44,16 +47,20 @@ const Home = () => {
         <section className="flex flex-col gap-[24px] card xl:px-[20px] px-[14px] pt-[20px]">
           <div className="flex justify-between items-center">
             <p className="text-subtitle font-bold">Appointments</p>
-            <select className="text-xs">
+            <select
+              className="text-xs"
+              value={appointmentLimit}
+              onChange={(e) => setAppointmentLimit(e.target.value)}
+            >
               <button>
                 <selectedcontent></selectedcontent>
                 <span className="picker">
                   <BsChevronDown />
                 </span>
               </button>
-              <option value="">Weekly</option>
-              <option value="">Monthly</option>
-              <option value="">Today</option>
+              <option value="3">Today</option>
+              <option value="6">Weekly</option>
+              <option value="all">Monthly</option>
             </select>
           </div>
           <div className="flex gap-2">
@@ -74,81 +81,90 @@ const Home = () => {
           <div className="flex flex-col gap-[10px] pb-[20px] h-full max-h-[980px] overflow-y-auto overflow-x-hidden hide-scroll">
             {data.patients.appointments.length > 0 ? (
               <>
-                {filteredGender.map((app, index) => (
-                  <div key={index} className="bg-white rounded-[16px]">
-                    <div className="flex items-center gap-[4px] p-[14px] sm:hidden">
-                      <div className="bg-black/[.06] text-xs text-black/[.5] px-[6px] py-[4px] rounded-full">
-                        {app.gender}
+                {filteredGender
+                  .slice(
+                    0,
+                    appointmentLimit === "all"
+                      ? filteredGender.length
+                      : parseInt(appointmentLimit)
+                  )
+                  .map((app, index) => (
+                    <div key={index} className="bg-white rounded-[16px]">
+                      <div className="flex items-center gap-[4px] p-[14px] sm:hidden">
+                        <div className="bg-black/[.06] text-xs text-black/[.5] px-[6px] py-[4px] rounded-full">
+                          {app.gender}
+                        </div>
+                        <div className="bg-black/[.06] text-xs text-black/[.5] px-[6px] py-[4px] rounded-full">
+                          {app.start}
+                        </div>
                       </div>
-                      <div className="bg-black/[.06] text-xs text-black/[.5] px-[6px] py-[4px] rounded-full">
-                        {app.start}
-                      </div>
-                    </div>
-                    <div className="flex items-end">
-                      <img
-                        src={app.img}
-                        alt={app.name}
-                        className="max-w-[136px] max-sm:max-w-[90px] max-h-[147px]  ml-[16px]"
-                      />
-                      <div className="flex flex-col gap-[20px] p-[16px] xl:min-w-[131px]">
-                        <div className="flex max-xl:flex-wrap items-center gap-[4px] max-sm:hidden">
-                          <div className="bg-black/[.06] text-xs text-black/[.5] px-[6px] py-[4px] rounded-full">
-                            {app.gender}
+                      <div className="flex items-end">
+                        <img
+                          src={app.img}
+                          alt={app.name}
+                          className="max-w-[136px] max-sm:max-w-[90px] max-h-[147px]  ml-[16px]"
+                        />
+                        <div className="flex flex-col gap-[20px] p-[16px] xl:min-w-[131px]">
+                          <div className="flex max-xl:flex-wrap items-center gap-[4px] max-sm:hidden">
+                            <div className="bg-black/[.06] text-xs text-black/[.5] px-[6px] py-[4px] rounded-full">
+                              {app.gender}
+                            </div>
+                            <div className="bg-black/[.06] text-xs text-black/[.5] px-[6px] py-[4px] rounded-full">
+                              {app.start}
+                            </div>
                           </div>
-                          <div className="bg-black/[.06] text-xs text-black/[.5] px-[6px] py-[4px] rounded-full">
-                            {app.start}
+                          <div>
+                            <p className="font-medium max-sm:text-small">
+                              {app.name}
+                            </p>
+                            <p className="text-xs text-black/[.5]">
+                              {app.disease}
+                            </p>
+                          </div>
+                          <div className="flex max-sm:hidden items-center gap-[4px]">
+                            <a
+                              href="https://www.whatsapp.com/"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex gap-2 items-center bg-green text-xs text-white px-[16px] py-[8px] rounded-full hover:opacity-80 duration-300"
+                            >
+                              <MdCall />
+                              Call
+                            </a>
+                            <a
+                              href="https://www.whatsapp.com/"
+                              rel="noopener noreferrer"
+                              target="_blank"
+                              className="flex gap-2 items-center bg-white text-xs px-[16px] py-[8px] rounded-full outline-1 outline-[#DDDDDD] hover:opacity-80 duration-300"
+                            >
+                              <RiSendPlaneFill />
+                              Chat
+                            </a>
                           </div>
                         </div>
-                        <div>
-                          <p className="font-medium max-sm:text-small">{app.name}</p>
-                          <p className="text-xs text-black/[.5]">
-                            {app.disease}
-                          </p>
-                        </div>
-                        <div className="flex max-sm:hidden items-center gap-[4px]">
-                          <a
-                            href="https://www.whatsapp.com/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex gap-2 items-center bg-green text-xs text-white px-[16px] py-[8px] rounded-full hover:opacity-80 duration-300"
-                          >
-                            <MdCall />
-                            Call
-                          </a>
-                          <a
-                            href="https://www.whatsapp.com/"
-                            rel="noopener noreferrer"
-                            target="_blank"
-                            className="flex gap-2 items-center bg-white text-xs px-[16px] py-[8px] rounded-full outline-1 outline-[#DDDDDD] hover:opacity-80 duration-300"
-                          >
-                            <RiSendPlaneFill />
-                            Chat
-                          </a>
-                        </div>
+                      </div>
+                      <div className="flex items-center w-full gap-[4px] p-[14px] sm:hidden">
+                        <a
+                          href="https://www.whatsapp.com/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex gap-2 items-center justify-center bg-green text-xs text-white px-[16px] py-[8px] w-full rounded-full hover:opacity-80 duration-300"
+                        >
+                          <MdCall />
+                          Call
+                        </a>
+                        <a
+                          href="https://www.whatsapp.com/"
+                          rel="noopener noreferrer"
+                          target="_blank"
+                          className="flex gap-2 items-center justify-center bg-white text-xs px-[16px] py-[8px] w-full rounded-full outline-1 outline-[#DDDDDD] hover:opacity-80 duration-300"
+                        >
+                          <RiSendPlaneFill />
+                          Chat
+                        </a>
                       </div>
                     </div>
-                    <div className="flex items-center w-full gap-[4px] p-[14px] sm:hidden">
-                      <a
-                        href="https://www.whatsapp.com/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex gap-2 items-center justify-center bg-green text-xs text-white px-[16px] py-[8px] w-full rounded-full hover:opacity-80 duration-300"
-                      >
-                        <MdCall />
-                        Call
-                      </a>
-                      <a
-                        href="https://www.whatsapp.com/"
-                        rel="noopener noreferrer"
-                        target="_blank"
-                        className="flex gap-2 items-center justify-center bg-white text-xs px-[16px] py-[8px] w-full rounded-full outline-1 outline-[#DDDDDD] hover:opacity-80 duration-300"
-                      >
-                        <RiSendPlaneFill />
-                        Chat
-                      </a>
-                    </div>
-                  </div>
-                ))}
+                  ))}
               </>
             ) : (
               <div className="flex flex-col gap-[10px] justify-center items-center w-full h-full py-[24px]">
@@ -180,25 +196,31 @@ const Home = () => {
                       </p>
                     </div>
                   </div>
-                  <select className="text-xs">
+                  <select
+                    className="text-xs"
+                    value={selectedPeriod}
+                    onChange={(e) => setSelectedPeriod(e.target.value)}
+                  >
                     <button>
                       <selectedcontent></selectedcontent>
                       <span className="picker">
                         <BsChevronDown />
                       </span>
                     </button>
-                    <option value="">Weekly</option>
-                    <option value="">Monthly</option>
-                    <option value="">Today</option>
+                    <option value="week">Weekly</option>
+                    <option value="month">Monthly</option>
+                    <option value="day">Today</option>
                   </select>
                 </div>
                 <div className="flex max-xl:flex-col gap-2">
-                  {data.patients.treatments.length > 0 ? (
+                  {data.patients.treatments.month.length > 0 ? (
                     <>
                       <div className="flex xl:flex-col max-xl:flex-wrap justify-around gap-2">
                         <div className="max-xl:flex gap-[10px] text-sm font-medium">
                           <h2 className="font-bold">
-                            {data.patients.treatments.slice(-1)[0].under}
+                            {data.patients.treatments[selectedPeriod]?.slice(
+                              -1
+                            )[0]?.under || 0}
                           </h2>
                           <div className="flex items-center gap-1">
                             <div className="size-[6px] rounded-full bg-grey"></div>
@@ -207,7 +229,9 @@ const Home = () => {
                         </div>
                         <div className="max-xl:flex gap-[10px] text-sm font-medium">
                           <h2 className="font-bold">
-                            {data.patients.treatments.slice(-1)[0].recovered}
+                            {data.patients.treatments[selectedPeriod]?.slice(
+                              -1
+                            )[0]?.recovered || 0}
                           </h2>
                           <div className="flex items-center gap-1">
                             <div className="size-[6px] rounded-full bg-green"></div>
@@ -216,7 +240,7 @@ const Home = () => {
                         </div>
                       </div>
                       <div className="xl:max-w-[360px] max-xl:overflow-x-scroll">
-                        <PatientsChart />
+                        <PatientsChart period={selectedPeriod} />
                       </div>
                     </>
                   ) : (
@@ -247,64 +271,72 @@ const Home = () => {
                       </p>
                     </div>
                   </div>
-                  <select className="text-xs">
+                  <select
+                    className="text-xs"
+                    value={selectedPolyPeriod}
+                    onChange={(e) => setSelectedPolyPeriod(e.target.value)}
+                  >
                     <button>
                       <selectedcontent></selectedcontent>
                       <span className="picker">
                         <BsChevronDown />
                       </span>
                     </button>
-                    <option value="">Weekly</option>
-                    <option value="">Monthly</option>
-                    <option value="">Today</option>
+                    <option value="week">Weekly</option>
+                    <option value="month">Monthly</option>
+                    <option value="day">Today</option>
                   </select>
                 </div>
                 <div className="h-full">
-                  {data.polyclinics.length > 0 ? (
+                  {data.polyclinics[selectedPolyPeriod]?.length > 0 ? (
                     <>
-                      {data.polyclinics.map((poly, index) => (
-                        <div key={index} className="py-[16px]">
-                          <div className="flex justify-between">
-                            <div className="flex items-center gap-2">
-                              <p className="text-small font-medium">
-                                {poly.name}
+                      {data.polyclinics[selectedPolyPeriod].map(
+                        (poly, index) => (
+                          <div key={index} className="py-[16px]">
+                            <div className="flex justify-between">
+                              <div className="flex items-center gap-2">
+                                <p className="text-small font-medium">
+                                  {poly.name}
+                                </p>
+                                <div
+                                  className={`p-[4px] rounded-full text-xs ${
+                                    poly.percentage === "increase"
+                                      ? "bg-green/[.1] text-green"
+                                      : "bg-red/[.1] text-red"
+                                  }`}
+                                >
+                                  {poly.percentage === "increase" ? "+" : "-"}
+                                  {poly.value}
+                                </div>
+                              </div>
+                              <p className="text-xs text-black/[.5]">
+                                <span className="text-small text-black font-medium">
+                                  {poly.visitors}
+                                </span>{" "}
+                                Visitors
                               </p>
+                            </div>
+                            <div className="relative mt-[13px] bg-linear-to-r from-green to-yellow h-[24px] rounded-full overflow-hidden leftIn">
                               <div
-                                className={`p-[4px] rounded-full text-xs ${
-                                  poly.percentage === "increase"
-                                    ? "bg-green/[.1] text-green"
-                                    : "bg-red/[.1] text-red"
-                                }`}
-                              >
-                                {poly.percentage === "increase" ? "+" : "-"}
-                                {poly.value}
+                                className="absolute bottom-0 right-0 bg-grey h-full"
+                                style={{
+                                  width: `${
+                                    100 - (poly.visitors / 400) * 100
+                                  }%`,
+                                }}
+                              ></div>
+                              <div className="absolute bottom-0 left-0 flex gap-[1px] justify-between px-[1px] w-full h-full">
+                                {Array.from({ length: i }, (_, index) => (
+                                  <div
+                                    key={index}
+                                    className="bg-[#F4F5ED] h-full min-w-[1px] max-w-[1px]"
+                                  ></div>
+                                ))}
                               </div>
                             </div>
-                            <p className="text-xs text-black/[.5]">
-                              <span className="text-small text-black font-medium">
-                                {poly.visitors}
-                              </span>{" "}
-                              Visitors
-                            </p>
                           </div>
-                          <div className="relative mt-[13px] bg-linear-to-r from-green to-yellow h-[24px] rounded-full overflow-hidden leftIn">
-                            <div
-                              className="absolute bottom-0 right-0 bg-grey h-full"
-                              style={{
-                                width: `${100 - (poly.visitors / 400) * 100}%`,
-                              }}
-                            ></div>
-                            <div className="absolute bottom-0 left-0 flex gap-[1px] justify-between px-[1px] w-full h-full">
-                              {Array.from({ length: i }, (_, index) => (
-                                <div
-                                  key={index}
-                                  className="bg-[#F4F5ED] h-full min-w-[1px] max-w-[1px]"
-                                ></div>
-                              ))}
-                            </div>
-                          </div>
-                        </div>
-                      ))}
+                        )
+                      )}
                     </>
                   ) : (
                     <div className="flex flex-col gap-[10px] justify-center items-center w-full h-full py-[24px]">
@@ -386,17 +418,9 @@ const Home = () => {
                     </p>
                   </div>
                 </div>
-                <select className="text-xs">
-                  <button>
-                    <selectedcontent></selectedcontent>
-                    <span className="picker">
-                      <BsChevronDown />
-                    </span>
-                  </button>
-                  <option value="">Weekly</option>
-                  <option value="">Monthly</option>
-                  <option value="">Today</option>
-                </select>
+                <button className="flex justify-center items-center bg-white size-[24px] rounded-[100%]">
+                  <FiArrowUpRight />
+                </button>
               </div>
               {data.doctors.total + data.nurses.total > 0 ? (
                 <DoctorNurses />

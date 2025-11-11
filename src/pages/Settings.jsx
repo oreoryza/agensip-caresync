@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 
 import { BsChevronDown } from "react-icons/bs";
+import { RiSearchLine } from "react-icons/ri";
+
+import indonesia from "../assets/indonesia.png";
+import japan from "../assets/japan.png";
+import english from "../assets/united-states.png";
 
 const Settings = () => {
   const [enableNotifications, setEnableNotifications] = useState(false);
@@ -12,6 +17,14 @@ const Settings = () => {
   const [pushNotifications, setPushNotifications] = useState(false);
   const [notificationSoundLang, setNotificationSoundLang] = useState(false);
   const [doNotDisturbLang, setDoNotDisturbLang] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState("General");
+
+  const categories = [
+    "General",
+    "Security & Access",
+    "Data Management",
+    "API & Integrations",
+  ];
 
   const [systemLanguage, setSystemLanguage] = useState("English");
 
@@ -35,10 +48,31 @@ const Settings = () => {
   return (
     <main className="container slideIn">
       <h2 className="font-bold">Settings</h2>
-      <div className="mt-[52px]">
+      <div className="flex justify-between items-center my-[50px]">
+        <div className="flex gap-2 overflow-x-auto whitespace-nowrap">
+          {categories.map((category) => (
+            <button
+              onClick={() => setSelectedCategory(category)}
+              className={`text-small border-black/[.1] px-[20px] py-[10px] rounded-full ${
+                selectedCategory === category
+                  ? "bg-white border-0 text-black font-medium"
+                  : "text-black/[.5] border-1"
+              }`}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
+        <button
+            className="group min-h-[42px] min-w-[42px] flex justify-center items-center bg-white rounded-[100%]"
+          >
+            <RiSearchLine className="size-[20px]" />
+          </button>
+      </div>
+      <div>
         <div className="flex max-xl:flex-col max-xl:gap-[20px]">
           <div className="min-w-[364px]">
-            <p className="text-title font-bold">General notifications</p>
+            <p className="text-title font-bold">{selectedCategory == "General" ? "General notifications" : selectedCategory == "Security & Access" ? "Security & Access" : selectedCategory == "Data Management" ? "Data Management" : "Integration"}</p>
           </div>
           <div className="flex flex-col gap-[32px] w-full">
             <div className="flex justify-between">
@@ -163,7 +197,16 @@ const Settings = () => {
                     onClick={() => setSystemLanguage(lang)}
                     className={`rounded-full text-sm`}
                   >
-                    {lang}
+                    <div className="flex items-center gap-2">
+                      {lang == "Indonesia" ? (
+                        <img src={indonesia} alt="" />
+                      ) : lang == "Japanese" ? (
+                        <img src={japan} alt="" />
+                      ) : (
+                        <img src={english} alt="" />
+                      )}
+                      <p>{lang}</p>
+                    </div>
                   </option>
                 ))}
               </select>

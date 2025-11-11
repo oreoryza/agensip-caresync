@@ -37,7 +37,7 @@ const HelpCenter = () => {
               features.
             </p>
           </div>
-          <Link to={"/getting-started"}>
+          <Link to={"/getting-started"} className="w-fit">
             <ButtonTertiary text="Read More" style={"text-green"} />
           </Link>
         </div>
@@ -49,7 +49,7 @@ const HelpCenter = () => {
               Manage patient data, view records, and schedule appointments efficiently.
             </p>
           </div>
-          <Link to={"/getting-started"}>
+          <Link to={"/getting-started"} className="w-fit">
             <ButtonTertiary text="Read More" style={"text-green"} />
           </Link>
         </div>
@@ -61,7 +61,7 @@ const HelpCenter = () => {
               Add staff, manage schedules, and adjust access permissions easily.
             </p>
           </div>
-          <Link to={"/getting-started"}>
+          <Link to={"/getting-started"} className="w-fit">
             <ButtonTertiary text="Read More" style={"text-green"} />
           </Link>
         </div>
@@ -73,7 +73,7 @@ const HelpCenter = () => {
               Track medicine and equipment stock levels with timely updates.
             </p>
           </div>
-          <Link to={"/getting-started"}>
+          <Link to={"/getting-started"} className="w-fit">
             <ButtonTertiary text="Read More" style={"text-green"} />
           </Link>
         </div>
@@ -85,7 +85,7 @@ const HelpCenter = () => {
               Generate performance, patient, and financial reports quickly.
             </p>
           </div>
-          <Link to={"/getting-started"}>
+          <Link to={"/getting-started"} className="w-fit">
             <ButtonTertiary text="Read More" style={"text-green"} />
           </Link>
         </div>
@@ -97,7 +97,7 @@ const HelpCenter = () => {
               Find solutions to issues and contact technical support easily.
             </p>
           </div>
-          <Link to={"/getting-started"}>
+          <Link to={"/getting-started"} className="w-fit">
             <ButtonTertiary text="Read More" style={"text-green"} />
           </Link>
         </div>

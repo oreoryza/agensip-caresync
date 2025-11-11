@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import AddSchedule from "../sections/AddSchedule";
 
 import { PiCalendarDots } from "react-icons/pi";
@@ -6,13 +7,21 @@ import { RiSearchLine } from "react-icons/ri";
 import { FaPlus } from "react-icons/fa";
 import { BsChevronDown } from "react-icons/bs";
 import { PiX } from "react-icons/pi";
+import { CiClock2 } from "react-icons/ci";
+import { PiChecks } from "react-icons/pi";
+import { CgProfile } from "react-icons/cg";
+import { RiPoliceCarLine } from "react-icons/ri";
+import { RiBuilding4Line } from "react-icons/ri";
+
+import john from "../assets/john.jpg";
+import robert from "../assets/robert.jpg";
 
 import Calendar from "react-calendar";
 
 import "react-calendar/dist/Calendar.css";
 
-import ScrollContainer from 'react-indiana-drag-scroll';
-import 'react-indiana-drag-scroll/dist/style.css'
+import ScrollContainer from "react-indiana-drag-scroll";
+import "react-indiana-drag-scroll/dist/style.css";
 
 const Schedule = () => {
   const [showCalendar, setShowCalendar] = useState(false);
@@ -125,7 +134,7 @@ const Schedule = () => {
             ))}
           </select>
           <div className="flex gap-2">
-            <div className="flex items-center gap-[10px] bg-white py-[10px] xl:pl-[12px] xl:pr-[16px] max-xl:px-[10px] rounded-full overflow-hidden">
+            <div className="flex items-center gap-[10px] bg-white py-[10px] pl-[12px] pr-[16px] rounded-full overflow-hidden max-xl:hidden">
               <RiSearchLine className="size-[23px] text-black/[.5]" />
               <input
                 type="text"
@@ -133,6 +142,12 @@ const Schedule = () => {
                 className="focus:outline-0 max-xl:hidden"
               />
             </div>
+            <Link
+              to="/search"
+              className="flex items-center gap-[10px] bg-white py-[10px] px-[10px] rounded-[100%] overflow-hidden xl:hidden"
+            >
+              <RiSearchLine className="size-[23px] text-black/[.5]" />
+            </Link>
             <button
               onClick={() => setIsAdd(true)}
               className="group size-[42px] flex items-center justify-center bg-green rounded-[100%]"
@@ -143,16 +158,11 @@ const Schedule = () => {
         </div>
         <ScrollContainer
           className="flex w-full px-[24px] hide-scroll"
-          style={{ overflowX: 'auto' }}
+          style={{ overflowX: "auto" }}
         >
           <div className="group flex flex-col items-center gap-[24px] py-[24px] h-screen min-w-[282px] rounded-t-[20px] ">
             <div className="h-fit px-[10px] py-[6px] rounded-full group-hover:bg-light-yellow duration-300">
               09.00 AM
-            </div>
-          </div>
-          <div className="group flex flex-col items-center gap-[24px] py-[24px] h-screen min-w-[282px] rounded-t-[20px] bg-white">
-            <div className="h-fit px-[10px] py-[6px] rounded-full group-hover:bg-light-yellow duration-300">
-              10.00 AM
             </div>
             <div className="relative flex flex-col gap-[24px] w-full">
               <div className="absolute flex flex-col gap-[24px] min-w-[500px] pointer-events-none">
@@ -163,13 +173,16 @@ const Schedule = () => {
                         title: "Family Medicine Checkups",
                         time: "01:30 PM - 02:45 PM",
                         person: "Dr. John Smith",
+                        task: "Checkups",
                         date: formattedDate,
                         note: "Regular checkup for family medicine",
                       })
                     }
-                    className="doctor flex items-center gap-[12px] p-[5px] pr-[20px] bg-light-green rounded-full overflow-hidden w-fit pointer-events-auto hover:z-3 hover:scale-[1.05] duration-300"
+                    className="doctor flex items-center gap-[12px] p-[5px] pr-[20px] bg-light-green rounded-full overflow-hidden w-fit pointer-events-auto hover:z-3 hover:scale-[1.05] duration-300 opacity-0"
                   >
-                    <div className="min-w-[70px] min-h-[70px] bg-green rounded-[100%]"></div>
+                    <div className="flex justify-center items-center max-w-[70px] max-h-[70px] min-w-[70px] min-h-[70px] bg-green rounded-[100%] overflow-hidden">
+                      <img src={john} alt="" className="scale-150" />
+                    </div>
                     <div className="flex flex-col items-start text-left gap-[10px]">
                       <p>Family Medicine Checkups</p>
                       <p className="text-xs text-black/[.6]">
@@ -185,13 +198,75 @@ const Schedule = () => {
                         title: "Patient transfer to another hospital",
                         time: "01:30 PM - 02:45 PM",
                         person: "Driver : Jonathan",
+                        task: "Transfer",
                         date: formattedDate,
                         note: "Transfer patient to another hospital",
                       })
                     }
                     className="operation flex items-center gap-[12px] p-[5px] pr-[20px] bg-light-yellow rounded-full overflow-hidden w-fit pointer-events-auto hover:z-3 hover:scale-[1.05] duration-300"
                   >
-                    <div className="min-w-[70px] min-h-[70px] bg-yellow rounded-[100%]"></div>
+                    <div className="flex items-center justify-center min-w-[70px] min-h-[70px] bg-yellow rounded-[100%]">
+                      <RiPoliceCarLine className="size-[50%] text-white" />
+                    </div>
+                    <div className="flex flex-col items-start text-left gap-[10px]">
+                      <p>Patient transfer to another hospital</p>
+                      <p className="text-xs text-black/[.6]">
+                        01:30 PM - 02:45 PM | Driver : Jonathan
+                      </p>
+                    </div>
+                  </button>
+                )}
+              </div>
+            </div>
+          </div>
+          <div className="group flex flex-col items-center gap-[24px] py-[24px] h-screen min-w-[282px] rounded-t-[20px] bg-white">
+            <div className="h-fit px-[10px] py-[6px] rounded-full group-hover:bg-light-yellow duration-300">
+              10.00 AM
+            </div>
+            <div className="relative flex flex-col gap-[24px] w-full">
+              <div className="absolute flex flex-col gap-[24px] min-w-[500px] pointer-events-none">
+                {shouldShow("doctor") && (
+                  <button
+                    onClick={() =>
+                      handleScheduleClick({
+                        title: "Family Medicine Checkups",
+                        time: "01:30 PM - 02:45 PM",
+                        person: "Dr. John Smith",
+                        task: "Checkups",
+                        date: formattedDate,
+                        note: "Regular checkup for family medicine",
+                      })
+                    }
+                    className="doctor flex items-center gap-[12px] p-[5px] pr-[20px] bg-light-green rounded-full overflow-hidden w-fit pointer-events-auto hover:z-3 hover:scale-[1.05] duration-300"
+                  >
+                    <div className="flex justify-center items-center max-w-[70px] max-h-[70px] min-w-[70px] min-h-[70px] rounded-[100%] overflow-hidden">
+                      <img src={john} alt="" className="scale-150" />
+                    </div>
+                    <div className="flex flex-col items-start text-left gap-[10px]">
+                      <p>Family Medicine Checkups</p>
+                      <p className="text-xs text-black/[.6]">
+                        01:30 PM - 02:45 PM | Dr. John Smith
+                      </p>
+                    </div>
+                  </button>
+                )}
+                {shouldShow("operation") && (
+                  <button
+                    onClick={() =>
+                      handleScheduleClick({
+                        title: "Patient transfer to another hospital",
+                        time: "01:30 PM - 02:45 PM",
+                        person: "Driver : Jonathan",
+                        task: "Transfer",
+                        date: formattedDate,
+                        note: "Transfer patient to another hospital",
+                      })
+                    }
+                    className="operation flex items-center gap-[12px] p-[5px] pr-[20px] bg-light-yellow rounded-full overflow-hidden w-fit pointer-events-auto hover:z-3 hover:scale-[1.05] duration-300 hidden"
+                  >
+                    <div className="flex items-center justify-center min-w-[70px] min-h-[70px] bg-yellow rounded-[100%]">
+                      <RiPoliceCarLine className="size-[50%] text-white" />
+                    </div>
                     <div className="flex flex-col items-start text-left gap-[10px]">
                       <p>Patient transfer to another hospital</p>
                       <p className="text-xs text-black/[.6]">
@@ -234,13 +309,16 @@ const Schedule = () => {
                         title: "General Meeting Room 101",
                         time: "01:30 PM - 02:45 PM",
                         person: "All Doctor",
+                        task: "Meeting",
                         date: formattedDate,
                         note: "Meeting for all doctors",
                       })
                     }
                     className="room flex items-center gap-[12px] p-[5px] pr-[20px] bg-light-blue rounded-full overflow-hidden w-fit pointer-events-auto hover:z-3 hover:scale-[1.05] duration-300"
                   >
-                    <div className="min-w-[70px] min-h-[70px] bg-blue rounded-[100%]"></div>
+                    <div className="flex items-center justify-center min-w-[70px] min-h-[70px] bg-blue rounded-[100%]">
+                      <RiBuilding4Line className="size-[50%] text-white" />
+                    </div>
                     <div className="flex flex-col items-start text-left gap-[10px]">
                       <p>General Meeting Room 101</p>
                       <p className="text-xs text-black/[.6]">
@@ -265,13 +343,16 @@ const Schedule = () => {
                         title: "Patient transfer to another hospital",
                         time: "12:00 AM - 01:10 PM",
                         person: "Driver : Jonathan",
+                        task: "Transfer",
                         date: formattedDate,
                         note: "Transfer patient to another hospital",
                       })
                     }
                     className="operation flex items-center gap-[12px] p-[5px] pr-[20px] bg-light-yellow rounded-full overflow-hidden w-fit pointer-events-auto hover:z-3 hover:scale-[1.05] duration-300"
                   >
-                    <div className="min-w-[70px] min-h-[70px] bg-yellow rounded-[100%]"></div>
+                    <div className="flex items-center justify-center min-w-[70px] min-h-[70px] bg-yellow rounded-[100%]">
+                      <RiPoliceCarLine className="size-[50%] text-white" />
+                    </div>
                     <div className="flex flex-col items-start text-left gap-[10px]">
                       <p>Patient transfer to another hospital</p>
                       <p className="text-xs text-black/[.6]">
@@ -305,13 +386,16 @@ const Schedule = () => {
                         title: "Family Medicine Checkups",
                         time: "01:30 PM - 02:45 PM",
                         person: "Dr. John Smith",
+                        task: "Checkups",
                         date: formattedDate,
                         note: "Regular checkup for family medicine",
                       })
                     }
                     className="doctor flex items-center gap-[12px] p-[5px] pr-[20px] bg-light-green rounded-full overflow-hidden w-fit pointer-events-auto hover:z-3 hover:scale-[1.05] duration-300"
                   >
-                    <div className="min-w-[70px] min-h-[70px] bg-green rounded-[100%]"></div>
+                    <div className="flex justify-center items-center max-w-[70px] max-h-[70px] min-w-[70px] min-h-[70px] rounded-[100%] overflow-hidden">
+                      <img src={john} alt="" className="scale-150" />
+                    </div>
                     <div className="flex flex-col items-start text-left gap-[10px]">
                       <p>Family Medicine Checkups</p>
                       <p className="text-xs text-black/[.6]">
@@ -363,13 +447,20 @@ const Schedule = () => {
                         title: "Brain Tumor Removal",
                         time: "01:30 PM - 02:45 PM",
                         person: "Dr. Robert Taylor",
+                        task: "Surgery",
                         date: formattedDate,
                         note: "Surgical procedure for brain tumor removal",
                       })
                     }
                     className="nurse flex items-center gap-[12px] p-[5px] pr-[20px] bg-purple-200 rounded-full overflow-hidden w-fit pointer-events-auto hover:z-3 hover:scale-[1.05] duration-300"
                   >
-                    <div className="min-w-[70px] min-h-[70px] bg-purple-500 rounded-[100%]"></div>
+                    <div className="flex justify-center items-center max-w-[70px] max-h-[70px] min-w-[70px] min-h-[70px] rounded-[100%] overflow-hidden">
+                      <img
+                        src={robert}
+                        alt=""
+                        className="scale-150 mt-14 ml-4"
+                      />
+                    </div>
                     <div className="flex flex-col items-start text-left gap-[10px]">
                       <p>Brain Tumor Removal</p>
                       <p className="text-xs text-black/[.6]">
@@ -412,13 +503,16 @@ const Schedule = () => {
                         title: "General Meeting Room 101",
                         time: "03:00 PM - 04:00 PM",
                         person: "All Doctor",
+                        task: "Meeting",
                         date: formattedDate,
                         note: "Meeting for all doctors",
                       })
                     }
                     className="room flex items-center gap-[12px] p-[5px] pr-[20px] bg-light-blue rounded-full overflow-hidden w-fit pointer-events-auto hover:z-3 hover:scale-[1.05] duration-300"
                   >
-                    <div className="min-w-[70px] min-h-[70px] bg-blue rounded-[100%]"></div>
+                    <div className="flex justify-center items-center min-w-[70px] min-h-[70px] bg-blue rounded-[100%]">
+                      <RiBuilding4Line className="size-[50%] text-white" />
+                    </div>
                     <div className="flex flex-col items-start text-left gap-[10px]">
                       <p>General Meeting Room 101</p>
                       <p className="text-xs text-black/[.6]">
@@ -469,25 +563,43 @@ const Schedule = () => {
             </button>
           </div>
           <div className="space-y-[12px] py-[24px]">
-            <div className="flex">
+            <div className="flex items-center gap-2">
+              <PiCalendarDots />
               <p className="font-medium text-sm text-black/[.6] w-[100px]">
                 Date
               </p>
               <p className="text-small">{selectedSchedule?.date}</p>
             </div>
-            <div className="flex">
+            <div className="flex items-center gap-2">
+              <CiClock2 />
               <p className="font-medium text-sm text-black/[.6] w-[100px]">
                 Time
               </p>
               <p className="text-small">{selectedSchedule?.time}</p>
             </div>
-            <div className="flex">
+            <div className="flex items-center gap-2">
+              <PiChecks />
               <p className="font-medium text-sm text-black/[.6] w-[100px]">
                 Task
               </p>
-              <p className="text-small">{selectedSchedule?.person}</p>
+              <p
+                className={`text-xs rounded-[4px] p-[4px] ${
+                  selectedSchedule?.task == "Checkups"
+                    ? "bg-light-green"
+                    : selectedSchedule?.task == "Meeting"
+                    ? "bg-light-blue"
+                    : selectedSchedule?.task == "Transfer"
+                    ? "bg-light-yellow"
+                    : selectedSchedule?.task == "Surgery"
+                    ? "bg-purple-200"
+                    : "bg-light-red"
+                }`}
+              >
+                {selectedSchedule?.task}
+              </p>
             </div>
-            <div className="flex">
+            <div className="flex items-center gap-2">
+              <CgProfile />
               <p className="font-medium text-sm text-black/[.6] w-[100px]">
                 Assignee
               </p>

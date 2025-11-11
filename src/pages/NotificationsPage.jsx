@@ -1,18 +1,25 @@
-import React, { useState } from "react"
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
+import { BsChevronLeft } from "react-icons/bs";
 
 import adam from "/patients/adam.png";
 
 const NotificationsPage = () => {
-    const [selectedCategory, setSelectedCategory] = useState("All");
-    
-      const categories = [
-        "All",
-        "Seen",
-      ];
+  const navigate = useNavigate();
+  const [selectedCategory, setSelectedCategory] = useState("All");
+
+  const categories = ["All", "Seen"];
+
+  const handleBack = () => {
+    navigate(-1);
+  }
+
   return (
     <div className="fixed top-0 bg-mobile w-screen h-screen p-[24px] z-4 xl:hidden slideIn">
       <div className="flex justify-between items-center mb-[16px]">
         <div className="flex items-center gap-2">
+          <BsChevronLeft onClick={() => handleBack()} />
           <p className="font-medium">Notifications</p>
           <div className="px-[8px] py-[4px] rounded-full bg-grey text-xs">
             20
@@ -21,21 +28,21 @@ const NotificationsPage = () => {
       </div>
       <div className="mb-[24px]">
         <div className="flex gap-2 w-full">
-            {categories.map((category) => (
-              <button
-                onClick={() => setSelectedCategory(category)}
-                className={`text-small w-full outline-black/[.1] px-[20px] py-[10px] rounded-full ${
-                  selectedCategory === category
-                    ? "bg-white outline-o text-black font-medium"
-                    : "text-black/[.5] outline-1"
-                }`}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
+          {categories.map((category) => (
+            <button
+              onClick={() => setSelectedCategory(category)}
+              className={`text-small w-full outline-black/[.1] px-[20px] py-[10px] rounded-full ${
+                selectedCategory === category
+                  ? "bg-white outline-o text-black font-medium"
+                  : "text-black/[.5] outline-1"
+              }`}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
       </div>
-      <div className="flex flex-col gap-[10px] mb-[14px]">
+      <div className={`flex flex-col gap-[10px] mb-[14px] ${selectedCategory == "Seen" ? "hidden" : ""}`}>
         <p className="text-xs text-black/[.5] mb-[4px]">Newest</p>
         <div className="relative flex gap-[6px]">
           <img
