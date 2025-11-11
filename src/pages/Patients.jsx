@@ -286,7 +286,7 @@ const Patients = () => {
               </div>
             </div>
             {patients.length > 0 ? (
-              <div className="flex flex-col gap-[6px] w-full overflow-y-auto">
+              <div className="flex flex-col gap-[6px] w-full xl:overflow-y-auto">
                 {sortedPatients.slice(0, visiblePatients).map((patient) => (
                   <div
                     key={patient.id}
